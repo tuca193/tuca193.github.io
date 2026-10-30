@@ -1,20 +1,24 @@
-# Painel SSA 2
+# Painel SSA 2 · Pernambuco
 
-Painel de estudos para as provas do SSA 2 (6 e 13 de dezembro de 2026, à tarde).
-Marque os assuntos como estudados — o progresso fica salvo no navegador (localStorage).
+Painel de estudos para o **SSA 2** (Sistema Seriado de Avaliação de Pernambuco) —
+ingresso 2027. Provas em **06/12/2026 e 13/12/2026, à tarde**.
 
-## Stack
+## Estrutura
 
-    index.html           → painel principal (agora compacto)
-    style.css            → estilos (CSS)
-    script.js            → comportamento (JS)
-    <materia><n>.html    → página independente de cada assunto (ex.: qui0.html, his9.html)
+    index.html     → página inicial: informações do SSA, countdown das provas e cards de cada matéria
+    <mat>.html     → uma página por matéria (port, edf, fis, geo, bio, qui, mat, ing, soc, his)
+    style.css      → estilos
+    script.js      → progresso (localStorage), barras e countdown
+    build.js       → gera as páginas a partir do conteúdo do edital
+    dev-server.js  → servidor local de desenvolvimento (node dev-server.js)
 
-Cada assunto tem URL própria; o link "Ver detalhes" no painel leva a ela, e o
-link "Voltar ao painel" retorna à âncora da matéria (ex.: `index.html#qui`).
-Antes, todo o conteúdo vivia inline dentro do README.md.
+Na home, cada matéria tem um botão-card com sua barra de progresso. A barra global
+(76 assuntos) é fixa no canto inferior direito, com contador e botão de reset.
+Em cada página de matéria, os assuntos do edital têm:
 
-## Como publicar
+- botão circular para marcar como concluído (salva automático);
+- botão discreto **Detalhes** com conteúdo de estudo, dicas de como cai e links para vídeos/aulas.
 
-Envie os arquivos para a branch `main` deste repositório — o GitHub Pages
-serve `index.html` automaticamente.
+## Publicação
+
+Envie tudo para a branch `main` — o GitHub Pages serve o `index.html` automaticamente.
