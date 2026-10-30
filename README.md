@@ -3,68 +3,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Painel SSA 2</title>
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2330;--muted:#5d6678;--sat:62%;--tl:32%;--bl:46%;--tint:96%;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--card:#1b202b;--ink:#eef0f5;--muted:#a2abbd;--tl:76%;--bl:56%;--tint:15%}}
-:root[data-theme="dark"]{--bg:#12151c;--card:#1b202b;--ink:#eef0f5;--muted:#a2abbd;--tl:76%;--bl:56%;--tint:15%}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45}
-main{max-width:720px;margin:0 auto;padding:20px 14px 40px}
-h1{font-size:1.7rem;font-weight:800;margin:0 0 4px;letter-spacing:-.01em}
-.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
-.prog{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:14px}
-.bar{height:8px;border-radius:8px;background:color-mix(in srgb,var(--muted) 25%,transparent);overflow:hidden;margin-top:8px}
-.bar i{display:block;height:100%;width:0;background:#2f9e6e;transition:width .25s}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;margin:0 -14px;padding-left:14px;padding-right:14px}
-.chip{flex:none;border:0;border-radius:20px;padding:7px 13px;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;color:#fff;background:hsl(var(--h) 55% 42%)}
-.chip:focus-visible,summary:focus-visible,li:focus-visible{outline:3px solid hsl(var(--h) 80% 55%);outline-offset:2px}
-details{background:var(--card);border-radius:16px;margin-bottom:12px;overflow:hidden;border:2px solid hsl(var(--h) var(--sat) var(--bl)/.55)}
-summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:1.2rem;font-weight:800;color:#fff;background:hsl(var(--h) 55% 40%);display:flex;justify-content:space-between;align-items:center}
-summary::-webkit-details-marker{display:none}
-summary small{font-weight:500;font-size:.8rem;opacity:.9}
-ul{list-style:none;margin:0;padding:6px 10px 10px}
-li{display:flex;gap:10px;align-items:flex-start;padding:10px 8px;border-radius:10px;cursor:pointer;margin-top:4px;background:hsl(var(--h) 60% var(--tint))}
-li .k{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid hsl(var(--h) var(--sat) var(--bl));margin-top:2px;display:grid;place-items:center;font-size:.8rem;color:#fff}
-li.d .k{background:hsl(var(--h) var(--sat) var(--bl))}
-li.d .k::after{content:"✓"}
-li.d .t{opacity:.6}
-.n{display:block;font-weight:800;font-size:1.05rem;color:hsl(var(--h) var(--sat) var(--tl))}
-.x{display:block;color:var(--muted);font-size:.88rem}
-
-a.chip{text-decoration:none;display:inline-block}
-
-li label{display:flex;gap:10px;align-items:flex-start;flex:1;cursor:pointer}
-li input{position:absolute;opacity:0;width:1px;height:1px}
-li input:focus-visible~.k{outline:3px solid hsl(var(--h) 80% 55%);outline-offset:2px}
-li input:checked~.k{background:hsl(var(--h) var(--sat) var(--bl))}
-li input:checked~.k::after{content:"✓"}
-li input:checked~.t{opacity:.6}
-
-main{display:flex;flex-direction:column;counter-reset:tot}
-.prog{order:-1}
-.bar{display:none}.js .bar{display:block}
-details{counter-reset:n}
-details li input:checked{counter-increment:n tot}
-.c::after{content:counter(n)}
-.ct::after{content:counter(tot)}
-.cnt{margin:0;padding:4px 18px 14px;font-weight:700;color:hsl(var(--h) var(--sat) var(--tl))}
-
-li label.lb{flex:none;padding:2px 6px 8px 0}
-a.t{color:inherit;text-decoration:none;flex:1}
-.more{display:block;margin-top:3px;font-size:.8rem;font-weight:700;color:hsl(var(--h) var(--sat) var(--tl))}
-li:has(input:checked) .t{opacity:.6}
-.pg{display:none}
-.ov:checked+.pg{display:block;position:fixed;inset:0;overflow:auto;z-index:10;background:var(--bg);padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(28px + env(safe-area-inset-bottom,0px))}
-.pg .in{max-width:720px;margin:0 auto}
-.back{display:inline-block;padding:8px 14px;border-radius:20px;background:hsl(var(--h) 55% 40%);color:#fff;text-decoration:none;font-weight:700}
-.pg h2{font-size:1.7rem;font-weight:800;margin:.5em 0 .2em;color:hsl(var(--h) var(--sat) var(--tl))}
-.pg h3{font-size:1.05rem;margin:18px 0 6px;padding:7px 11px;border-radius:8px;border-left:5px solid hsl(var(--h) var(--sat) var(--bl));background:hsl(var(--h) 60% var(--tint))}
-ul.b{list-style:disc;padding:0 0 0 22px}
-.b li{display:list-item;background:none;padding:2px 0;margin:6px 0;cursor:auto;border-radius:0}
-.ov{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-li label.t{display:block;flex:1;cursor:pointer}
-label.back{cursor:pointer}
+html{scroll-behavior:smooth}
+body{-webkit-tap-highlight-color:transparent}
+body:has(.ov:checked){overflow:hidden}
+li,.chip,summary,.back,label{touch-action:manipulation}
+li{transition:background-color .2s,transform .12s}
+li:active{transform:scale(.985)}
+.chip{transition:transform .12s,filter .2s}
+.chip:active{transform:scale(.94)}
+.t,.k{transition:opacity .2s,background-color .2s}
+.chips{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{scroll-snap-align:start}
+.bar i{width:100%;transform-origin:left;transform:scaleX(0);transition:transform .25s ease;will-change:transform}
+details{interpolate-size:allow-keywords}
+details::details-content{block-size:0;overflow:clip;transition:block-size .28s ease,content-visibility .28s allow-discrete}
+details[open]::details-content{block-size:auto}
+.pg{display:block;position:fixed;inset:0;overflow:auto;z-index:10;background:var(--bg);
+  overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(28px + env(safe-area-inset-bottom,0px));
+  content-visibility:hidden;opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .22s,transform .22s,visibility 0s linear .22s,content-visibility .22s allow-discrete}
+.ov:checked+.pg{content-visibility:visible;opacity:1;visibility:visible;transform:none;transition-delay:0s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style></head><body><main>
 <h1>Painel SSA 2</h1>
 <p class="sub">Provas em 6 e 13 de dezembro de 2026, à tarde. Toque num assunto para marcar como estudado.</p>
@@ -82,11 +45,32 @@ label.back{cursor:pointer}
 <details id="his" open style="--h:320"><summary><span>História</span><small>10 assuntos</small></summary><ul><li data-k="his0"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his0"><span class="n">Transição para o mundo moderno</span><span class="x">crise do séc. XIV, Absolutismo, Reformas, Renascimento, navegações</span><span class="more">Ver detalhes</span></label></li><li data-k="his1"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his1"><span class="n">África entre os séculos XV e XVIII</span><span class="x">povos iorubás, expansão islâmica, escravidão moderna</span><span class="more">Ver detalhes</span></label></li><li data-k="his2"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his2"><span class="n">Revoluções inglesas e Iluminismo</span><span class="x">declaração de direitos, liberalismo</span><span class="more">Ver detalhes</span></label></li><li data-k="his3"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his3"><span class="n">Revolução Industrial</span><span class="x">impactos sociais, econômicos e políticos</span><span class="more">Ver detalhes</span></label></li><li data-k="his4"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his4"><span class="n">Revolução Francesa</span><span class="x">implicações na França e no mundo</span><span class="more">Ver detalhes</span></label></li><li data-k="his5"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his5"><span class="n">Independências americanas</span><span class="x">resistências contra europeus</span><span class="more">Ver detalhes</span></label></li><li data-k="his6"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his6"><span class="n">Nacionalismo e socialismo</span><span class="x">romantismo e anarquismo no século XIX</span><span class="more">Ver detalhes</span></label></li><li data-k="his7"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his7"><span class="n">Brasil colônia</span><span class="x">economia, povos originários, resistências</span><span class="more">Ver detalhes</span></label></li><li data-k="his8"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his8"><span class="n">Brasil império</span><span class="x">independência, Primeiro e Segundo Reinado, imigração</span><span class="more">Ver detalhes</span></label></li><li data-k="his9"><label class="lb"><input type="checkbox"><span class="k"></span></label><label class="t" for="o-his9"><span class="n">Abolicionismo e Primeira República</span><span class="x">com destaque para Pernambuco</span><span class="more">Ver detalhes</span></label></li></ul><p class="cnt">Estudados: <span class="c"></span> de 10</p></details>
 <div class="prog"><b>Progresso: <span class="ct"></span> de 76 assuntos estudados</b><div class="bar"><i id="pb"></i></div></div></main><script>document.documentElement.className="js";
 var st={};try{st=JSON.parse(localStorage.getItem("ssa2")||"{}")}catch(e){}
-var items=document.querySelectorAll("li[data-k]");
-function bar(){var ok=document.querySelectorAll("li input:checked").length;document.getElementById("pb").style.width=(ok/items.length*100)+"%"}
-items.forEach(function(li){var i=li.querySelector("input");i.checked=!!st[li.dataset.k];
-i.onchange=function(){st[li.dataset.k]=i.checked;try{localStorage.setItem("ssa2",JSON.stringify(st))}catch(e){}bar()}});
-bar();</script><input type="checkbox" class="ov" id="o-qui0"><section class="pg" id="d-qui0" style="--h:175"><div class="in"><label class="back" for="o-qui0">Voltar ao painel</label><h2>Soluções</h2><h3>O que estudar</h3><ul class="b"><li>Soluto e solvente; solução insaturada, saturada e supersaturada</li><li>Coeficiente de solubilidade e como ler curvas de solubilidade (g de soluto por 100 g de água × temperatura)</li><li>Curva subindo: dissolução endotérmica; curva descendo: exotérmica</li><li>Formas de expressar concentração: g/L, mol/L, título, ppm; diluição e mistura de soluções</li></ul><h3>Fórmulas e regras</h3><ul class="b"><li>C = m1/V (g/L)</li><li>M = n/V = m1/(MM·V) (mol/L)</li><li>Título T = m1/m (sem unidade); ppm = mg de soluto por kg de solução</li><li>Diluição: Mi·Vi = Mf·Vf (a quantidade de soluto não muda)</li><li>Mistura do mesmo soluto: M1·V1 + M2·V2 = Mf·Vf</li></ul><h3>Como costuma cair</h3><ul class="b"><li>Gráfico de solubilidade: quanto precipita ao resfriar de uma temperatura a outra</li><li>Massa necessária para preparar certo volume de solução</li><li>Diluição e mistura em contextos do dia a dia (soro, sucos, produtos de limpeza)</li></ul></div></section>
+var items=document.querySelectorAll("li[data-k]"),pb=document.getElementById("pb"),
+    total=items.length,done=0,timer;
+items.forEach(function(li){
+  var i=li.querySelector("input");
+  i.checked=!!st[li.dataset.k];
+  if(i.checked)done++;
+});
+function bar(){pb.style.transform="scaleX("+done/total+")"}
+bar();
+document.addEventListener("change",function(e){
+  var el=e.target,li=el.closest&&el.closest("li[data-k]");
+  if(li){
+    st[li.dataset.k]=el.checked;
+    done+=el.checked?1:-1;
+    bar();
+    clearTimeout(timer);
+    timer=setTimeout(function(){
+      try{localStorage.setItem("ssa2",JSON.stringify(st))}catch(x){}
+    },300);
+  }else if(el.classList.contains("ov")&&el.checked){
+    var p=el.nextElementSibling;if(p)p.scrollTop=0;
+  }
+});
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){var o=document.querySelector(".ov:checked");if(o)o.checked=false}
+});</script><input type="checkbox" class="ov" id="o-qui0"><section class="pg" id="d-qui0" style="--h:175"><div class="in"><label class="back" for="o-qui0">Voltar ao painel</label><h2>Soluções</h2><h3>O que estudar</h3><ul class="b"><li>Soluto e solvente; solução insaturada, saturada e supersaturada</li><li>Coeficiente de solubilidade e como ler curvas de solubilidade (g de soluto por 100 g de água × temperatura)</li><li>Curva subindo: dissolução endotérmica; curva descendo: exotérmica</li><li>Formas de expressar concentração: g/L, mol/L, título, ppm; diluição e mistura de soluções</li></ul><h3>Fórmulas e regras</h3><ul class="b"><li>C = m1/V (g/L)</li><li>M = n/V = m1/(MM·V) (mol/L)</li><li>Título T = m1/m (sem unidade); ppm = mg de soluto por kg de solução</li><li>Diluição: Mi·Vi = Mf·Vf (a quantidade de soluto não muda)</li><li>Mistura do mesmo soluto: M1·V1 + M2·V2 = Mf·Vf</li></ul><h3>Como costuma cair</h3><ul class="b"><li>Gráfico de solubilidade: quanto precipita ao resfriar de uma temperatura a outra</li><li>Massa necessária para preparar certo volume de solução</li><li>Diluição e mistura em contextos do dia a dia (soro, sucos, produtos de limpeza)</li></ul></div></section>
 <input type="checkbox" class="ov" id="o-qui1"><section class="pg" id="d-qui1" style="--h:175"><div class="in"><label class="back" for="o-qui1">Voltar ao painel</label><h2>Titulação</h2><h3>O que estudar</h3><ul class="b"><li>Método para descobrir a concentração de uma solução por reação de neutralização ácido-base</li><li>Vidrarias: bureta (titulante), erlenmeyer (titulado), pipeta</li><li>Indicador (como a fenolftaleína) mostra o ponto final; ponto de equivalência é quando as quantidades reagem completamente</li></ul><h3>Fórmulas e regras</h3><ul class="b"><li>No equivalência: n(H⁺) = n(OH⁻)</li><li>Ma·Va·(nº de H ionizáveis) = Mb·Vb·(nº de OH)</li><li>Para ácido e base monopróticos: Ma·Va = Mb·Vb</li></ul><h3>Como costuma cair</h3><ul class="b"><li>Concentração de ácido acético no vinagre ou de soda cáustica a partir do volume gasto</li><li>Cor do indicador no início e no fim</li><li>Identificar vidrarias e etapas do procedimento</li></ul></div></section>
 <input type="checkbox" class="ov" id="o-qui2"><section class="pg" id="d-qui2" style="--h:175"><div class="in"><label class="back" for="o-qui2">Voltar ao painel</label><h2>Propriedades coligativas</h2><h3>O que estudar</h3><ul class="b"><li>Tonoscopia: diminuição da pressão de vapor do solvente</li><li>Ebulioscopia: aumento da temperatura de ebulição</li><li>Crioscopia: abaixamento da temperatura de congelamento</li><li>Osmose e pressão osmótica</li></ul><h3>Fórmulas e regras</h3><ul class="b"><li>Dependem do número de partículas dissolvidas, não do tipo de soluto</li><li>Mais partículas, efeito maior; compostos iônicos liberam mais partículas (fator i)</li><li>Com mesma molaridade: NaCl (i≈2) altera mais que glicose (i=1)</li><li>π = M·R·T·i</li><li>Osmose: o solvente passa do meio menos concentrado (hipotônico) para o mais concentrado (hipertônico)</li></ul><h3>Como costuma cair</h3><ul class="b"><li>Ordenar soluções por ponto de ebulição ou congelamento</li><li>Por que sal derrete o gelo e conserva alimentos</li><li>Soro fisiológico, hemácias em meios hipo e hipertônicos</li></ul></div></section>
 <input type="checkbox" class="ov" id="o-qui3"><section class="pg" id="d-qui3" style="--h:175"><div class="in"><label class="back" for="o-qui3">Voltar ao painel</label><h2>Equilíbrio químico</h2><h3>O que estudar</h3><ul class="b"><li>Reações reversíveis e equilíbrio dinâmico: velocidade direta = velocidade inversa</li><li>Constantes Kc e Kp; quociente reacional Q</li><li>Princípio de Le Chatelier e fatores que deslocam o equilíbrio</li></ul><h3>Fórmulas e regras</h3><ul class="b"><li>aA + bB ⇌ cC + dD: Kc = [C]^c·[D]^d / ([A]^a·[B]^b)</li><li>Sólidos e líquidos puros não entram na expressão</li><li>K grande favorece produtos; Q &lt; K: reação segue para a direita</li><li>Aumentar reagente desloca para a direita; aumentar temperatura favorece o sentido endotérmico</li><li>Aumentar pressão favorece o lado com menos mols de gás</li><li>Catalisador acelera, mas não desloca; só a temperatura muda o valor de K</li></ul><h3>Como costuma cair</h3><ul class="b"><li>Gráficos de concentração × tempo e identificação do equilíbrio</li><li>Prever o deslocamento após uma perturbação</li><li>Cálculo de Kc a partir de concentrações no equilíbrio</li></ul></div></section>
