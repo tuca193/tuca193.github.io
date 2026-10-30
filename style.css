@@ -65,6 +65,16 @@ li label.t{display:block;flex:1;cursor:pointer}
 label.back{cursor:pointer}
 .b li:active{transform:none}
 li,.chip,summary,.back,label{touch-action:manipulation}
+}
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+/* Paginas de detalhe independentes */
+a.t{display:block;cursor:pointer;text-decoration:none;color:inherit}
+a.t .more{text-decoration:underline;text-underline-offset:2px}
+main.dpage{min-height:100vh;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px))}
+main.dpage .in{max-width:720px;margin:0 auto}
+main.dpage .back{margin:0 0 14px;padding:8px 14px}
+main.dpage h2{margin-top:.3em}
+main.dpage li{cursor:default}
+main.dpage .cnt{display:none}
