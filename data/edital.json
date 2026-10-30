@@ -2522,5 +2522,151 @@
     }
    ]
   }
+ ],
+ "anteriores": [
+  {
+   "processo": 2026,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2026/arquivos/ssa2_2026/202512072000_-_CADERNO_DE_PROVAS_-_SSA_2_-_1_DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2026/arquivos/ssa2_2026/202601051305_-_GABARITO_DEFINITIVO_-_SSA_2_-_1_DIA_-_2026.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2026/arquivos/ssa2_2026/202512141958_-_CADERNO_DE_PROVAS_-_SSA_2_-_2_DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2026/arquivos/ssa2_2026/202601051307_-_GABARITO_DEFINITIVO_SSA_2_2_DIA_-_2026.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2026/"
+  },
+  {
+   "processo": 2025,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2025/arquivos/ssa2_2025/CADERNO_DE_PROVAS_-_SSA_2_1_DIA_20241208.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2025/arquivos/ssa2_2025/GABARITO_DEFINITIVO-_SSA2-1_DIA_20250103.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2025/arquivos/ssa2_2025/CADERNO_DE_PROVAS_-_SSA_2_2_DIA_20241215.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2025/arquivos/ssa2_2025/GABARITO_DEFINITIVO_-_SSA2-2%20DIA_20250103.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2025/"
+  },
+  {
+   "processo": 2024,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2024/arquivos/ssa2/SSA2-1DIA-CADERNO-DE-PROVAS.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2024/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-1DIA-27-12.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2024/arquivos/ssa2/SSA2-2DIA-CADERNO-DE-PROVAS.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2024/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-2DIA-27-12.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2024/"
+  },
+  {
+   "processo": 2023,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2023/arquivos/ssa2/CADERNO-DE-PROVAS-SSA2-1DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2023/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-1-DIA.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2023/arquivos/ssa2/CADERNO-DE-PROVAS-SSA2-2DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2023/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-2-DIA.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2023/"
+  },
+  {
+   "processo": 2022,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2022/arquivos/ssa2/CADERNO-DE-PROVAS-SSA2-1DIA-29-10.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2022/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2%20-1-DIA.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2022/arquivos/ssa2/CADERNO-DE-PROVAS-SSA2-2DIA-29-10.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2022/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-2-DIA.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2022/"
+  },
+  {
+   "processo": 2021,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2021/arquivos/ssa2/Caderno-de-provas-2FASE-1dia.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2021/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-1DIA-12022021.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2021/arquivos/ssa2/caderno-de-provas-2FASE-2dia.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2021/arquivos/ssa2/GABARITO-DEFINITIVO-SSA2-2DIA-12022021.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2021/"
+  },
+  {
+   "processo": 2020,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2020/arquivos/ssa2/PROVA-SSA2-1DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2020/arquivos/ssa2/SSA2-1-DIA-GABARITO-DEFINITIVO.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2020/arquivos/ssa2/PROVA-SSA2-FASE-2-DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2020/arquivos/ssa2/SSA2-2-DIA-GABARITO-DEFINITIVO.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2020/"
+  },
+  {
+   "processo": 2019,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2019/arquivos/SSA2/CADERNO-SSA2-1DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2019/arquivos/SSA2/Gabarito-Definitivo-SSA2-1DIA.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2019/arquivos/SSA2/CADERNO-SSA2-2DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2019/arquivos/SSA2/Gabarito-Definitivo-SSA2-2dia.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2019/"
+  },
+  {
+   "processo": 2018,
+   "dias": [
+    {
+     "dia": 1,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2018/arquivos/SSA2/CADERNO_DE_PROVAS_SSA_2_1_DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2018/arquivos/SSA2/GABARITO-DEFINITIVO-SSA2-1DIA.pdf"
+    },
+    {
+     "dia": 2,
+     "prova": "https://processodeingresso.upe.pe.gov.br/processo2018/arquivos/SSA2/caderno-de-provas-SSA2-2DIA.pdf",
+     "gabarito": "https://processodeingresso.upe.pe.gov.br/processo2018/arquivos/SSA2/GABARITO-DEFINITIVO-SSA2-2DIA.pdf"
+    }
+   ],
+   "pagina": "https://processodeingresso.upe.pe.gov.br/processo2018/"
+  }
  ]
 }

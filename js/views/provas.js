@@ -1,6 +1,6 @@
-// provas: datas do ssa 2 e o que é o processo
+// provas: datas do ssa 2, provas anteriores e o que é o processo
 import { h, icon, skeletonLine } from '../lib/dom.js';
-import { withEdital } from '../ui/states.js';
+import { withEdital, emptyBlock } from '../ui/states.js';
 import { examStatus, formatDate, formatTime } from '../lib/dates.js';
 
 const UPE_URL = 'https://processodeingresso.upe.pe.gov.br/';
@@ -32,6 +32,58 @@ function list(children) {
     h('ul', {}, children));
 }
 
+const VISIBLE_YEARS = 4;
+const DIAS = [1, 2];
+
+// pdfLink - link externo para o pdf oficial, com nome acessível completo
+function pdfLink(text, href, fullName) {
+  return h('a', { class: 'pdf-link', href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${fullName} (PDF, abre em nova aba)` },
+    text, icon('external-link'));
+}
+
+// anteriores - tabela de provas e gabaritos dos processos anteriores, os mais recentes primeiro
+function anteriores(lista) {
+  const sorted = [...lista].sort((a, b) => b.processo - a.processo);
+  const rows = sorted.map((p, i) => {
+    const byDia = Object.fromEntries(p.dias.map((d) => [d.dia, d]));
+    return h('tr', { hidden: i >= VISIBLE_YEARS },
+      h('th', { scope: 'row' },
+        h('span', { class: 'past-year' }, `SSA 2 · ${p.processo}`),
+        h('a', { class: 'past-source', href: p.pagina, target: '_blank', rel: 'noopener noreferrer' },
+          'página oficial', h('span', { class: 'sr-only' }, ` do processo ${p.processo} (abre em nova aba)`))),
+      DIAS.map((dia) => {
+        const d = byDia[dia];
+        return h('td', { 'data-label': `${dia}º dia` }, d
+          ? h('span', { class: 'past-links' },
+            pdfLink('Prova', d.prova, `Caderno de provas do ${dia}º dia, SSA 2 ${p.processo}`),
+            pdfLink('Gabarito', d.gabarito, `Gabarito definitivo do ${dia}º dia, SSA 2 ${p.processo}`))
+          : h('span', { class: 'past-missing' }, '—'));
+      }));
+  });
+
+  const hiddenCount = Math.max(0, sorted.length - VISIBLE_YEARS);
+  const more = hiddenCount
+    ? h('button', { class: 'btn btn-quiet past-more', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'past-table' }, `Mostrar mais ${hiddenCount} anos`)
+    : null;
+  more?.addEventListener('click', () => {
+    const open = more.getAttribute('aria-expanded') !== 'true';
+    rows.forEach((r, i) => { if (i >= VISIBLE_YEARS) r.hidden = !open; });
+    more.setAttribute('aria-expanded', String(open));
+    more.textContent = open ? 'Mostrar menos' : `Mostrar mais ${hiddenCount} anos`;
+  });
+
+  return h('section', { class: 'card surface past', 'aria-labelledby': 'past-title' },
+    h('div', { class: 'card-head' }, h('h2', { class: 'card-title', id: 'past-title' }, 'Provas anteriores')),
+    h('p', { class: 'past-note' }, 'Cadernos de prova e gabaritos definitivos publicados pela UPE, para treinar. O ano é o do processo de ingresso; as provas costumam ser aplicadas no fim do ano anterior.'),
+    sorted.length
+      ? h('table', { class: 'past-table', id: 'past-table' },
+        h('caption', { class: 'sr-only' }, 'Provas e gabaritos do SSA 2 por processo e dia'),
+        h('thead', {}, h('tr', {}, h('th', { scope: 'col' }, 'Processo'), DIAS.map((d) => h('th', { scope: 'col' }, `${d}º dia`)))),
+        h('tbody', {}, rows))
+      : emptyBlock('Nenhuma prova anterior cadastrada.'),
+    more);
+}
+
 function skeleton() {
   return list([1, 2].map(() => h('li', { class: 'prova' },
     h('div', { class: 'prova-info' }, skeletonLine('80px', 17), skeletonLine('180px', 15), skeletonLine('120px', 15)),
@@ -48,7 +100,7 @@ export function render() {
     const tick = () => rows.forEach((row) => setStatus(row, new Date()));
     tick();
     timer = setInterval(tick, TICK_MS);
-    return list(rows.map((row) => row.li));
+    return h('div', { class: 'provas-body' }, list(rows.map((row) => row.li)), anteriores(edital.anteriores || []));
   });
 
   const el = h('section', { class: 'provas', 'aria-labelledby': 'provas-title' },

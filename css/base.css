@@ -108,6 +108,7 @@ svg {
 
 /* ---------- esqueleto ---------- */
 
+/* sidebar presa à esquerda; o conteúdo ocupa todo o resto da tela, com margens fluidas */
 .shell {
   position: relative;
   z-index: 1;
@@ -194,8 +195,7 @@ svg {
 
 .main {
   width: 100%;
-  max-width: var(--content-max);
-  padding: var(--space-6) var(--space-6) var(--space-7);
+  padding: var(--space-6) var(--gutter) var(--space-7);
 }
 
 .main:focus {

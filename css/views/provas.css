@@ -97,3 +97,180 @@
 .provas-link .icon {
   color: var(--ink-2);
 }
+
+/* ---------- provas anteriores ---------- */
+
+.provas-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.past-note {
+  max-width: 68ch;
+  margin-bottom: var(--space-3);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.past-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.past-table thead th {
+  padding: 0 0 var(--space-2);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+}
+
+.past-table tbody tr {
+  border-top: 1px solid var(--line);
+}
+
+.past-table tbody th,
+.past-table td {
+  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  vertical-align: middle;
+}
+
+.past-table tbody th {
+  width: 34%;
+  font-weight: var(--weight-regular);
+}
+
+.past-year {
+  display: block;
+  font-weight: var(--weight-semibold);
+}
+
+.past-source {
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+  text-underline-offset: 3px;
+}
+
+.past-source:hover {
+  color: var(--ink);
+}
+
+.past-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--control-h);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.pdf-link:hover {
+  border-color: var(--ink-3);
+  background: var(--hover);
+}
+
+.pdf-link .icon {
+  --icon: 14px;
+
+  color: var(--ink-2);
+}
+
+.past-missing {
+  color: var(--ink-3);
+}
+
+.past-more {
+  align-self: flex-start;
+  margin-top: var(--space-3);
+}
+
+.past {
+  display: flex;
+  flex-direction: column;
+}
+
+/* celular: cada processo vira um bloco com os dias empilhados */
+@media (width <= 760px) {
+  .past-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .past-table,
+  .past-table tbody,
+  .past-table tr,
+  .past-table tbody th,
+  .past-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .past-table tr[hidden] {
+    display: none;
+  }
+
+  .past-table tbody tr {
+    padding: var(--space-3) 0;
+  }
+
+  .past-table tbody th,
+  .past-table td {
+    padding: 0;
+  }
+
+  .past-table tbody th {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .past-table td {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .past-table td + td {
+    margin-top: var(--space-2);
+  }
+
+  .past-table td::before {
+    content: attr(data-label);
+    width: 5ch;
+    flex: none;
+    color: var(--ink-2);
+    font-size: var(--text-sm);
+  }
+
+  .past-source {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap);
+  }
+
+  .pdf-link {
+    min-height: var(--tap);
+  }
+
+  .past-more {
+    width: 100%;
+  }
+}

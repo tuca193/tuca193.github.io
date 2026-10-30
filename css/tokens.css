@@ -58,6 +58,7 @@
   /* tamanhos */
   --sidebar-w: 248px;
   --content-max: 1080px;
+  --gutter: clamp(var(--space-6), 3vw, var(--space-8));
   --tap: 44px;
   --control-h: 40px;
   --check-size: 22px;

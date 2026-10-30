@@ -22,6 +22,19 @@ if (!Array.isArray(edital.provas) || !edital.provas.length) problems.push('sem p
 for (const p of edital.provas || []) {
   if (Number.isNaN(Date.parse(p.inicio))) problems.push(`data inválida em ${p.id}`);
 }
+// provas anteriores: só links https do site oficial da upe
+const OFICIAL = /^https:\/\/processodeingresso\.upe\.pe\.gov\.br\//;
+const anos = new Set();
+for (const p of edital.anteriores || []) {
+  if (!Number.isInteger(p.processo) || anos.has(p.processo)) problems.push(`processo anterior inválido ou repetido: ${p.processo}`);
+  anos.add(p.processo);
+  if (!OFICIAL.test(p.pagina || '')) problems.push(`${p.processo}: página fora do site oficial`);
+  for (const d of p.dias || []) {
+    for (const k of ['prova', 'gabarito']) {
+      if (!OFICIAL.test(d[k] || '')) problems.push(`${p.processo} dia ${d.dia}: ${k} fora do site oficial`);
+    }
+  }
+}
 for (const m of edital.materias || []) {
   if (!/^[a-z]+$/.test(m.id)) problems.push(`id de matéria inválido: ${m.id}`);
   if (!m.assuntos?.length) problems.push(`${m.id}: sem assuntos`);

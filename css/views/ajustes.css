@@ -1,10 +1,11 @@
 /* ajustes */
 
+/* blocos lado a lado conforme a largura: 1 coluna no celular, até 4 em telas largas */
 .settings-stack {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+  align-items: start;
   gap: var(--space-4);
-  max-width: calc(var(--content-max) * 2 / 3);
 }
 
 .settings-block {
