@@ -1,0 +1,7 @@
+/* importa o css de cada tela */
+@import url("views/painel.css");
+@import url("views/materias.css");
+@import url("views/provas.css");
+@import url("views/ajustes.css");
+@import url("views/perfis.css");
+@import url("views/boas-vindas.css");

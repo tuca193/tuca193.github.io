@@ -1,0 +1,95 @@
+/* perfis */
+
+.profile-list {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.profile-row {
+  display: grid;
+  grid-template-areas: "avatar info pill actions";
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.profile-row.is-active {
+  background: var(--hover);
+}
+
+.profile-row + .profile-row {
+  border-top: 1px solid var(--line);
+}
+
+.profile-row > .avatar {
+  grid-area: avatar;
+}
+
+.profile-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  grid-area: info;
+  min-width: 0;
+}
+
+.profile-row-name {
+  overflow: hidden;
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-row-sub {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-tight);
+}
+
+.profile-row-sub .is-unknown {
+  color: var(--ink-3);
+}
+
+.pill-active {
+  display: inline-flex;
+  grid-area: pill;
+  align-items: center;
+  height: calc(var(--space-5) - var(--space-1));
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.profile-row-actions {
+  display: flex;
+  grid-area: actions;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+.profile-row-actions .btn-icon {
+  color: var(--ink-2);
+}
+
+.profile-row-actions .btn-icon:hover {
+  color: var(--ink);
+}
+
+@media (width <= 760px) {
+  .profile-row {
+    grid-template-areas:
+      "avatar info pill"
+      "actions actions actions";
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .profile-row-actions .btn-icon {
+    width: var(--tap);
+  }
+}

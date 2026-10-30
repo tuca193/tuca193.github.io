@@ -1,0 +1,2526 @@
+{
+ "exam": "SSA 2",
+ "provas": [
+  {
+   "id": "p1",
+   "label": "1ª prova",
+   "inicio": "2026-12-06T13:30:00-03:00",
+   "confirmado": false
+  },
+  {
+   "id": "p2",
+   "label": "2ª prova",
+   "inicio": "2026-12-13T13:30:00-03:00",
+   "confirmado": false
+  }
+ ],
+ "materias": [
+  {
+   "id": "port",
+   "nome": "Português e Literatura",
+   "assuntos": [
+    {
+     "id": "port0",
+     "nome": "Textos jornalístico-midiáticos",
+     "resumo": "fake news, pós-verdade, curadoria da informação",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Estrutura dos textos jornalísticos na internet",
+        "Projetos editoriais, mídia plural e democracia",
+        "Pós-verdade, fake news e curadoria da informação"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Notícia e reportagem informam; editorial e artigo de opinião defendem ponto de vista",
+        "Fake news: apelo emocional, ausência de fonte, título sensacionalista, linguagem radicalizada",
+        "Curadoria: checar fonte, data, contexto, autoridade e evidências",
+        "Comparar veículos mostra enfoques diferentes do mesmo fato"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Identificar o gênero e a intenção",
+        "Reconhecer marcas de fake news",
+        "Comparar duas coberturas do mesmo fato"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port1",
+     "nome": "Cultura digital",
+     "resumo": "podcast, blog, vlog, e-zine",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Gêneros digitais: podcast, vlog, blog, e-zine e fanzine",
+        "Produção, circulação e recepção desses textos",
+        "Impacto na compreensão de mundo e nas relações"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Cada gênero tem suporte, público e finalidade próprios",
+        "Hipertexto e multimodalidade: texto, imagem, som e vídeo juntos",
+        "A linguagem informal é adequada ao contexto digital",
+        "Algoritmos e compartilhamento moldam o que chega ao leitor"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Reconhecer o gênero digital",
+        "Analisar o efeito de uma postagem ou meme",
+        "Adequar a linguagem ao público"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port2",
+     "nome": "Textos da vida pública",
+     "resumo": "denúncia, discurso de grupos discriminados",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Denúncia e proposta de solução para problemas coletivos",
+        "Representação de grupos discriminados e invisibilizados",
+        "Pressupostos, subentendidos e polidez linguística"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Pressuposto: informação contida na frase (“Parou de fumar” pressupõe que fumava)",
+        "Subentendido: sentido que o leitor deduz do contexto",
+        "Gêneros: carta aberta, abaixo-assinado, manifesto, petição",
+        "O preconceito pode aparecer em estereótipos e na escolha das palavras"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Achar o pressuposto ou o subentendido",
+        "Analisar como um grupo é retratado",
+        "Finalidade de um manifesto ou carta aberta"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port3",
+     "nome": "Divulgação científica",
+     "resumo": "ideias principais, recursos multissemióticos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Ideias principais e secundárias; palavras-chave",
+        "Gêneros: artigo de divulgação, infográfico, reportagem científica",
+        "Recursos multissemióticos e efeitos de sentido"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Ideia principal é o que o texto defende; secundárias são exemplos, dados e explicações",
+        "Linguagem precisa, com termos técnicos explicados e dados de pesquisa",
+        "Gráficos e imagens complementam o texto verbal",
+        "Não generalize além do que os dados mostram"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Resumir o texto em uma frase",
+        "Interpretar gráfico ou infográfico junto ao texto",
+        "Função de um termo técnico"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port4",
+     "nome": "Estéticas literárias",
+     "resumo": "Romantismo, Realismo-Naturalismo, Parnasianismo, Simbolismo",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Romantismo, Realismo-Naturalismo, Parnasianismo e Simbolismo",
+        "Temas, estilo e autores",
+        "Diálogo entre obras e épocas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Romantismo: subjetividade, nacionalismo, idealização, indianismo; Alencar, Gonçalves Dias, Álvares de Azevedo, Castro Alves",
+        "Realismo: objetividade e crítica social (Machado de Assis); Naturalismo: determinismo e cientificismo (Aluísio Azevedo, O cortiço)",
+        "Parnasianismo: arte pela arte e rigor formal (Olavo Bilac)",
+        "Simbolismo: musicalidade, misticismo e subjetividade (Cruz e Sousa)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Identificar a estética por um trecho",
+        "Comparar a visão de mundo de duas escolas",
+        "Reconhecer figuras de linguagem típicas"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port5",
+     "nome": "Texto argumentativo",
+     "resumo": "tese, argumentos, contra-argumentos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Tese, argumentos e contra-argumentos",
+        "Tipos de argumento e posicionamentos sobre um mesmo tema",
+        "Estratégias argumentativas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Estrutura: apresentação da tese, desenvolvimento e conclusão",
+        "Argumentos: de autoridade, exemplificação, dados, causa e consequência, comparação",
+        "Contra-argumento: considera a opinião oposta para refutá-la",
+        "Operadores como “embora”, “mas” e “portanto” orientam a argumentação"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Achar a tese do autor",
+        "Classificar o tipo de argumento",
+        "Identificar posições opostas sobre o mesmo tema"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port6",
+     "nome": "Coesão e coerência",
+     "resumo": "marcadores discursivos, sentido das palavras",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Marcadores discursivos e relações lógico-semânticas",
+        "Coesão referencial e sequencial",
+        "Coerência e efeitos de sentido do vocabulário"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Conectivos: adição (e), oposição (mas, porém), causa (porque), conclusão (logo), concessão (embora), finalidade (para que)",
+        "Coesão: pronomes, sinônimos e elipse retomam termos",
+        "Coerência: ideias sem contradição e adequadas ao contexto",
+        "Escolhas de palavras criam efeitos (ironia, humor, formalidade)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Relação expressa por um conectivo",
+        "A que termo um pronome se refere",
+        "Efeito de sentido de uma palavra escolhida"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port7",
+     "nome": "Sintaxe",
+     "resumo": "coordenação e subordinação, ordem da sentença",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Orações coordenadas e subordinadas",
+        "Ordem dos termos e efeito da inversão",
+        "Estrutura dos sintagmas e categorias sintáticas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Coordenadas são independentes: aditiva, adversativa, alternativa, conclusiva, explicativa",
+        "Subordinadas dependem da principal: substantivas, adjetivas e adverbiais",
+        "Ordem direta: sujeito, verbo, complemento; a inversão destaca um termo",
+        "Sintagma: grupo de palavras em torno de um núcleo (nominal, verbal)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Classificar uma oração",
+        "Efeito de mudar a ordem dos termos",
+        "Função sintática de um termo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "port8",
+     "nome": "Concordância e regência",
+     "resumo": "verbal e nominal",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Concordância verbal e nominal",
+        "Regência verbal e nominal",
+        "Gramática normativa × usos sociais da língua"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "O verbo concorda com o sujeito em número e pessoa; sujeito composto pede plural",
+        "Haver no sentido de existir ou tempo decorrido fica no singular",
+        "Concordância nominal: o adjetivo concorda com o substantivo",
+        "Regência: assistir ao filme, obedecer ao pai, preferir A a B, aspirar ao cargo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Corrigir frase que foge à norma",
+        "Escolher a preposição de um verbo",
+        "Reconhecer a variedade adequada ao contexto"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "edf",
+   "nome": "Educação Física",
+   "assuntos": [
+    {
+     "id": "edf0",
+     "nome": "Dança de salão",
+     "resumo": "forró, salsa, tango, samba de gafieira",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "História da dança de salão",
+        "Fundamentos: espaço, tempo, peso, corpo e relação",
+        "Ritmos e seus significados"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Ritmos: forró, salsa, bolero, tango, samba de gafieira, lambada, fox trote",
+        "Cada dança tem vocabulário de movimentos, aproximação e contato próprios",
+        "Condução compartilhada: quem conduz e quem acompanha podem se alternar",
+        "Produção de um festival de dança de salão"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Origem e características de um ritmo",
+        "Letras de música e interpretação crítica",
+        "Dança, gênero, inclusão e saúde"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "edf1",
+     "nome": "Lutas do mundo",
+     "resumo": "judô, muay thai, karatê, capoeira",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Histórico, contexto e jogos de combate",
+        "Defesa, ataque e controle",
+        "Lutas de origens diversas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Judô (Japão), muay thai (Tailândia), karatê (Okinawa), jiu-jitsu, taekwondo (Coreia), kung fu (China)",
+        "Capoeira: luta, dança e jogo, ligada à resistência afro-brasileira",
+        "Huka huka: luta tradicional dos povos indígenas do Alto Xingu",
+        "Técnicas básicas, duração, arbitragem e premiação"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Origem de cada luta",
+        "Capoeira e cultura afro-brasileira",
+        "Valorização das culturas indígena e africana"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "edf2",
+     "nome": "Ginásticas",
+     "resumo": "condicionamento físico e conscientização corporal",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "História: escolas, métodos e conceito grego",
+        "Ginástica de condicionamento físico e de conscientização corporal",
+        "Conceitos e programa de treino"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Condicionamento: aeróbica, musculação, treinamento funcional",
+        "Conscientização: pilates, yoga, tai chi chuan, ginástica laboral, eutonia, automassagem",
+        "Atividade física: qualquer movimento; exercício físico: atividade planejada e repetida",
+        "Intensidade, volume, séries e repetições; esteroides anabolizantes e culto ao corpo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Diferença entre atividade física e exercício",
+        "Montar ou interpretar um treino",
+        "Riscos de esteroides e padrões de corpo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "edf3",
+     "nome": "Esportes individuais e coletivos",
+     "resumo": "história, regras, doping",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Processo histórico dos esportes",
+        "Esportes individuais e coletivos",
+        "Valores, saúde e questões sociais"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Individuais: tiro com arco, boliche, golfe, sinuca, bocha e dardos",
+        "Coletivos: futsal, handebol, basquete e vôlei, com fundamentos e regras",
+        "Classificação: rede ou quadra dividida, parede de rebote, campo e taco",
+        "Temas: doping, fair play, gênero, classe social, etnia"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Regras e fundamentos de uma modalidade",
+        "Doping e ética esportiva",
+        "Esporte, lazer e saúde"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "edf4",
+     "nome": "Práticas corporais de aventura",
+     "resumo": "rapel, escalada, corrida orientada",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "História das práticas de aventura na natureza",
+        "Rapel, escalada, montanhismo, corrida orientada, arvorismo",
+        "Políticas públicas de esporte e lazer"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Cada prática usa técnicas e implementos próprios (cordas, mosquetões, bússola)",
+        "Relação com meio ambiente, preservação e sustentabilidade",
+        "Acesso desigual por classe, gênero e etnia",
+        "Segurança é parte da técnica"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Identificar a prática pela descrição",
+        "Impactos ambientais e preservação",
+        "Políticas públicas de lazer"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "edf5",
+     "nome": "Jogos populares e eletrônicos",
+     "resumo": "regras, lazer, diferença entre jogo e esporte",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "História e características dos jogos",
+        "Jogos populares e eletrônicos",
+        "Diferença entre jogo e esporte"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Populares: barrinha, queimado, barra bandeira, pega, sete pecados; regras variam por região",
+        "Eletrônicos: Just Dance, Pokémon GO, Zombies Run, Pac-man, que podem virar jogos sem tela",
+        "Jogo é lúdico e flexível; esporte tem regras institucionalizadas e competição",
+        "Equidade e criatividade nas regras"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Regras e adaptações de jogos",
+        "Jogo × esporte",
+        "Jogos como lazer e cultura"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fis",
+   "nome": "Física",
+   "assuntos": [
+    {
+     "id": "fis0",
+     "nome": "Termologia",
+     "resumo": "temperatura, calor e escalas termométricas",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Temperatura (agitação média das partículas) × calor (energia em trânsito)",
+        "Estados físicos da matéria",
+        "Termômetros e escalas Celsius, Fahrenheit e Kelvin"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "C/5 = (F − 32)/9 = (K − 273)/5",
+        "Variações: ΔC = ΔK e ΔF = 1,8·ΔC",
+        "Calor flui do corpo mais quente para o mais frio até o equilíbrio térmico",
+        "Zero absoluto: 0 K = −273 °C"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Conversão entre escalas",
+        "Temperatura em que duas escalas coincidem (−40 °C = −40 °F)",
+        "Equilíbrio térmico em situações do dia a dia"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis1",
+     "nome": "Dilatação e propagação do calor",
+     "resumo": "condução, convecção, radiação",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Dilatação linear, superficial e volumétrica dos sólidos; dilatação dos líquidos",
+        "Comportamento anômalo da água",
+        "Condução, convecção e radiação"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Linear: ΔL = L0·α·ΔT",
+        "Superficial: ΔA = A0·β·ΔT, com β = 2α",
+        "Volumétrica: ΔV = V0·γ·ΔT, com γ = 3α",
+        "Água: densidade máxima a 4 °C",
+        "Condução: sólidos; convecção: fluidos, com correntes; radiação: ondas eletromagnéticas, inclusive no vácuo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Folga em trilhos, pontes e fios",
+        "Líquido que transborda ao aquecer o recipiente",
+        "Garrafa térmica, geladeira, brisa marítima, efeito estufa"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis2",
+     "nome": "Calorimetria",
+     "resumo": "calor sensível e latente, mudanças de estado, diagrama de fases",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Calor sensível e latente; capacidade térmica e calor específico",
+        "Mudanças de estado e diagrama de fases",
+        "Trocas de calor em sistema isolado"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Sensível: Q = m·c·ΔT",
+        "Latente: Q = m·L (temperatura constante)",
+        "Capacidade térmica: C = m·c; água: c = 1 cal/g·°C",
+        "Sistema isolado: soma dos calores trocados = 0",
+        "Diagrama de fases: ponto triplo e ponto crítico"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Temperatura final ao misturar quantidades de água",
+        "Gráfico de aquecimento com patamares",
+        "Energia para derreter gelo e aquecer a água"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis3",
+     "nome": "Gases",
+     "resumo": "Clapeyron, transformações gasosas, teoria cinética",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Variáveis de estado (P, V, T) e gás perfeito",
+        "Transformações isotérmica, isobárica, isocórica e adiabática",
+        "Teoria cinética dos gases"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Clapeyron: P·V = n·R·T",
+        "Geral: P1·V1/T1 = P2·V2/T2",
+        "Isotérmica: P·V constante; isobárica: V/T constante; isocórica: P/T constante",
+        "Temperatura sempre em Kelvin",
+        "Energia cinética média das moléculas é proporcional à temperatura absoluta"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Gás em recipiente que muda de pressão ou temperatura",
+        "Ler diagramas P × V",
+        "Pneu, panela de pressão, seringa"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis4",
+     "nome": "Termodinâmica",
+     "resumo": "leis, máquinas térmicas, ciclo de Carnot, entropia",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Trabalho de um gás, energia interna e 1ª lei",
+        "2ª lei, máquinas térmicas e frigoríficas, ciclo de Carnot",
+        "Entropia e processos reversíveis"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "1ª lei: ΔU = Q − W",
+        "Trabalho = área sob a curva no diagrama P × V; expansão: W > 0; compressão: W < 0",
+        "Rendimento: η = W/Q_quente = 1 − Q_fria/Q_quente",
+        "Carnot: η = 1 − T_fria/T_quente (em Kelvin)",
+        "A entropia de um sistema isolado nunca diminui"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Área do ciclo em diagrama P × V",
+        "Rendimento de motor ou geladeira",
+        "Identificar afirmações impossíveis (rendimento de 100%)"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis5",
+     "nome": "Ondulatória",
+     "resumo": "reflexão, refração, difração, Doppler, ondas estacionárias, decibel",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Tipos de onda, elementos e velocidade",
+        "Reflexão, refração, difração, interferência, polarização, ressonância",
+        "Ondas estacionárias, efeito Doppler, nível sonoro e ondas eletromagnéticas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "v = λ·f e f = 1/T",
+        "Na refração a frequência não muda; mudam a velocidade e o comprimento de onda",
+        "Som: onda mecânica longitudinal, não se propaga no vácuo; luz: onda eletromagnética transversal",
+        "Doppler: fonte se aproximando, som mais agudo; se afastando, mais grave",
+        "Decibel: escala logarítmica"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Velocidade ou comprimento de onda",
+        "Identificar o fenômeno (eco, arco-íris, ouvir atrás de uma parede)",
+        "Ondas em cordas e tubos sonoros"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis6",
+     "nome": "Óptica geométrica",
+     "resumo": "espelhos, lentes, equação dos pontos conjugados, visão",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Raios de luz, sombra e penumbra; meios transparentes, translúcidos e opacos",
+        "Reflexão e refração; espelhos planos e esféricos; lentes",
+        "Óptica da visão e instrumentos ópticos"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Gauss: 1/f = 1/p + 1/p&#x27;",
+        "Aumento: A = −p&#x27;/p = i/o",
+        "Côncavo e lente convergente focalizam; convexo e lente divergente espalham",
+        "Snell: n1·sen θ1 = n2·sen θ2",
+        "Miopia: lente divergente; hipermetropia: lente convergente"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Imagem formada por espelho ou lente",
+        "Eclipses e tamanho de sombra",
+        "Correção de problemas de visão"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fis7",
+     "nome": "Metrologia",
+     "resumo": "sensores e sistemas de feedback",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Coleta e tratamento de dados do mundo real para o digital",
+        "Sensores ópticos",
+        "Sistemas de feedback"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Sensor converte uma grandeza física (luz, temperatura) em sinal elétrico",
+        "Sinal analógico é convertido em digital",
+        "Feedback: a saída medida volta para ajustar a entrada (termostato, controle de velocidade)",
+        "Precisão, exatidão e erro de medida"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Sensor em porta automática ou câmera",
+        "Explicar um sistema de controle com feedback",
+        "Interpretar dados medidos"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "geo",
+   "nome": "Geografia",
+   "assuntos": [
+    {
+     "id": "geo0",
+     "nome": "Diversidade cultural por continente",
+     "resumo": "África, América, Ásia, Europa, Oceania",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Constituição sociocultural de África, América, Ásia, Europa e Oceania",
+        "Colonização, independências e legados",
+        "Produção econômica, cultura e impactos ambientais"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "África: diáspora, imperialismo, independências e consequências do colonialismo",
+        "América: colonização europeia e efeitos sobre os povos nativos; desigualdades na integração",
+        "Ásia: colonizações, conflitos étnicos e políticos",
+        "Europa: modelos econômicos e conflitos territoriais; Oceania: colonização e populações nativas"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Comparar processos de colonização",
+        "Conflitos territoriais e étnicos",
+        "Impactos ambientais da produção"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geo1",
+     "nome": "População mundial",
+     "resumo": "indicadores, teorias, migrações, IDH",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Indicadores demográficos e pirâmide etária",
+        "Conceitos e teorias populacionais",
+        "Movimentos populacionais, desenvolvimento humano, população economicamente ativa e envelhecimento"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Taxas: natalidade, mortalidade, fecundidade; crescimento vegetativo = natalidade − mortalidade",
+        "Pirâmide de base larga: população jovem; base estreita: envelhecimento",
+        "Teorias: malthusiana (população cresce mais rápido que alimentos), neomalthusiana, reformista",
+        "IDH: renda, educação e longevidade; PEA: pessoas em idade de trabalhar, ocupadas ou procurando emprego"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Ler pirâmide etária",
+        "Comparar teorias demográficas",
+        "Migrações e envelhecimento"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geo2",
+     "nome": "Urbanização",
+     "resumo": "hierarquia urbana, relação campo-cidade",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "A cidade ao longo do tempo",
+        "Urbanização e dinâmica urbana contemporânea; relação campo-cidade",
+        "Hierarquia urbana, planejamento, desigualdade socioespacial e movimentos sociais"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Urbanização acelerada em países subdesenvolvidos gera favelas, trânsito e falta de saneamento",
+        "Hierarquia: metrópole, cidade média, cidade local; articulação em rede",
+        "Conurbação: cidades que se unem; megalópole: conjunto de metrópoles",
+        "Segregação socioespacial: pobres na periferia, ricos em áreas valorizadas"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Problemas urbanos e soluções",
+        "Hierarquia e redes de cidades",
+        "Planejamento e movimentos urbanos por moradia"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geo3",
+     "nome": "Capitalismo e suas fases",
+     "resumo": "origens e impactos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Origens do capitalismo",
+        "Fases do capitalismo",
+        "Impacto na sociedade contemporânea"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Comercial (mercantilismo): acumulação por comércio e colônias",
+        "Industrial: fábrica, trabalho assalariado, máquina",
+        "Financeiro ou monopolista: bancos, trustes e cartéis",
+        "Informacional (atual): tecnologia, serviços e redes"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Reconhecer a fase pelo contexto",
+        "Consequências sociais e ambientais",
+        "Consumo e desigualdade"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geo4",
+     "nome": "Pós-Guerra Fria e globalização",
+     "resumo": "blocos econômicos, competitividade",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Fim do socialismo e reestruturação do mapa geopolítico",
+        "Globalização: o mundo como fábula e como perversidade",
+        "Competitividade, consumo e blocos econômicos"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Dissolução da URSS (1991) encerra a bipolaridade",
+        "Milton Santos: fábula (mundo sem fronteiras), perversidade (desigualdade) e possibilidade (outra globalização)",
+        "Blocos: União Europeia, Mercosul, USMCA, Asean",
+        "Empresas transnacionais, redes de comunicação e fluxo de capitais"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Efeitos da globalização",
+        "Identificar blocos e finalidades",
+        "Consumo e competitividade"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geo5",
+     "nome": "Nova Ordem Mundial",
+     "resumo": "unipolaridade, China, UE, Guerra ao Terror",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Unipolaridade e soberania militar dos EUA",
+        "Ascensão da União Europeia, China e Japão",
+        "Organizações internacionais, reclassificação dos Estados e Guerra ao Terror"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Após 1991, os EUA ficam como potência hegemônica",
+        "Organizações: ONU, OMC, FMI, Banco Mundial, OTAN",
+        "11 de setembro de 2001: início da Guerra ao Terror",
+        "Potências emergentes disputam espaço com o poder norte-americano"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Papel de cada organização",
+        "Multipolaridade × unipolaridade",
+        "Conflitos e terrorismo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geo6",
+     "nome": "População brasileira",
+     "resumo": "formação, dinâmica, desigualdade, racismo estrutural",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Formação populacional brasileira",
+        "Indicadores, dinâmica populacional e características regionais",
+        "Mobilidade no campo e na cidade, desenvolvimento humano e desigualdade",
+        "Aspectos geracionais, étnicos e de gênero"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Formação: povos indígenas, europeus, africanos escravizados e imigrantes",
+        "Êxodo rural intenso na segunda metade do século XX; hoje migração inter-regional e urbana",
+        "Desigualdades regionais, de renda, raça e gênero",
+        "Racismo estrutural: afrodescendentes sofrem desvantagens históricas"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Ler dados do IBGE",
+        "Migrações internas",
+        "Desigualdade racial e de gênero"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bio",
+   "nome": "Biologia",
+   "assuntos": [
+    {
+     "id": "bio0",
+     "nome": "Sistemática",
+     "resumo": "classificação, reinos, árvores filogenéticas",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Classificação biológica: hierarquia taxonômica e critérios",
+        "Regras de nomenclatura binomial",
+        "Os cinco reinos: características e importância ecológica",
+        "Árvores filogenéticas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Hierarquia: domínio, reino, filo, classe, ordem, família, gênero, espécie",
+        "Nome científico: gênero com inicial maiúscula e espécie minúscula, destacados em itálico ou sublinhados (Homo sapiens)",
+        "Reinos: Monera, Protista, Fungi, Plantae, Animalia",
+        "Na árvore filogenética, grupos com ancestral comum recente são mais próximos"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Ordenar categorias taxonômicas",
+        "Corrigir ou escrever um nome científico",
+        "Interpretar uma árvore filogenética"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bio1",
+     "nome": "Vírus, bactérias, protozoários e fungos",
+     "resumo": "doenças, transmissão e profilaxia",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Morfologia, habitat, nutrição e reprodução de cada grupo",
+        "Importância ecológica e econômica",
+        "Doenças humanas e profilaxia"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Vírus: acelulares, parasitas intracelulares obrigatórios, com DNA ou RNA e capsídeo",
+        "Bactérias: procariontes, divisão binária; úteis na decomposição, em iogurtes e antibióticos",
+        "Protozoários: eucariontes unicelulares e heterótrofos",
+        "Fungos: eucariontes heterótrofos que absorvem nutrientes; leveduras fermentam, cogumelos decompõem"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Comparar vírus e bactérias",
+        "Papel ecológico dos decompositores",
+        "Identificar o grupo pela descrição"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bio2",
+     "nome": "Imunidade",
+     "resumo": "defesas do corpo e vacinas",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Barreiras e defesas do corpo; resposta imune",
+        "Imunização ativa e passiva; vacinas e soros",
+        "Principais viroses, bacterioses, protozooses e micoses humanas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Inata: pele, mucosas, fagócitos; adquirida: anticorpos e linfócitos",
+        "Vacina: antígeno enfraquecido ou inativado, gera memória imunológica (ativa e duradoura)",
+        "Soro: anticorpos prontos, ação rápida e temporária (passiva)",
+        "Para cada doença: agente etiológico, transmissão, sintomas e profilaxia (dengue pelo mosquito, tétano por bactéria do solo)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Diferenciar vacina de soro",
+        "Calendário de vacinação e proteção coletiva",
+        "Relacionar doença, transmissão e prevenção"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bio3",
+     "nome": "Botânica",
+     "resumo": "grupos vegetais, reprodução, morfologia e fisiologia",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Briófitas, pteridófitas, gimnospermas e angiospermas",
+        "Evolução da reprodução vegetal",
+        "Morfologia e fisiologia: raiz, caule, folha, flor, fruto, seiva e fotossíntese"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Briófitas e pteridófitas dependem de água para reproduzir; gimnospermas têm semente sem fruto; angiospermas têm flor, fruto e semente",
+        "Ordem evolutiva: vasos condutores, semente, flor e fruto",
+        "Xilema conduz seiva bruta; floema conduz seiva elaborada",
+        "Fotossíntese: CO₂ + H₂O + luz → glicose + O₂"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Classificar plantas pelas estruturas",
+        "Transporte de seiva",
+        "Uso econômico e tradicional de plantas"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bio4",
+     "nome": "Zoologia",
+     "resumo": "filos animais e verminoses",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Poríferos, cnidários, platelmintos, nematódeos, anelídeos, moluscos, artrópodes, equinodermos e cordados",
+        "Importância ambiental e econômico-médica",
+        "Verminoses"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Simetria, cavidade corporal e tubo digestório separam os filos",
+        "Artrópodes: exoesqueleto de quitina e patas articuladas; insetos têm 3 pares de patas",
+        "Verminoses: ciclo do parasita, via de infecção, sintomas e prevenção (saneamento, higiene, calçados)",
+        "Exemplos: Taenia (teníase), Ascaris (ascaridíase), Schistosoma (esquistossomose)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Características de um filo",
+        "Ciclo e profilaxia de uma verminose",
+        "Vetores de doenças"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bio5",
+     "nome": "Fisiologia animal",
+     "resumo": "digestão, circulação, respiração, excreção, sustentação, nervoso e endócrino, sentidos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Digestão, circulação, respiração e excreção",
+        "Sustentação, proteção e locomoção",
+        "Sistemas nervoso e endócrino; sentidos"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Digestão: enzimas por órgão (amilase na saliva, pepsina no estômago, bile e lipase para gorduras)",
+        "Circulação humana: dupla e completa, coração com 4 câmaras",
+        "Excreção: o néfron filtra o sangue e forma a urina",
+        "Nervoso: impulso elétrico nos neurônios; endócrino: hormônios pelo sangue (insulina, adrenalina)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Caminho do alimento ou do sangue",
+        "Função de um órgão ou hormônio",
+        "Relacionar sentido e órgão"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bio6",
+     "nome": "Aspectos sociais da Biologia",
+     "resumo": "doenças ocupacionais, resíduos, SUS, zoonoses",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Doenças ocupacionais e acidentes de trabalho",
+        "Biossegurança, resíduos, reciclagem e consumo consciente",
+        "SUS, indicadores de saúde pública, doenças negligenciadas, zoonoses e saneamento básico"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Doença ocupacional é ligada à atividade (LER/DORT, perda auditiva)",
+        "3 Rs: reduzir, reutilizar, reciclar; descarte correto de pilhas, óleo e lixo eletrônico",
+        "SUS: universalidade, integralidade e equidade",
+        "Zoonose: doença transmitida de animais a humanos (raiva, leptospirose)",
+        "Saneamento: água tratada, esgoto e coleta de lixo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Gráficos de indicadores de saúde",
+        "Medidas coletivas de prevenção",
+        "Impacto do descarte inadequado"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "qui",
+   "nome": "Química",
+   "assuntos": [
+    {
+     "id": "qui0",
+     "nome": "Soluções",
+     "resumo": "solubilidade e curvas, concentração, cálculos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Soluto e solvente; solução insaturada, saturada e supersaturada",
+        "Coeficiente de solubilidade e como ler curvas de solubilidade (g de soluto por 100 g de água × temperatura)",
+        "Curva subindo: dissolução endotérmica; curva descendo: exotérmica",
+        "Formas de expressar concentração: g/L, mol/L, título, ppm; diluição e mistura de soluções"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "C = m1/V (g/L)",
+        "M = n/V = m1/(MM·V) (mol/L)",
+        "Título T = m1/m (sem unidade); ppm = mg de soluto por kg de solução",
+        "Diluição: Mi·Vi = Mf·Vf (a quantidade de soluto não muda)",
+        "Mistura do mesmo soluto: M1·V1 + M2·V2 = Mf·Vf"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Gráfico de solubilidade: quanto precipita ao resfriar de uma temperatura a outra",
+        "Massa necessária para preparar certo volume de solução",
+        "Diluição e mistura em contextos do dia a dia (soro, sucos, produtos de limpeza)"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui1",
+     "nome": "Titulação",
+     "resumo": "cálculos com soluções",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Método para descobrir a concentração de uma solução por reação de neutralização ácido-base",
+        "Vidrarias: bureta (titulante), erlenmeyer (titulado), pipeta",
+        "Indicador (como a fenolftaleína) mostra o ponto final; ponto de equivalência é quando as quantidades reagem completamente"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "No equivalência: n(H⁺) = n(OH⁻)",
+        "Ma·Va·(nº de H ionizáveis) = Mb·Vb·(nº de OH)",
+        "Para ácido e base monopróticos: Ma·Va = Mb·Vb"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Concentração de ácido acético no vinagre ou de soda cáustica a partir do volume gasto",
+        "Cor do indicador no início e no fim",
+        "Identificar vidrarias e etapas do procedimento"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui2",
+     "nome": "Propriedades coligativas",
+     "resumo": "tonoscopia, ebulioscopia, crioscopia, osmose",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Tonoscopia: diminuição da pressão de vapor do solvente",
+        "Ebulioscopia: aumento da temperatura de ebulição",
+        "Crioscopia: abaixamento da temperatura de congelamento",
+        "Osmose e pressão osmótica"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Dependem do número de partículas dissolvidas, não do tipo de soluto",
+        "Mais partículas, efeito maior; compostos iônicos liberam mais partículas (fator i)",
+        "Com mesma molaridade: NaCl (i≈2) altera mais que glicose (i=1)",
+        "π = M·R·T·i",
+        "Osmose: o solvente passa do meio menos concentrado (hipotônico) para o mais concentrado (hipertônico)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Ordenar soluções por ponto de ebulição ou congelamento",
+        "Por que sal derrete o gelo e conserva alimentos",
+        "Soro fisiológico, hemácias em meios hipo e hipertônicos"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui3",
+     "nome": "Equilíbrio químico",
+     "resumo": "constante e deslocamento do equilíbrio",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Reações reversíveis e equilíbrio dinâmico: velocidade direta = velocidade inversa",
+        "Constantes Kc e Kp; quociente reacional Q",
+        "Princípio de Le Chatelier e fatores que deslocam o equilíbrio"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "aA + bB ⇌ cC + dD: Kc = [C]^c·[D]^d / ([A]^a·[B]^b)",
+        "Sólidos e líquidos puros não entram na expressão",
+        "K grande favorece produtos; Q < K: reação segue para a direita",
+        "Aumentar reagente desloca para a direita; aumentar temperatura favorece o sentido endotérmico",
+        "Aumentar pressão favorece o lado com menos mols de gás",
+        "Catalisador acelera, mas não desloca; só a temperatura muda o valor de K"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Gráficos de concentração × tempo e identificação do equilíbrio",
+        "Prever o deslocamento após uma perturbação",
+        "Cálculo de Kc a partir de concentrações no equilíbrio"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui4",
+     "nome": "pH e produto iônico da água",
+     "resumo": "equilíbrio ácido-base",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Autoionização da água e Kw",
+        "Escala de pH e pOH; ácidos e bases fortes e fracos",
+        "Constantes Ka e Kb, grau de ionização e Lei de Ostwald"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Kw = [H⁺]·[OH⁻] = 1,0·10⁻¹⁴ a 25 °C",
+        "pH = −log[H⁺]; pOH = −log[OH⁻]; pH + pOH = 14",
+        "pH < 7 ácido; pH = 7 neutro; pH > 7 básico",
+        "Cada unidade de pH muda a [H⁺] por um fator de 10",
+        "Ácido fraco: Ka = α²·M (α pequeno)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Calcular pH de ácido ou base forte (HCl 0,01 mol/L tem pH 2)",
+        "Comparar soluções do cotidiano pelo pH",
+        "Chuva ácida, suco gástrico, produtos de limpeza"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui5",
+     "nome": "Hidrólise de sais e tampão",
+     "resumo": "soluções tampão",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Hidrólise salina: o caráter do sal depende do ácido e da base que o formaram",
+        "Solução tampão: resiste a variações de pH ao receber pouco ácido ou base"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Ácido forte + base forte (NaCl): solução neutra",
+        "Ácido forte + base fraca (NH₄Cl): solução ácida",
+        "Ácido fraco + base forte (CH₃COONa, Na₂CO₃): solução básica",
+        "Tampão: ácido fraco e seu sal (ou base fraca e seu sal)",
+        "pH = pKa + log([sal]/[ácido])",
+        "Exemplos: CH₃COOH/CH₃COONa e H₂CO₃/HCO₃⁻ no sangue"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Prever se a solução de um sal é ácida, básica ou neutra",
+        "Reconhecer qual mistura forma um tampão",
+        "Efeito da adição de pequena quantidade de ácido ou base"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui6",
+     "nome": "Produto de solubilidade (Kps)",
+     "resumo": "solubilidade dos sais",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Equilíbrio de sais pouco solúveis em solução saturada",
+        "Relação entre Kps e solubilidade",
+        "Efeito do íon comum e previsão de precipitação"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "AxBy(s) ⇌ xA^(y+) + yB^(x−): Kps = [A]^x·[B]^y",
+        "AgCl: Kps = s²; CaF₂: Kps = 4s³",
+        "Q > Kps: precipita; Q = Kps: saturada; Q < Kps: insaturada, não precipita",
+        "Íon comum diminui a solubilidade do sal"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Calcular a solubilidade a partir do Kps",
+        "Prever se forma precipitado ao misturar duas soluções",
+        "Contextos reais: cálculo renal, esmalte dos dentes, tratamento de água"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui7",
+     "nome": "Termoquímica",
+     "resumo": "entalpia, Lei de Hess, entropia, energia livre de Gibbs",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Entalpia e variação de entalpia; processos exotérmicos e endotérmicos",
+        "Equações termoquímicas, entalpias de formação, combustão e ligação",
+        "Lei de Hess",
+        "1ª e 2ª leis da termodinâmica, entropia e energia livre de Gibbs, noções de bioenergética"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "ΔH = H(produtos) − H(reagentes); ΔH < 0 exotérmica, ΔH > 0 endotérmica",
+        "Lei de Hess: inverter a equação troca o sinal de ΔH; multiplicar a equação multiplica ΔH",
+        "Energia de ligação: ΔH = Σ(ligações rompidas) − Σ(ligações formadas)",
+        "ΔG = ΔH − T·ΔS; ΔG < 0 indica processo espontâneo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Somar duas ou três equações para obter ΔH pedido",
+        "Ler diagramas de entalpia",
+        "Analisar espontaneidade pelos sinais de ΔH e ΔS"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "qui8",
+     "nome": "Cinética química",
+     "resumo": "velocidade, lei da velocidade, energia de ativação",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Velocidade média de reação e fatores que a alteram: temperatura, concentração, superfície de contato, catalisador",
+        "Teoria das colisões, energia de ativação e complexo ativado",
+        "Lei da velocidade e ordem da reação"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "v = variação da concentração ÷ variação do tempo (em módulo)",
+        "Choque eficaz exige orientação correta e energia igual ou maior que a de ativação",
+        "Catalisador diminui a energia de ativação sem ser consumido e sem alterar ΔH",
+        "v = k·[A]^a·[B]^b; ordem total é a soma dos expoentes",
+        "Em reação por etapas, a etapa lenta controla a velocidade"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Descobrir a ordem da reação por tabela de experimentos",
+        "Ler o diagrama de energia e identificar o efeito do catalisador",
+        "Efeito de temperatura e superfície de contato em situações do cotidiano"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mat",
+   "nome": "Matemática",
+   "assuntos": [
+    {
+     "id": "mat0",
+     "nome": "Taxas e índices",
+     "resumo": "impostos, inflação",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Porcentagem, taxa percentual, aumentos e descontos sucessivos",
+        "Inflação, impostos (IR, ICMS, IPTU, IPVA) e indicadores econômicos",
+        "Índices sociais e epidemiológicos: violência, criminalidade, incidência de doenças"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Aumento de i%: multiplica por (1 + i/100); desconto de i%: por (1 − i/100)",
+        "Variações sucessivas se multiplicam, não se somam (+10% e +10% dão +21%)",
+        "Taxa = parte ÷ total × 100",
+        "Índice por 100 mil habitantes = casos ÷ população × 100 000"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Valor de um imposto ou inflação acumulada",
+        "Comparar índices de regiões a partir de um texto",
+        "Descontos e aumentos sucessivos em preços"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat1",
+     "nome": "Juros simples e compostos",
+     "resumo": "planilhas financeiras",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Capital, taxa, tempo, juros e montante",
+        "Planilhas financeiras: orçamento familiar, parcelas, rendimentos",
+        "Crescimento linear (simples) × exponencial (composto)"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Simples: J = C·i·t e M = C·(1 + i·t)",
+        "Composto: M = C·(1 + i)^t",
+        "Taxa e tempo na mesma unidade (ao mês, por mês)",
+        "Simples: juros sobre o capital; composto: juros sobre o montante anterior"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Montante após alguns meses no regime composto",
+        "Comparar duas aplicações ou parcelamentos",
+        "Ler planilha de gastos e achar saldo ou porcentagem"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat2",
+     "nome": "Função exponencial",
+     "resumo": "equações exponenciais",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Definição f(x) = a^x, com a > 0 e a ≠ 1; domínio e imagem",
+        "Crescente (a > 1) e decrescente (0 < a < 1); gráfico",
+        "Equações exponenciais e aplicações: juros, radioatividade, população"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "a^m·a^n = a^(m+n); a^m/a^n = a^(m−n); (a^m)^n = a^(m·n); a^(−n) = 1/a^n",
+        "Equação: reduzir à mesma base e igualar os expoentes",
+        "Imagem sempre positiva; o gráfico passa por (0, 1)",
+        "Modelo de crescimento: N(t) = N0·a^t"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Decaimento radioativo e meia-vida",
+        "Crescimento de bactérias ou população",
+        "Resolver equação exponencial e ler gráfico"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat3",
+     "nome": "Função logarítmica",
+     "resumo": "equações logarítmicas",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Logaritmo como inverso da exponencial: log_a b = x ⇔ a^x = b",
+        "Condição de existência: b > 0, a > 0 e a ≠ 1",
+        "Gráfico, crescimento e decrescimento; equações logarítmicas"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "log(a·b) = log a + log b; log(a/b) = log a − log b; log(a^n) = n·log a",
+        "Mudança de base: log_a b = log_c b / log_c a",
+        "log_a a = 1 e log_a 1 = 0",
+        "O gráfico passa por (1, 0)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Calcular logaritmo com valores dados (log 2 ≈ 0,3)",
+        "Equação logarítmica, verificando a condição de existência",
+        "Escalas logarítmicas: pH, decibel, terremotos"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat4",
+     "nome": "Progressões geométricas",
+     "resumo": "aplicações",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Sequência em que cada termo é o anterior multiplicado pela razão q",
+        "PG crescente, decrescente, constante e oscilante",
+        "Soma dos termos e aplicações em juros e radioatividade"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Termo geral: a_n = a_1·q^(n−1)",
+        "Razão: q = a_(n+1) ÷ a_n",
+        "Soma finita: S_n = a_1·(q^n − 1)/(q − 1)",
+        "Soma infinita, com razão entre −1 e 1: S = a_1/(1 − q)",
+        "Três termos em PG: o do meio ao quadrado é igual ao produto dos extremos"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Achar o termo geral ou a razão",
+        "Soma dos n primeiros termos em situação-problema",
+        "Crescimento percentual constante"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat5",
+     "nome": "Polígonos",
+     "resumo": "regulares, área e perímetro",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Lados, vértices, ângulos e diagonais",
+        "Soma dos ângulos internos; polígonos regulares: apótema, inscrição e circunscrição",
+        "Área e perímetro e sua variação com o lado; ladrilhamento do plano"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Diagonais: d = n(n − 3)/2",
+        "Soma dos ângulos internos: S = (n − 2)·180°",
+        "Ângulo interno do regular: (n − 2)·180°/n; externo: 360°/n",
+        "Triângulo equilátero: A = l²√3/4; hexágono regular: seis triângulos equiláteros",
+        "Dobrar o lado multiplica o perímetro por 2 e a área por 4"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Número de diagonais ou medida de ângulo interno",
+        "Quais polígonos preenchem o plano sem sobras",
+        "Área de região composta por polígonos"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat6",
+     "nome": "Sólidos geométricos",
+     "resumo": "área e volume de prismas, pirâmides e corpos redondos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Faces, arestas, vértices, vistas e planificações",
+        "Prismas, pirâmides, poliedros e corpos redondos (cilindro, cone, esfera)",
+        "Área total e volume, inclusive de composições de sólidos"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Euler: V − A + F = 2",
+        "Prisma e cilindro: V = A_base·h",
+        "Pirâmide e cone: V = (1/3)·A_base·h",
+        "Cilindro: A_lateral = 2πrh; cone: A_lateral = πrg, com g² = h² + r²",
+        "Esfera: V = (4/3)πr³ e A = 4πr²"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Volume de reservatório, caixa ou embalagem",
+        "Reconhecer o sólido pela planificação",
+        "Sólido derretido e remodelado em outro"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat7",
+     "nome": "Análise estatística",
+     "resumo": "tabelas e gráficos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Ler tabelas, gráficos e infográficos de pesquisas",
+        "Média, mediana, moda e amplitude",
+        "Erros de interpretação: eixo cortado, escala enganosa, amostra viciada"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Média = soma dos valores ÷ quantidade; ponderada multiplica cada valor pelo peso",
+        "Mediana: valor central com dados em ordem (média dos dois centrais se a quantidade for par)",
+        "Moda: valor que mais se repete",
+        "Gráfico de setores: cada fatia é proporcional ao percentual"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Comparar gráficos ou tabelas e concluir",
+        "Calcular média, mediana ou moda",
+        "Perceber quando um gráfico induz a erro"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mat8",
+     "nome": "Análise combinatória",
+     "resumo": "permutação, arranjo, combinação",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Princípio aditivo (ou) e multiplicativo (e)",
+        "Permutação simples, com repetição e circular; arranjo e combinação",
+        "Saber quando a ordem importa"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "n! = n·(n−1)·…·1",
+        "Permutação: P_n = n!; com repetição: n!/(a!·b!); circular: (n − 1)!",
+        "Arranjo: A(n,p) = n!/(n−p)!",
+        "Combinação: C(n,p) = n!/(p!·(n−p)!)",
+        "Ordem importa: arranjo; ordem não importa: combinação"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Anagramas de uma palavra",
+        "Comissões, senhas e filas",
+        "Pessoas em mesa redonda"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ing",
+   "nome": "Inglês",
+   "assuntos": [
+    {
+     "id": "ing0",
+     "nome": "Gêneros textuais",
+     "resumo": "notícia, blog, meme, receita, e-mail",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Notícia, blog, meme, anúncio, receita, e-mail e mensagens",
+        "Propósito, interlocutor e contexto de cada gênero",
+        "Fake news e manipulação da informação"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Receita e manual usam verbos no imperativo",
+        "E-mail: saudação, corpo e despedida; blog: primeira pessoa e tom informal",
+        "Notícia responde what, who, where, when, why",
+        "Cognatos ajudam; falsos cognatos enganam (library = biblioteca; actually = na verdade)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Ideia principal e finalidade do texto",
+        "Informação específica no texto",
+        "Tom e público do gênero"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ing1",
+     "nome": "Tempos verbais",
+     "resumo": "Simple Present, Simple Past, Past Continuous, Present Perfect, Future with Will",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Simple Present, Simple Past, Past Continuous, Present Perfect, Future with Will e Immediate Future"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Simple Present: hábitos; 3ª pessoa leva s (she works)",
+        "Simple Past: ação concluída; regulares com ed, irregulares (go, went)",
+        "Past Continuous: was/were + verbo-ing, ação em andamento no passado",
+        "Present Perfect: have/has + particípio (for, since, already, yet)",
+        "Will: decisão na hora e previsões; going to: planos"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Escolher o tempo correto na lacuna",
+        "Reconhecer o tempo pelos advérbios",
+        "Interpretar quando a ação ocorreu"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ing2",
+     "nome": "Modal verbs e relative pronouns",
+     "resumo": "can, could, may, might; who, which, whose",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Can, could, may, might, should, must",
+        "Who, which, whose, where, that"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Can: habilidade ou permissão; could: passado ou pedido educado; may e might: possibilidade",
+        "Should: conselho; must: obrigação ou dedução",
+        "Modal é seguido de verbo no infinitivo sem to",
+        "Who: pessoas; which: coisas; whose: posse; where: lugar; that: pessoas ou coisas"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Sentido de um modal no texto",
+        "Pronome relativo correto na lacuna",
+        "A que termo o pronome se refere"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ing3",
+     "nome": "Imperativo, comparativos e question tag",
+     "resumo": "superlativos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Imperative form; adjectives e adverbs",
+        "Comparatives e superlatives; reflexive pronouns; prepositions; question tag"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Imperativo: verbo no infinitivo (Open the door); negativo com don’t",
+        "Comparativo: adjetivo curto + er than (taller than); longo: more + adjetivo",
+        "Superlativo: the + est (the tallest); the most + adjetivo longo",
+        "Reflexivos: myself, yourself, himself, herself, itself, ourselves, themselves",
+        "Question tag: frase afirmativa pede tag negativa (She is here, isn’t she?)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Forma correta do comparativo ou superlativo",
+        "Instruções de manual ou receita",
+        "Completar a question tag"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ing4",
+     "nome": "Phrasal verbs e linking words",
+     "resumo": "conectores",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Phrasal verbs; adverbs e adverbial phrases; (un)countable nouns",
+        "Linking words"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Phrasal verb é verbo + partícula, com sentido próprio (give up = desistir; look for = procurar; turn on = ligar)",
+        "Linking words: and (adição), but e however (oposição), although (concessão), besides (além disso), so (consequência)",
+        "Countable: many e a few; uncountable: much e a little",
+        "Advérbios geralmente terminam em ly"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Sentido de um phrasal verb no contexto",
+        "Conectivo adequado entre duas ideias",
+        "Many ou much, few ou little"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ing5",
+     "nome": "Infinitivo × gerúndio",
+     "resumo": "uso nos textos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Infinitive e gerund na construção de sentido",
+        "Função de cada forma nos textos"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Gerúndio (verbo-ing) como sujeito ou depois de enjoy, avoid, finish, mind",
+        "Infinitivo com to depois de want, decide, hope, plan",
+        "Depois de preposição vem gerúndio (interested in learning)",
+        "Alguns verbos mudam de sentido (stop doing = parar de fazer; stop to do = parar para fazer)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Forma correta do verbo na lacuna",
+        "Diferença de sentido entre as duas formas",
+        "Reconhecer a função em trecho de notícia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "soc",
+   "nome": "Sociologia",
+   "assuntos": [
+    {
+     "id": "soc0",
+     "nome": "Origem da Sociologia",
+     "resumo": "Sociologia, Antropologia e Ciência Política",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Formação histórico-social da Sociologia",
+        "Consolidação como ciência e métodos de investigação",
+        "Relação com Antropologia e Ciência Política",
+        "Estranhamento, desnaturalização e imaginação sociológica"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Nasce no século XIX, com a Revolução Industrial e as transformações sociais",
+        "Clássicos: Durkheim (fato social), Weber (ação social), Marx (luta de classes)",
+        "Sociologia estuda a sociedade; Antropologia, a cultura; Ciência Política, o poder",
+        "Desnaturalizar é questionar o que parece natural"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Associar pensador e conceito",
+        "Aplicar a imaginação sociológica a um fato",
+        "Diferenciar as três ciências sociais"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc1",
+     "nome": "Cultura",
+     "resumo": "etnocentrismo, relativismo, indústria cultural",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Origens, definições e concepções de cultura",
+        "Contribuições da Antropologia",
+        "Etnocentrismo e relativismo cultural; indústria cultural e cultura de massa"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Cultura: modos de pensar, agir e viver aprendidos em sociedade",
+        "Etnocentrismo: julgar outras culturas pela própria; relativismo: entender cada cultura no seu contexto",
+        "Evolucionismo cultural: ideia superada de culturas mais ou menos evoluídas",
+        "Indústria cultural: cultura produzida como mercadoria (Adorno e Horkheimer); cultura popular nasce do povo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Reconhecer etnocentrismo numa situação",
+        "Diferença entre cultura popular e de massa",
+        "Mídia e formação de identidade"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc2",
+     "nome": "Desigualdades",
+     "resumo": "estrutura patriarcal, estratificação, trabalho, educação",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Estrutura patriarcal e violência contra grupos sociais",
+        "Estrutura econômica e estratificação social",
+        "Mundo do trabalho, tecnologia e educação; desigualdades socioeconômicas, de gênero e étnico-raciais"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Patriarcado: poder concentrado nos homens, base das desigualdades de gênero",
+        "Estratificação: castas, estamentos e classes",
+        "Racismo estrutural: desigualdade embutida nas instituições",
+        "A educação pode transformar ou reproduzir desigualdades"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Dados de desigualdade em gráficos",
+        "Reconhecer tipos de estratificação",
+        "Efeito da tecnologia sobre o trabalho"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc3",
+     "nome": "Movimentos sociais",
+     "resumo": "indígena, negro, mulheres, LGBTQIA+, ambientalista",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Origens, objetivos e ideologias; conflitos, mudança ou reprodução social",
+        "Movimentos políticos, de classe, do campo, urbanos, indígenas, ambientalistas, negro, das mulheres e LGBTQIA+"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Movimento social: ação coletiva organizada em busca de mudança",
+        "Exemplos: MST (terra), movimento negro (igualdade racial), feminista (direitos das mulheres), ambientalista (preservação)",
+        "Usam protesto, ocupação, campanhas e pressão sobre o Estado",
+        "Conquistas aparecem em leis e políticas públicas"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Associar movimento e reivindicação",
+        "Forma de ação de um movimento",
+        "Mudança social provocada por um movimento"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc4",
+     "nome": "Poder, Estado e democracia",
+     "resumo": "direitos humanos e cidadania",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Poder, Estado e governo",
+        "Representações políticas, ideologias e grupos políticos",
+        "Democracia, participação social, direitos civis, direitos humanos e cidadania"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Estado: instituição com território, povo e soberania; governo: quem administra o Estado em determinado período",
+        "Weber: o Estado detém o monopólio legítimo da força",
+        "Democracia: participação direta, representativa, por conselhos e consultas",
+        "Direitos civis (liberdade), políticos (voto) e sociais (saúde, educação)"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Diferença entre Estado e governo",
+        "Formas de participação social",
+        "Direitos garantidos pela cidadania"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "his",
+   "nome": "História",
+   "assuntos": [
+    {
+     "id": "his0",
+     "nome": "Transição para o mundo moderno",
+     "resumo": "crise do séc. XIV, Absolutismo, Reformas, Renascimento, navegações",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Crise do século XIV e expansão otomana",
+        "Estados nacionais e Absolutismo",
+        "Reformas protestantes, Contrarreforma, Renascimento, ciência e navegações"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Crise: peste negra, fome e Guerra dos Cem Anos",
+        "Queda de Constantinopla em 1453 pelos otomanos",
+        "Reformas: Lutero, Calvino e anglicanismo; Contrarreforma: Concílio de Trento e Inquisição",
+        "Renascimento: humanismo, antropocentrismo, ciência; navegações: busca de rotas e expansão comercial"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Causas da crise e do Absolutismo",
+        "Reforma e Contrarreforma",
+        "Renascimento e contato com o mundo não europeu"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his1",
+     "nome": "África entre os séculos XV e XVIII",
+     "resumo": "povos iorubás, expansão islâmica, escravidão moderna",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Povos iorubás na costa ocidental africana",
+        "Expansão islâmica no continente",
+        "Escravidão moderna e relações África-Europa-América"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Iorubás: cidades-Estado como Ifé e Oyó, religião e arte",
+        "Islã se expande pelo Saara e pelo Sahel e conecta rotas comerciais",
+        "Tráfico atlântico: europeus negociam com elites africanas e levam milhões de escravizados",
+        "Impactos: perda populacional, guerras e deslocamento forçado"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Culturas e religiões africanas",
+        "Tráfico atlântico e seus efeitos",
+        "Ligações entre os três continentes"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his2",
+     "nome": "Revoluções inglesas e Iluminismo",
+     "resumo": "declaração de direitos, liberalismo",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Revoluções inglesas e declaração de direitos",
+        "Iluminismo e crise do Antigo Regime",
+        "Liberalismo na política e na economia"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Puritana (1640) e Gloriosa (1688): limitam o poder do rei; Bill of Rights",
+        "Iluminismo: razão e crítica ao absolutismo; Locke, Montesquieu (separação dos poderes), Rousseau, Voltaire",
+        "Liberalismo econômico: Adam Smith e livre mercado",
+        "Antigo Regime: sociedade estamental e poder absoluto"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Pensador e ideia",
+        "Causas da crise do Antigo Regime",
+        "Liberalismo político × econômico"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his3",
+     "nome": "Revolução Industrial",
+     "resumo": "impactos sociais, econômicos e políticos",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Origem na Inglaterra e difusão",
+        "Impactos sociais, econômicos e políticos"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Inglaterra: carvão, capital, mercado consumidor e mão de obra",
+        "Máquina a vapor, fábrica e produção em série",
+        "Burguesia industrial × proletariado; jornadas longas, trabalho infantil, urbanização desordenada",
+        "Reações: luddismo, sindicatos e cartismo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Por que começou na Inglaterra",
+        "Condições de trabalho",
+        "Transformações urbanas"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his4",
+     "nome": "Revolução Francesa",
+     "resumo": "implicações na França e no mundo",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Causas e fases",
+        "Implicações na França e no mundo"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Causas: crise financeira, privilégios do clero e da nobreza, ideias iluministas",
+        "1789: Estados Gerais, queda da Bastilha e Declaração dos Direitos do Homem e do Cidadão",
+        "Fases: Assembleia, Convenção e Terror, Diretório; ascensão de Napoleão",
+        "Legado: igualdade, fim dos privilégios e nacionalismo"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Fases da revolução",
+        "Declaração de direitos",
+        "Influência nos movimentos de outros países"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his5",
+     "nome": "Independências americanas",
+     "resumo": "resistências contra europeus",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Independência dos EUA e da América espanhola; Haiti",
+        "Resistências contra europeus",
+        "Ideias emancipacionistas no Brasil colonial e em Pernambuco"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "EUA (1776); Haiti (1791-1804): revolta de escravizados; América espanhola: Bolívar e San Martín",
+        "Brasil: Inconfidência Mineira (1789), Conjuração Baiana (1798)",
+        "Pernambuco: Revolução de 1817 e Confederação do Equador (1824)",
+        "Elites crioulas lideram, mas há participação popular"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Comparar independências",
+        "Causas dos movimentos no Brasil",
+        "Pernambuco emancipacionista"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his6",
+     "nome": "Nacionalismo e socialismo",
+     "resumo": "romantismo e anarquismo no século XIX",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Nacionalismos e romantismo",
+        "Correntes do socialismo e anarquismo no século XIX"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Nacionalismo: identidade nacional; unificações da Itália e da Alemanha",
+        "Socialismo utópico (Owen, Fourier) e científico (Marx e Engels: luta de classes)",
+        "Anarquismo: recusa do Estado (Bakunin, Proudhon)",
+        "Romantismo: valorização da nação e do sentimento"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Diferenças entre socialismo e anarquismo",
+        "Marx e luta de classes",
+        "Nacionalismo e unificações"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his7",
+     "nome": "Brasil colônia",
+     "resumo": "economia, povos originários, resistências",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Sociedade e economia colonial",
+        "Povos originários e contatos com colonizadores; indígenas em Pernambuco",
+        "Trabalho, resistências à escravidão"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Economia: pau-brasil, açúcar (Nordeste), mineração; monocultura, latifúndio e escravidão",
+        "Indígenas: escravização, aldeamentos, guerras e resistência",
+        "Resistências: quilombos (Palmares), fugas e revoltas",
+        "Pernambuco: centro açucareiro, domínio holandês"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Ciclos econômicos",
+        "Resistência indígena e africana",
+        "Pernambuco colonial"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his8",
+     "nome": "Brasil império",
+     "resumo": "independência, Primeiro e Segundo Reinado, imigração",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Independência (1822) e participação popular",
+        "Primeiro e Segundo Reinado, movimentos sociais",
+        "Imigração e trabalho no Segundo Reinado"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Primeiro Reinado: Constituição de 1824 e Confederação do Equador",
+        "Regência: Cabanagem, Farroupilha, Balaiada, Sabinada",
+        "Segundo Reinado: café, Guerra do Paraguai, Revolução Praieira (Pernambuco, 1848)",
+        "Imigrantes europeus e fim do tráfico de escravizados"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Revoltas regenciais",
+        "Economia cafeeira e trabalho",
+        "Participação popular na independência"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "his9",
+     "nome": "Abolicionismo e Primeira República",
+     "resumo": "com destaque para Pernambuco",
+     "secoes": [
+      {
+       "titulo": "O que estudar",
+       "itens": [
+        "Movimento abolicionista e intelectuais negros",
+        "Movimento republicano e proclamação",
+        "Primeira República: política, sociedade, movimentos sociais e Pernambuco"
+       ]
+      },
+      {
+       "titulo": "Fórmulas e regras",
+       "itens": [
+        "Leis: Eusébio de Queirós (1850), Ventre Livre (1871), Sexagenários (1885), Lei Áurea (1888)",
+        "Abolicionistas negros: Luiz Gama, José do Patrocínio, André Rebouças",
+        "República (1889); República Velha: coronelismo e política do café com leite",
+        "Movimentos: Canudos, Contestado, Revolta da Vacina e da Chibata"
+       ]
+      },
+      {
+       "titulo": "Como costuma cair",
+       "itens": [
+        "Leis abolicionistas em ordem",
+        "Coronelismo e voto de cabresto",
+        "Movimentos sociais e povos originários e afrodescendentes na República"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,156 @@
+/* design tokens — direção C "Edital": neutros azul-acinzentados, destaque tijolo, vidro só no que flutua */
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../assets/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../assets/fonts/hanken-grotesk-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  color-scheme: light;
+
+  /* tipografia */
+  --font: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 15px;
+  --text-lg: 17px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-fig: 36px;
+  --leading: 1.5;
+  --leading-tight: 1.2;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-title: -0.015em;
+
+  /* espaçamento (escala de 4) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* raios */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* tamanhos */
+  --sidebar-w: 248px;
+  --content-max: 1080px;
+  --tap: 44px;
+  --control-h: 40px;
+  --check-size: 22px;
+  --icon: 18px;
+  --icon-stroke: 1.75;
+  --bar-h: 6px;
+
+  /* vidro */
+  --blur: 20px;
+  --saturate: 160%;
+
+  /* movimento */
+  --dur-fast: 150ms;
+  --dur: 200ms;
+  --dur-slow: 250ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* cores — claro */
+  --ground: #e9edf0;
+  --blob-1: #c9dbe0;
+  --blob-2: #efd6cc;
+  --ink: #14191c;
+  --ink-2: #4d5a62;
+  --ink-3: #6b7880;
+  --line: rgb(20 25 28 / 10%);
+  --line-strong: rgb(20 25 28 / 18%);
+  --surface: rgb(255 255 255 / 62%);
+  --surface-solid: #f7f9fa;
+  --raised: #fff;
+  --glass: rgb(255 255 255 / 55%);
+  --glass-solid: #f4f6f7;
+  --glass-edge: rgb(255 255 255 / 85%);
+  --hover: rgb(20 25 28 / 6%);
+  --press: rgb(20 25 28 / 10%);
+  --accent: #b3452c;
+  --accent-ink: #fff;
+  --accent-soft: #f5e1da;
+  --accent-text: #9a3a24;
+  --track: #d3dade;
+  --primary: #14191c;
+  --primary-ink: #f7f9fa;
+  --danger: #b3261e;
+  --danger-soft: #fbe3e1;
+  --success: #1f6b4a;
+  --focus: #1f5fbf;
+  --skeleton: rgb(20 25 28 / 8%);
+  --scrim: rgb(20 25 28 / 32%);
+  --shadow-float: 0 1px 2px rgb(20 25 28 / 4%), 0 8px 24px rgb(20 25 28 / 8%);
+  --shadow-pop: 0 2px 6px rgb(20 25 28 / 6%), 0 18px 48px rgb(20 25 28 / 16%);
+  --shadow-seg: 0 1px 2px rgb(20 25 28 / 8%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ground: #111315;
+  --blob-1: #1c2a2f;
+  --blob-2: #2e201b;
+  --ink: #e8ecee;
+  --ink-2: #a7b2b8;
+  --ink-3: #8a959b;
+  --line: rgb(255 255 255 / 9%);
+  --line-strong: rgb(255 255 255 / 16%);
+  --surface: rgb(30 33 36 / 62%);
+  --surface-solid: #1a1d1f;
+  --raised: #202326;
+  --glass: rgb(28 31 34 / 58%);
+  --glass-solid: #1c1f22;
+  --glass-edge: rgb(255 255 255 / 8%);
+  --hover: rgb(255 255 255 / 6%);
+  --press: rgb(255 255 255 / 10%);
+  --accent: #e2775c;
+  --accent-ink: #111315;
+  --accent-soft: #3a2621;
+  --accent-text: #ee9a84;
+  --track: #2c3134;
+  --primary: #e8ecee;
+  --primary-ink: #111315;
+  --danger: #f2867d;
+  --danger-soft: #3b1f1d;
+  --success: #6cc39a;
+  --focus: #8ab4ff;
+  --skeleton: rgb(255 255 255 / 7%);
+  --scrim: rgb(0 0 0 / 50%);
+  --shadow-float: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 35%);
+  --shadow-pop: 0 2px 6px rgb(0 0 0 / 35%), 0 18px 48px rgb(0 0 0 / 50%);
+  --shadow-seg: 0 1px 2px rgb(0 0 0 / 40%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "painel-ssa2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node dev-server.js",
+    "lint": "eslint . && stylelint \"css/**/*.css\"",
+    "test": "node --test test/",
+    "check": "npm run build && npm run lint && npm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}

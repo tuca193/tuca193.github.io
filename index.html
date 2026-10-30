@@ -3,49 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme:light)">
-<meta name="theme-color" content="#12151c" media="(prefers-color-scheme:dark)">
-<title>SSA 2 · Pernambuco</title>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#e9edf0">
+<meta name="description" content="Painel de estudos do SSA 2 (UPE): os 76 assuntos do edital, contagem para as provas e progresso por perfil.">
+<title>Painel SSA 2</title>
+<script>
+  // aplica o tema salvo antes da primeira pintura, para não piscar
+  (function () {
+    var t = 'system';
+    try { t = (JSON.parse(localStorage.getItem('ssa2:v2')) || {}).prefs.theme || 'system'; } catch (e) { /* sem storage */ }
+    if (t === 'system') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/glass.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/views.css">
+<script type="module" src="js/app.js"></script>
 </head>
-
-<body style="--h:210">
-<div class="prog-fab" role="status" aria-live="polite">
-  <span class="pf-num" id="pf-num">0/76</span>
-  <span class="pf-bar"><i id="pf-i"></i></span>
-  <button class="pf-reset" id="pf-reset" type="button" title="Reiniciar progresso" aria-label="Reiniciar progresso">&#8634;</button>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="backdrop" aria-hidden="true"></div>
+<header class="topbar glass" id="topbar" hidden></header>
+<div class="shell" id="shell">
+  <aside class="sidebar" id="sidebar" hidden></aside>
+  <main class="main" id="main" tabindex="-1">
+    <noscript><p class="noscript">O Painel SSA 2 precisa de JavaScript ativado para funcionar.</p></noscript>
+  </main>
 </div>
-<main>
-<header class="hero">
-<h1>SSA 2 <span class="sub1">· Pernambuco</span></h1>
-<p class="lead">Sistema Seriado de Avaliação do estado de Pernambuco — o conteúdo completo do edital em um painel de estudos.</p>
-<section id="countdown" class="countdown" aria-live="polite"></section>
-</header>
-<section class="block">
-<h2 class="kicker">Matérias do edital · ingresso 2027</h2>
-<div class="cards">
-<a class="mcard" style="--h:355" href="port.html"><span class="mn">Português e Literatura</span><span class="mbar"><i data-prog-bar="port"></i></span><span class="mtxt" data-prog-text="port">0/9</span></a>
-<a class="mcard" style="--h:25" href="edf.html"><span class="mn">Educação Física</span><span class="mbar"><i data-prog-bar="edf"></i></span><span class="mtxt" data-prog-text="edf">0/6</span></a>
-<a class="mcard" style="--h:45" href="fis.html"><span class="mn">Física</span><span class="mbar"><i data-prog-bar="fis"></i></span><span class="mtxt" data-prog-text="fis">0/8</span></a>
-<a class="mcard" style="--h:85" href="geo.html"><span class="mn">Geografia</span><span class="mbar"><i data-prog-bar="geo"></i></span><span class="mtxt" data-prog-text="geo">0/7</span></a>
-<a class="mcard" style="--h:135" href="bio.html"><span class="mn">Biologia</span><span class="mbar"><i data-prog-bar="bio"></i></span><span class="mtxt" data-prog-text="bio">0/7</span></a>
-<a class="mcard" style="--h:175" href="qui.html"><span class="mn">Química</span><span class="mbar"><i data-prog-bar="qui"></i></span><span class="mtxt" data-prog-text="qui">0/9</span></a>
-<a class="mcard" style="--h:210" href="mat.html"><span class="mn">Matemática</span><span class="mbar"><i data-prog-bar="mat"></i></span><span class="mtxt" data-prog-text="mat">0/9</span></a>
-<a class="mcard" style="--h:250" href="ing.html"><span class="mn">Inglês</span><span class="mbar"><i data-prog-bar="ing"></i></span><span class="mtxt" data-prog-text="ing">0/6</span></a>
-<a class="mcard" style="--h:285" href="soc.html"><span class="mn">Sociologia</span><span class="mbar"><i data-prog-bar="soc"></i></span><span class="mtxt" data-prog-text="soc">0/5</span></a>
-<a class="mcard" style="--h:320" href="his.html"><span class="mn">História</span><span class="mbar"><i data-prog-bar="his"></i></span><span class="mtxt" data-prog-text="his">0/10</span></a>
-</div>
-</section>
-<section class="block">
-<h2 class="kicker">Sobre o SSA</h2>
-<div class="info">
-<div class="icard"><h3>Datas</h3><p>1ª prova: 06/12/2026 · 2ª prova: 13/12/2026 — ambas à tarde (&#42;horário a confirmar no edital).</p></div>
-<div class="icard"><h3>Formato</h3><p>O SSA é o seriado do ensino médio das escolas estaduais de PE: as notas das avaliações compõem a nota final — estudar por edital é essencial. Veja o site oficial:</p><p><a class="btn" href="https://www.educacao.pe.gov.br/" target="_blank" rel="noopener">Secretaria de Educação &#8599;</a></p></div>
-</div>
-<p class="note">Seu progresso fica salvo neste navegador (localStorage) — a barra de progresso canto inferior direito atualiza sozinha.</p>
-</section>
-</main>
-<script id="ssa-data" type="application/json">{"total":76,"materias":[{"id":"port","name":"Português e Literatura","hue":355,"count":9,"file":"port.html","keys":["port0","port1","port2","port3","port4","port5","port6","port7","port8"]},{"id":"edf","name":"Educação Física","hue":25,"count":6,"file":"edf.html","keys":["edf0","edf1","edf2","edf3","edf4","edf5"]},{"id":"fis","name":"Física","hue":45,"count":8,"file":"fis.html","keys":["fis0","fis1","fis2","fis3","fis4","fis5","fis6","fis7"]},{"id":"geo","name":"Geografia","hue":85,"count":7,"file":"geo.html","keys":["geo0","geo1","geo2","geo3","geo4","geo5","geo6"]},{"id":"bio","name":"Biologia","hue":135,"count":7,"file":"bio.html","keys":["bio0","bio1","bio2","bio3","bio4","bio5","bio6"]},{"id":"qui","name":"Química","hue":175,"count":9,"file":"qui.html","keys":["qui0","qui1","qui2","qui3","qui4","qui5","qui6","qui7","qui8"]},{"id":"mat","name":"Matemática","hue":210,"count":9,"file":"mat.html","keys":["mat0","mat1","mat2","mat3","mat4","mat5","mat6","mat7","mat8"]},{"id":"ing","name":"Inglês","hue":250,"count":6,"file":"ing.html","keys":["ing0","ing1","ing2","ing3","ing4","ing5"]},{"id":"soc","name":"Sociologia","hue":285,"count":5,"file":"soc.html","keys":["soc0","soc1","soc2","soc3","soc4"]},{"id":"his","name":"História","hue":320,"count":10,"file":"his.html","keys":["his0","his1","his2","his3","his4","his5","his6","his7","his8","his9"]}]}</script>
-<script src="script.js"></script>
+<nav class="tabbar glass" id="tabbar" aria-label="Principal" hidden></nav>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 </body>
 </html>

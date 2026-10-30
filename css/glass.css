@@ -1,0 +1,69 @@
+/* superfícies de vidro — só navegação, header, tab bar, menus, diálogos e blocos de destaque */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.backdrop::before,
+.backdrop::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.backdrop::before {
+  width: 560px;
+  height: 560px;
+  top: -180px;
+  right: -100px;
+  background: var(--blob-1);
+}
+
+.backdrop::after {
+  width: 480px;
+  height: 480px;
+  bottom: -200px;
+  left: 8%;
+  background: var(--blob-2);
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(var(--blur)) saturate(var(--saturate));
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 var(--glass-edge), var(--shadow-float);
+}
+
+.surface {
+  background: var(--surface);
+  backdrop-filter: blur(calc(var(--blur) * 0.6));
+  border: 1px solid var(--line);
+}
+
+/* sem suporte a backdrop-filter: superfícies opacas */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--glass-solid);
+  }
+
+  .surface {
+    background: var(--surface-solid);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .backdrop {
+    display: none;
+  }
+
+  .glass,
+  .surface {
+    background: var(--glass-solid);
+    backdrop-filter: none;
+  }
+}
