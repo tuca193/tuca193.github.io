@@ -497,3 +497,28 @@
     max-height: 30vh;
   }
 }
+
+.quiz-extra {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.quiz-extra a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  color: var(--ink-2);
+  text-underline-offset: 3px;
+}
+
+.quiz-extra a:hover {
+  color: var(--ink);
+}
+
+.quiz-extra .icon {
+  --icon: 14px;
+}

@@ -14,6 +14,50 @@
    "confirmado": false
   }
  ],
+ "dias": [
+  {
+   "dia": 1,
+   "prova": "p1",
+   "areas": [
+    {
+     "nome": "Linguagens e suas Tecnologias",
+     "materias": [
+      "port",
+      "ing",
+      "edf"
+     ]
+    },
+    {
+     "nome": "Ciências Humanas e Sociais Aplicadas",
+     "materias": [
+      "his",
+      "geo",
+      "soc"
+     ]
+    }
+   ]
+  },
+  {
+   "dia": 2,
+   "prova": "p2",
+   "areas": [
+    {
+     "nome": "Matemática e suas Tecnologias",
+     "materias": [
+      "mat"
+     ]
+    },
+    {
+     "nome": "Ciências da Natureza e suas Tecnologias",
+     "materias": [
+      "bio",
+      "qui",
+      "fis"
+     ]
+    }
+   ]
+  }
+ ],
  "materias": [
   {
    "id": "port",

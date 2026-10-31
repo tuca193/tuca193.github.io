@@ -9,7 +9,9 @@ Provas previstas para **06/12/2026 e 13/12/2026, à tarde** (confira sempre o ed
 - perfis: cada pessoa tem o próprio progresso no mesmo navegador, sem misturar;
 - painel com ritmo semanal até a prova, contagem regressiva e próximo assunto;
 - busca, filtros, tema claro/escuro e backup em JSON.
-- quiz de verificação: para concluir um assunto, a pessoa responde 5 questões reais de provas anteriores do SSA 2 (2018–2026) sorteadas do banco em `data/questoes.json` e precisa acertar pelo menos 3;
+- quiz de verificação: para concluir um assunto, a pessoa responde 5 questões reais de provas anteriores do SSA 2 (2018–2026) e do ENEM (INEP, 2020 e 2022–2024) sorteadas do banco em `data/questoes.json` e precisa acertar pelo menos 3;
+- matérias agrupadas por dia de prova (1º dia: Linguagens e Ciências Humanas; 2º dia: Matemática e Ciências da Natureza);
+- links para listas de exercícios da Toda Matéria e da Brasil Escola em cada assunto;
 - provas e gabaritos anteriores com link para os PDFs oficiais da UPE.
 
 Tudo fica salvo no `localStorage` do navegador. Nada é enviado para servidor.
@@ -19,7 +21,7 @@ Tudo fica salvo no `localStorage` do navegador. Nada é enviado para servidor.
     index.html          shell único (rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/perfis)
     <materia>.html      redirecionam os links antigos para index.html#/materia/<id>
     data/edital.json    conteúdo do edital (fonte de verdade)
-    data/questoes.json  banco do quiz: questões oficiais do SSA 2 classificadas por matéria e assunto
+    data/questoes.json  banco do quiz: questões oficiais do SSA 2 e do ENEM classificadas por matéria e assunto
     css/                tokens, base, vidro, componentes e uma folha por tela
     js/store/           perfis, progresso e persistência (testados)
     js/lib/, js/ui/     helpers de dom e datas, componentes

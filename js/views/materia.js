@@ -6,6 +6,7 @@ import { withEdital, emptyBlock } from '../ui/states.js';
 import { toast } from '../ui/feedback.js';
 import { setBar, topicCheck } from '../ui/topic.js';
 import { plural } from '../lib/text.js';
+import { exerciseLinks } from '../lib/links.js';
 
 const TICK_MS = 60000;
 
@@ -15,10 +16,11 @@ const FILTERS = [
   { id: 'estudados', label: 'Estudados' },
 ];
 
-// studyLinks - buscas prontas no youtube, khan academy e google
+// studyLinks - buscas prontas: exercícios na toda matéria e brasil escola, vídeos e aulas
 function studyLinks(materia, assunto) {
   const q = encodeURIComponent(`SSA 2 ${materia.nome} ${assunto.nome}`);
   const links = [
+    ...exerciseLinks(assunto),
     { label: 'YouTube', href: `https://www.youtube.com/results?search_query=${q}` },
     { label: 'Khan Academy', href: `https://pt.khanacademy.org/search?page_search_query=${q}` },
     { label: 'Google', href: `https://www.google.com/search?q=${encodeURIComponent(`SSA 2 ${materia.nome} ${assunto.nome} resumo`)}` },

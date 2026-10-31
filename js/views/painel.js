@@ -4,6 +4,7 @@ import { plural } from '../lib/text.js';
 import { withEdital } from '../ui/states.js';
 import { toast } from '../ui/feedback.js';
 import { setBar, topicCheck } from '../ui/topic.js';
+import { examDays, dayHeader } from '../ui/exam-days.js';
 import { nextExam, countdownParts, weeklyPace, formatDate, formatTime, relativeDay, examStatus } from '../lib/dates.js';
 
 const TICK_MS = 30000;
@@ -160,6 +161,9 @@ export function render({ store }) {
         row.next.removeAttribute('title');
       }
     }
+    for (const { day, el } of ui.dayCounts.values()) {
+      el.textContent = `${store.doneCount(day.ids)} de ${day.ids.length} assuntos`;
+    }
   }
 
   function updateNext() {
@@ -203,7 +207,7 @@ export function render({ store }) {
   function build(data) {
     edital = data;
     const rows = new Map();
-    const items = edital.materias.map((materia) => {
+    const materiaItem = (materia) => {
       const row = {
         next: h('span', { class: 'materia-next' }),
         count: h('span', { class: 'materia-count', 'aria-hidden': 'true' }),
@@ -214,6 +218,18 @@ export function render({ store }) {
       rows.set(materia.id, row);
       return h('li', {}, h('a', { class: 'materia-row', href: `#/materia/${materia.id}` },
         h('span', { class: 'materia-name' }, materia.nome), row.next, row.bar, row.count, row.countSr));
+    };
+    // matérias agrupadas por dia de prova e, dentro do dia, por área de conhecimento
+    const dayCounts = new Map();
+    const groups = examDays(edital).map((day) => {
+      const count = h('p', { class: 'day-count' });
+      dayCounts.set(day.dia, { day, el: count });
+      const titleId = `painel-dia-${day.dia}`;
+      return h('section', { class: 'day-group', 'aria-labelledby': titleId },
+        dayHeader(day, { id: titleId, progress: count }),
+        day.areas.map((area) => h('div', { class: 'area-group' },
+          h('h4', { class: 'area-title' }, area.nome),
+          h('ul', { class: 'materia-list' }, area.materias.map(materiaItem)))));
     });
 
     const check = topicCheck(store, () => (swapping ? null : current?.assunto), {
@@ -233,6 +249,7 @@ export function render({ store }) {
     const minutes = unit('min');
     ui = {
       rows,
+      dayCounts,
       check,
       days,
       hours,
@@ -270,8 +287,8 @@ export function render({ store }) {
           ui.examLabel, ui.countdown, ui.countdownSr),
         ui.nextBlock),
       h('section', { class: 'card surface painel-materias', 'aria-labelledby': 'painel-materias-title' },
-        h('div', { class: 'card-head' }, h('h2', { class: 'card-title', id: 'painel-materias-title' }, 'Matérias')),
-        h('ul', { class: 'materia-list' }, items)));
+        h('div', { class: 'card-head' }, h('h2', { class: 'card-title', id: 'painel-materias-title' }, 'Matérias por dia de prova')),
+        groups));
 
     update();
     timer = setInterval(() => {

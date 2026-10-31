@@ -5,6 +5,7 @@ import { loadQuestoes } from '../data/questoes.js';
 import { peekEdital } from '../data/edital.js';
 import { openModal } from './feedback.js';
 import { supportText, commandText } from './question-text.js';
+import { exerciseLinks } from '../lib/links.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -29,6 +30,7 @@ function resultMark(passed) {
 
 // sourceLine - de onde veio a questão
 function sourceLine(q) {
+  if (q.fonte === 'enem') return `ENEM ${q.ano} (INEP) · ${q.dia}º dia · questão ${q.numero}`;
   return `SSA 2 · processo ${q.ano} · ${q.dia}º dia · questão ${q.numero}`;
 }
 
@@ -236,6 +238,9 @@ export function runQuiz(topicId) {
           h('p', { class: 'quiz-result-text' }, passed
             ? `Você acertou ${correct} de ${total} questões de provas anteriores e pode concluir "${assunto.nome}".`
             : `Você acertou ${correct} de ${total}; para concluir é preciso acertar pelo menos ${needed}. Revise o assunto e tente de novo com outras questões.`),
+          passed ? null : h('ul', { class: 'quiz-extra' }, exerciseLinks(assunto).map((l) => h('li', {},
+            h('a', { href: l.href, target: '_blank', rel: 'noopener noreferrer' }, l.label, icon('external-link'),
+              h('span', { class: 'sr-only' }, ' (abre em nova aba)'))))),
           h('div', { class: 'quiz-actions' }, secondary, primary)), title);
       };
 

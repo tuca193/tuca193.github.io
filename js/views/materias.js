@@ -3,6 +3,7 @@ import { h, icon, skeletonLine } from '../lib/dom.js';
 import { withEdital, emptyBlock } from '../ui/states.js';
 import { toast } from '../ui/feedback.js';
 import { setBar, topicCheck } from '../ui/topic.js';
+import { examDays, dayHeader } from '../ui/exam-days.js';
 import { plural } from '../lib/text.js';
 
 const DEBOUNCE_MS = 120;
@@ -62,7 +63,18 @@ export function render({ store }) {
       return li;
     };
 
-    const list = h('ul', { class: 'surface subject-list' }, edital.materias.map(row));
+    // matérias separadas por dia de prova e área de conhecimento
+    const list = h('div', { class: 'subject-days' }, examDays(edital).map((day) => {
+      const dayCount = h('p', { class: 'day-count' });
+      rows.push(() => { dayCount.textContent = `${store.doneCount(day.ids)} de ${day.ids.length} assuntos`; });
+      const titleId = `materias-dia-${day.dia}`;
+      return h('section', { class: 'day-group', 'aria-labelledby': titleId },
+        dayHeader(day, { id: titleId, level: 'h2', progress: dayCount }),
+        day.areas.map((area) => h('div', { class: 'area-group' },
+          h('h3', { class: 'area-title' }, area.nome),
+          h('ul', { class: 'surface subject-list' }, area.materias.map(row)))));
+    }));
+    rows.forEach((fn) => fn());
     const results = h('div', { class: 'search-results', hidden: true });
     const counter = h('p', { class: 'label search-count', 'aria-live': 'polite', 'aria-atomic': 'true' });
 
