@@ -1,11 +1,13 @@
-// carrega o banco de questões só quando o primeiro quiz abre
+// carrega o banco de questões só quando o primeiro quiz abre, já com as alterações do administrador
+import { applyOverrides } from '../lib/overrides.js';
+import { watchOverrides, currentOverrides } from './remote.js';
 
 const URL = 'data/questoes.json';
 let cache = null;
 let pending = null;
 
-// loadQuestoes - promessa da lista de questões; tenta de novo depois de um erro
-export function loadQuestoes() {
+// loadRaw - o banco original, sem alterações
+export function loadRaw() {
   if (cache) return Promise.resolve(cache);
   if (pending) return pending;
   pending = fetch(URL, { cache: 'no-cache' })
@@ -22,4 +24,10 @@ export function loadQuestoes() {
       pending = null;
     });
   return pending;
+}
+
+// loadQuestoes - banco em vigor; sem conexão com o banco remoto, vale o original
+export async function loadQuestoes() {
+  const [bank] = await Promise.all([loadRaw(), watchOverrides()]);
+  return applyOverrides(bank, currentOverrides());
 }

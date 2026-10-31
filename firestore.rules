@@ -1,0 +1,26 @@
+rules_version = '2';
+// regras do banco remoto: leitura pública, escrita só do administrador, log só cresce
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'arthursoaresa620@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    match /overrides/{questao} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.data.keys().hasOnly(['materia', 'assunto', 'removido', 'at'])
+        && request.resource.data.removido is bool;
+    }
+
+    match /log/{entrada} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['acao', 'questao', 'origem', 'de', 'para', 'at', 'dispositivo'])
+        && request.resource.data.acao in ['mover', 'remover', 'restaurar'];
+      allow update, delete: if false;
+    }
+  }
+}

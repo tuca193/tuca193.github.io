@@ -1,4 +1,4 @@
-// rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/perfis
+// rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/perfis, #/banco
 
 const ROUTES = [
   { pattern: /^$/, name: 'painel' },
@@ -7,6 +7,7 @@ const ROUTES = [
   { pattern: /^provas$/, name: 'provas' },
   { pattern: /^ajustes$/, name: 'ajustes' },
   { pattern: /^perfis$/, name: 'perfis' },
+  { pattern: /^banco$/, name: 'banco' },
 ];
 
 // matchRoute - converte o hash atual em { name, params }
