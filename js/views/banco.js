@@ -2,6 +2,7 @@
 import { h, icon, skeletonLine } from '../lib/dom.js';
 import { plural } from '../lib/text.js';
 import { applyOverrides } from '../lib/overrides.js';
+import { sourceShort } from '../lib/source.js';
 import { withEdital, errorBlock, emptyBlock } from '../ui/states.js';
 import { openModal, toast } from '../ui/feedback.js';
 import { examDays } from '../ui/exam-days.js';
@@ -28,11 +29,6 @@ function isUnlocked() {
 
 function setUnlocked() {
   try { sessionStorage.setItem(UNLOCK_KEY, '1'); } catch { /* sem storage: vale só nesta tela */ }
-}
-
-// origin - de onde a questão veio, em texto curto
-function origin(q) {
-  return q.fonte === 'enem' ? `ENEM ${q.ano} · ${q.dia}º dia · q${q.numero}` : `SSA 2 ${q.ano} · ${q.dia}º dia · q${q.numero}`;
 }
 
 // preview - começo da pergunta para identificar a questão
@@ -194,7 +190,7 @@ export function render() {
       const enem = active.filter((q) => q.fonte === 'enem').length;
       stats.replaceChildren(
         stat('Questões ativas', active.length),
-        stat('SSA 2 · ENEM', `${active.length - enem} · ${enem}`),
+        stat('UPE · ENEM', `${active.length - enem} · ${enem}`),
         stat('Movidas', moved),
         stat('Removidas', removed));
 
@@ -271,27 +267,27 @@ export function render() {
       if (kind === 'mover') {
         const dest = await confirmAction({
           title: 'Mover questão', confirmLabel: 'Mover', extra: topicSelect(edital, current),
-          text: `${origin(q)} está em ${where(current)}.`,
+          text: `${sourceShort(q)} está em ${where(current)}.`,
         });
         if (!dest) return;
         override = { materia: dest.materia, assunto: dest.assunto, removido: false };
-        entry = { acao: 'mover', origem: origin(q), de: where(current), para: where(dest) };
+        entry = { acao: 'mover', origem: sourceShort(q), de: where(current), para: where(dest) };
       } else if (kind === 'remover') {
         const ok = await confirmAction({
           title: 'Remover questão', confirmLabel: 'Remover', danger: true,
-          text: `${origin(q)} sai do quiz em todos os aparelhos. Dá para restaurar depois.`,
+          text: `${sourceShort(q)} sai do quiz em todos os aparelhos. Dá para restaurar depois.`,
         });
         if (!ok) return;
         override = { materia: current.materia, assunto: current.assunto, removido: true };
-        entry = { acao: 'remover', origem: origin(q), de: where(current), para: null };
+        entry = { acao: 'remover', origem: sourceShort(q), de: where(current), para: null };
       } else {
         const ok = await confirmAction({
           title: 'Restaurar questão', confirmLabel: 'Restaurar',
-          text: `${origin(q)} volta ao quiz em ${where(current)}.`,
+          text: `${sourceShort(q)} volta ao quiz em ${where(current)}.`,
         });
         if (!ok) return;
         override = { materia: current.materia, assunto: current.assunto, removido: false };
-        entry = { acao: 'restaurar', origem: origin(q), de: null, para: where(current) };
+        entry = { acao: 'restaurar', origem: sourceShort(q), de: null, para: where(current) };
       }
       try {
         await commit({ questao: q.id, override, entry });
@@ -310,7 +306,7 @@ export function render() {
         h('div', { class: 'bank-q-main' },
           h('p', { class: 'bank-q-meta' },
             h('span', { class: 'quiz-tag', text: q.id }),
-            h('span', { text: origin(q) }),
+            h('span', { text: sourceShort(q) }),
             removed ? h('span', { class: 'pill', text: 'removida' }) : null,
             moved ? h('span', { class: 'pill', text: 'movida' }) : null),
           h('p', { class: 'bank-q-where', text: where(current) }),
@@ -362,7 +358,7 @@ export function render() {
           h('p', {},
             h('strong', { text: ACTIONS[e.acao] || e.acao }), ' ',
             h('span', { class: 'quiz-tag', text: e.questao }), ' ',
-            h('span', { class: 'settings-desc', text: e.origem || (byId.get(e.questao) ? origin(byId.get(e.questao)) : '') })),
+            h('span', { class: 'settings-desc', text: e.origem || (byId.get(e.questao) ? sourceShort(byId.get(e.questao)) : '') })),
           e.de || e.para ? h('p', { class: 'bank-log-path' },
             e.de ? h('span', { text: e.de }) : null,
             e.de && e.para ? ' → ' : null,

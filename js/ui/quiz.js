@@ -2,6 +2,7 @@
 import { h, icon, skeletonLine } from '../lib/dom.js';
 import { pickQuestions, isPassed, MIN_QUESTIONS } from '../lib/quiz.js';
 import { loadQuestoes } from '../data/questoes.js';
+import { sourceLine } from '../lib/source.js';
 import { peekEdital } from '../data/edital.js';
 import { openModal } from './feedback.js';
 import { supportText, commandText } from './question-text.js';
@@ -26,12 +27,6 @@ function resultMark(passed) {
   glyph.setAttribute('d', passed ? 'M20 33l8 8 16-17' : 'M24 24l16 16M40 24 24 40');
   svg.append(ring, glyph);
   return svg;
-}
-
-// sourceLine - de onde veio a questão
-function sourceLine(q) {
-  if (q.fonte === 'enem') return `ENEM ${q.ano} (INEP) · ${q.dia}º dia · questão ${q.numero}`;
-  return `SSA 2 · processo ${q.ano} · ${q.dia}º dia · questão ${q.numero}`;
 }
 
 // runQuiz - abre o quiz do assunto; resolve true se a pessoa foi aprovada (ou escolheu concluir sem quiz)
