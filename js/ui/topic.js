@@ -1,6 +1,7 @@
 // peças de assunto compartilhadas: barra de progresso e caixa de marcar
 import { h, icon } from '../lib/dom.js';
 import { toast } from './feedback.js';
+import { runQuiz } from './quiz.js';
 
 export const PROFILE_CHANGED_MSG = 'O perfil ativo mudou em outra aba. Tente de novo.';
 
@@ -24,9 +25,18 @@ export function toggleFor(store, topicId, profileId) {
 }
 
 // topicCheck - botão de marcar assunto; assunto pode ser uma função (o assunto muda, como no painel)
+// concluir passa pelo quiz de verificação; desmarcar é direto
 export function topicCheck(store, assunto, { profileId, id, onBefore, onToggle, onFail } = {}) {
   const current = () => (typeof assunto === 'function' ? assunto() : assunto);
   const first = typeof assunto === 'function' ? null : assunto;
+  let busy = false;
+  const apply = (a) => {
+    onBefore?.(a.id);
+    const r = toggleFor(store, a.id, profileId);
+    btn.setAttribute('aria-checked', String(r.on));
+    if (r.ok) onToggle?.(r.on, a.id);
+    else onFail?.(a.id);
+  };
   const btn = h('button', {
     class: 'check',
     type: 'button',
@@ -34,14 +44,25 @@ export function topicCheck(store, assunto, { profileId, id, onBefore, onToggle, 
     role: 'checkbox',
     'aria-checked': String(first ? store.isDone(first.id) : false),
     'aria-label': first ? `Marcar ${first.nome} como estudado` : null,
-    onClick: () => {
+    onClick: async () => {
       const a = current();
-      if (!a) return;
-      onBefore?.(a.id);
-      const r = toggleFor(store, a.id, profileId);
-      btn.setAttribute('aria-checked', String(r.on));
-      if (r.ok) onToggle?.(r.on, a.id);
-      else onFail?.(a.id);
+      if (!a || busy) return;
+      if (store.isDone(a.id)) {
+        apply(a);
+        return;
+      }
+      busy = true;
+      try {
+        const passed = await runQuiz(a.id);
+        // o perfil pode ter mudado enquanto o quiz estava aberto; toggleFor recusa nesse caso
+        if (passed && !store.isDone(a.id)) {
+          if (btn.isConnected) apply(a);
+          else toggleFor(store, a.id, profileId);
+        }
+      } finally {
+        busy = false;
+        if (btn.isConnected) btn.focus();
+      }
     },
   }, icon('check'));
   return btn;

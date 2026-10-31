@@ -14,10 +14,11 @@ export function toast(message, { error = false } = {}) {
 }
 
 // openModal - abre um <dialog> com o conteúdo dado e resolve com o valor passado a close()
-export function openModal(build, { label } = {}) {
+// cancelValue - valor usado quando a pessoa fecha com esc ou clicando no fundo
+export function openModal(build, { label, dismissOnBackdrop = true, className = '', cancelValue = () => null } = {}) {
   return new Promise((resolve) => {
     let result = null;
-    const dialog = h('dialog', { class: 'modal glass', 'aria-label': label });
+    const dialog = h('dialog', { class: `modal glass ${className}`.trim(), 'aria-label': label });
     const close = (value = null) => {
       result = value;
       dialog.close();
@@ -27,9 +28,13 @@ export function openModal(build, { label } = {}) {
       dialog.remove();
       resolve(result);
     });
+    dialog.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      close(cancelValue());
+    });
     // clique no fundo fecha
     dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) close(null);
+      if (dismissOnBackdrop && e.target === dialog) close(cancelValue());
     });
     document.body.append(dialog);
     dialog.showModal();

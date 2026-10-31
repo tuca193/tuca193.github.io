@@ -44,6 +44,33 @@ for (const m of edital.materias || []) {
     if (!a.nome?.trim()) problems.push(`${a.id}: sem nome`);
   }
 }
+
+// banco de questões do quiz: 5 alternativas, resposta a–e, matéria e assunto existentes
+let banco = { questoes: [] };
+try {
+  banco = JSON.parse(readFileSync('data/questoes.json', 'utf8'));
+} catch (e) {
+  problems.push(`não consegui ler data/questoes.json (${e.message})`);
+}
+const materiaIds = new Set((edital.materias || []).map((m) => m.id));
+const BLOCOS = new Set(['titulo', 'p', 'fonte', 'nota', 'pergunta']);
+const qids = new Set();
+for (const q of banco.questoes || []) {
+  if (qids.has(q.id)) problems.push(`questão duplicada: ${q.id}`);
+  qids.add(q.id);
+  if (!materiaIds.has(q.materia)) problems.push(`${q.id}: matéria desconhecida ${q.materia}`);
+  if (q.assunto !== null && !ids.has(q.assunto)) problems.push(`${q.id}: assunto desconhecido ${q.assunto}`);
+  if (q.assunto && !q.assunto.startsWith(q.materia)) problems.push(`${q.id}: assunto ${q.assunto} fora da matéria ${q.materia}`);
+  if (!Array.isArray(q.alternativas) || q.alternativas.length !== 5 || q.alternativas.some((a) => !String(a).trim())) problems.push(`${q.id}: alternativas inválidas`);
+  if (!/^[A-E]$/.test(q.resposta)) problems.push(`${q.id}: resposta inválida`);
+  if (!Array.isArray(q.comando) || !q.comando.length) problems.push(`${q.id}: sem comando`);
+  for (const b of [...(q.apoio || []), ...(q.comando || [])]) {
+    const ok = b.t === 'verso' ? Array.isArray(b.linhas) && b.linhas.length
+      : b.t === 'lista' ? Array.isArray(b.itens) && b.itens.length
+      : BLOCOS.has(b.t) && typeof b.texto === 'string' && b.texto.trim();
+    if (!ok) problems.push(`${q.id}: bloco inválido ${JSON.stringify(b).slice(0, 60)}`);
+  }
+}
 if (problems.length) fail(problems.join('\n'));
 
 // escapeHtml - escapa &, <, > e aspas para texto dentro do html
@@ -64,4 +91,4 @@ const redirect = (m) => `<!DOCTYPE html>
 `;
 
 for (const m of edital.materias) writeFileSync(`${m.id}.html`, redirect(m), 'utf8');
-console.log(`ok: ${edital.materias.length} matérias, ${ids.size} assuntos, ${edital.provas.length} provas`);
+console.log(`ok: ${edital.materias.length} matérias, ${ids.size} assuntos, ${edital.provas.length} provas, ${qids.size} questões`);

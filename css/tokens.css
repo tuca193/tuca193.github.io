@@ -103,6 +103,7 @@
   --danger: #b3261e;
   --danger-soft: #fbe3e1;
   --success: #1f6b4a;
+  --success-soft: #e1f1e8;
   --focus: #1f5fbf;
   --skeleton: rgb(20 25 28 / 8%);
   --scrim: rgb(20 25 28 / 32%);
@@ -140,6 +141,7 @@
   --danger: #f2867d;
   --danger-soft: #3b1f1d;
   --success: #6cc39a;
+  --success-soft: #1b3127;
   --focus: #8ab4ff;
   --skeleton: rgb(255 255 255 / 7%);
   --scrim: rgb(0 0 0 / 50%);
