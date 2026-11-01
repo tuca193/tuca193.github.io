@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pickQuestions, isPassed, shuffle, QUIZ_SIZE } from '../js/lib/quiz.js';
+import { pickQuestions, isPassed, shuffle, QUIZ_SIZE, readingSeconds } from '../js/lib/quiz.js';
 
 const q = (id, materia, assunto) => ({ id, materia, assunto });
 const seeded = (seed = 1) => () => {
@@ -45,4 +45,10 @@ test('completa com a mesma materia, gerais primeiro, nunca de outra materia', ()
 test('materia sem questoes devolve lista vazia', () => {
   const { questions } = pickQuestions([q('x', 'his', 'his1')], { topicId: 'edf1', materiaId: 'edf' });
   assert.equal(questions.length, 0);
+});
+
+test('readingSeconds respeita mínimo e máximo', () => {
+  assert.equal(readingSeconds(''), 5);
+  assert.equal(readingSeconds('palavra '.repeat(60)), 15);
+  assert.equal(readingSeconds('palavra '.repeat(400)), 25);
 });

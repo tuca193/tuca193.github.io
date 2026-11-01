@@ -28,3 +28,9 @@ export function pickQuestions(bank, { topicId, materiaId }, { n = QUIZ_SIZE, rng
 export function isPassed(correct, total) {
   return total > 0 && correct > total / 2;
 }
+
+// readingSeconds - tempo mínimo para ler a resolução: ~4 palavras por segundo, entre 5 e 25 s
+export function readingSeconds(text) {
+  const words = String(text).trim().split(/\s+/).filter(Boolean).length;
+  return Math.min(25, Math.max(5, Math.ceil(words / 4)));
+}

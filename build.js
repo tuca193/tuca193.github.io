@@ -71,6 +71,20 @@ for (const q of banco.questoes || []) {
     if (!ok) problems.push(`${q.id}: bloco inválido ${JSON.stringify(b).slice(0, 60)}`);
   }
 }
+
+// resoluções comentadas: uma por questão, com passos e um comentário por alternativa
+let resolucoes = {};
+try {
+  resolucoes = JSON.parse(readFileSync('data/resolucoes.json', 'utf8'));
+} catch (e) {
+  problems.push(`não consegui ler data/resolucoes.json (${e.message})`);
+}
+for (const id of qids) {
+  const r = resolucoes[id];
+  if (!r) problems.push(`${id}: sem resolução`);
+  else if (!Array.isArray(r.passos) || !r.passos.length || !Array.isArray(r.alternativas) || r.alternativas.length !== 5) problems.push(`${id}: resolução inválida`);
+}
+for (const id of Object.keys(resolucoes)) if (!qids.has(id)) problems.push(`resolução sem questão: ${id}`);
 if (problems.length) fail(problems.join('\n'));
 
 // escapeHtml - escapa &, <, > e aspas para texto dentro do html

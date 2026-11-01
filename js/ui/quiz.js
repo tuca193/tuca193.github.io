@@ -1,7 +1,8 @@
 // quiz de verificação: 5 questões de provas anteriores antes de concluir um assunto
 import { h, icon, skeletonLine } from '../lib/dom.js';
-import { pickQuestions, isPassed, MIN_QUESTIONS } from '../lib/quiz.js';
+import { pickQuestions, isPassed, readingSeconds, MIN_QUESTIONS } from '../lib/quiz.js';
 import { loadQuestoes } from '../data/questoes.js';
+import { loadResolucoes } from '../data/resolucoes.js';
 import { sourceLine } from '../lib/source.js';
 import { peekEdital } from '../data/edital.js';
 import { openModal } from './feedback.js';
@@ -10,6 +11,27 @@ import { exerciseLinks } from '../lib/links.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
+
+// resolutionPanel - resolução comentada: passos até a resposta e o comentário de cada alternativa
+function resolutionPanel(q, res, chosen) {
+  const correct = LETTERS.indexOf(q.resposta);
+  const title = h('h4', { class: 'quiz-res-title', tabindex: '-1' }, 'Resolução');
+  const sentinel = h('span', { class: 'quiz-res-end', 'aria-hidden': 'true' });
+  const el = h('section', { class: 'quiz-res', 'aria-label': 'Resolução da questão' },
+    title,
+    h('div', { class: 'quiz-res-steps' }, res.passos.map((p) => h('p', { text: p }))),
+    h('h5', { class: 'quiz-res-sub' }, 'Alternativa por alternativa'),
+    h('ul', { class: 'quiz-res-alts' }, res.alternativas.map((text, k) => h('li', {
+      class: k === correct ? 'is-correct' : k === chosen ? 'is-chosen' : '',
+    },
+    h('span', { class: 'quiz-res-letter', 'aria-hidden': 'true' }, LETTERS[k]),
+    h('p', {}, h('span', { class: 'sr-only' }, `Alternativa ${LETTERS[k]}${k === chosen ? ', a sua' : ''}: `), text),
+    k === chosen && k !== correct ? h('span', { class: 'quiz-res-yours' }, 'sua resposta') : null))),
+    sentinel);
+  const words = [...res.passos, ...res.alternativas].join(' ');
+  return { el, title, sentinel, seconds: readingSeconds(words) };
+}
+
 
 // resultMark - anel com o símbolo de aprovado ou não, desenhado com animação
 function resultMark(passed) {
@@ -37,7 +59,10 @@ export function runQuiz(topicId) {
   let earned = false;
 
   return openModal((close) => {
-    const finish = () => close(earned);
+    const finish = () => {
+      clearGate();
+      close(earned);
+    };
     const titleId = `quiz-title-${topicId}`;
     const stage = h('div', { class: 'quiz-stage' });
     const dots = h('ol', { class: 'quiz-dots', 'aria-hidden': 'true' });
@@ -99,10 +124,18 @@ export function runQuiz(topicId) {
         h('div', { class: 'quiz-actions' }, h('button', { class: 'btn btn-quiet', type: 'button', onClick: finish }, 'Cancelar'), mark)), mark);
     }
 
+    let resolucoes = {};
+    let gate = null;
+    const clearGate = () => {
+      gate?.();
+      gate = null;
+    };
+
     function start() {
       loading();
-      loadQuestoes()
-        .then((bank) => {
+      Promise.all([loadQuestoes(), loadResolucoes()])
+        .then(([bank, res]) => {
+          resolucoes = res;
           if (!root.isConnected) return;
           const { questions, fromTopic } = pickQuestions(bank, { topicId, materiaId: materia.id });
           if (questions.length < MIN_QUESTIONS) notEnough(questions.length);
@@ -119,6 +152,7 @@ export function runQuiz(topicId) {
         : null;
 
       const ask = (i) => {
+        clearGate();
         const q = questions[i];
         setProgress(results, i, total);
         let chosen = -1;
@@ -137,6 +171,8 @@ export function runQuiz(topicId) {
         h('span', { class: 'quiz-option-icon', 'aria-hidden': 'true' })));
         const group = h('div', { class: 'quiz-options', role: 'radiogroup', 'aria-labelledby': stemId }, options);
         const feedback = h('p', { class: 'quiz-feedback', role: 'status' });
+        const resHost = h('div', {});
+        const hint = h('p', { class: 'quiz-res-hint', 'aria-live': 'polite', hidden: true });
         const action = h('button', { class: 'btn btn-primary', type: 'button', disabled: true }, 'Confirmar resposta');
 
         const select = (idx) => {
@@ -182,7 +218,56 @@ export function runQuiz(topicId) {
           action.textContent = last ? 'Ver resultado' : 'Próxima questão';
           action.append(icon('arrow-right'));
           action.onclick = () => (last ? result() : ask(i + 1));
-          action.focus();
+          const res = resolucoes[q.id];
+          if (!res) {
+            action.focus();
+            return;
+          }
+          const panel = resolutionPanel(q, res, chosen);
+          if (right) {
+            // acertou: a resolução fica disponível, sem obrigar a leitura
+            const open = h('button', { class: 'btn btn-quiet', type: 'button', 'aria-expanded': 'false' }, 'Ver resolução');
+            open.onclick = () => {
+              const show = open.getAttribute('aria-expanded') !== 'true';
+              open.setAttribute('aria-expanded', String(show));
+              open.textContent = show ? 'Esconder resolução' : 'Ver resolução';
+              resHost.replaceChildren(show ? panel.el : '');
+            };
+            action.before(open);
+            action.focus();
+            return;
+          }
+          // errou: só avança depois de rolar até o fim da resolução e do tempo mínimo de leitura
+          resHost.replaceChildren(panel.el);
+          action.disabled = true;
+          hint.hidden = false;
+          let seen = false;
+          let left = panel.seconds;
+          const update = () => {
+            const ready = seen && left <= 0;
+            action.disabled = !ready;
+            hint.textContent = ready ? ''
+              : !seen ? 'Leia a resolução até o fim para continuar.'
+                : `Termine a leitura: libera em ${left} s.`;
+            hint.hidden = ready;
+            if (ready) {
+              clearGate();
+              action.focus({ preventScroll: true });
+            }
+          };
+          const tick = setInterval(() => {
+            if (!root.isConnected) return clearGate();
+            left -= 1;
+            update();
+          }, 1000);
+          const io = new IntersectionObserver((entries) => {
+            if (entries.some((e) => e.isIntersecting)) { seen = true; update(); }
+          });
+          io.observe(panel.sentinel);
+          gate = () => { clearInterval(tick); io.disconnect(); };
+          update();
+          panel.title.focus({ preventScroll: true });
+          panel.title.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
         action.onclick = confirm;
 
@@ -194,6 +279,8 @@ export function runQuiz(topicId) {
           commandText(q.comando, { questionId: stemId, prefix: `Questão ${i + 1} de ${total}. ` }),
           group,
           feedback,
+          resHost,
+          hint,
           h('div', { class: 'quiz-actions' }, action));
         show(card);
       };
@@ -213,6 +300,7 @@ export function runQuiz(topicId) {
       };
 
       const result = () => {
+        clearGate();
         root.onkeydown = null;
         const correct = results.filter(Boolean).length;
         const passed = isPassed(correct, total);
