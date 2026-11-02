@@ -195,3 +195,19 @@ test('listener removido durante a notificacao nao e chamado', () => {
   store.createProfile('Ana');
   assert.equal(calls, 0);
 });
+
+test('recordAnswer acumula acertos e erros por questão no perfil ativo', () => {
+  const store = make(fakeStorage());
+  store.createProfile('Ana');
+  store.recordAnswer('q1', false);
+  store.recordAnswer('q1', true);
+  store.recordAnswer('q2', false);
+  assert.equal(store.quizLog().q1.c, 1);
+  assert.equal(store.quizLog().q1.e, 1);
+  assert.equal(store.quizLog().q1.ok, true);
+  assert.equal(store.quizLog().q2.ok, false);
+  store.createProfile('Bia');
+  assert.deepEqual(store.quizLog(), {});
+  store.resetProgress();
+  assert.deepEqual(store.quizLog(), {});
+});

@@ -1,4 +1,5 @@
 import { MAX_NAME_LENGTH, MAX_PROFILES, ERRORS, nameKey } from './profiles.js';
+import { normalizeQuiz } from './storage.js';
 
 export const EXPORT_FORMAT = 'painel-ssa2';
 export const EXPORT_VERSION = 1;
@@ -51,9 +52,24 @@ export function toggleTopic(state, topicId, { now = () => new Date(), knownIds }
   return withDone(state, id, done);
 }
 
+// resetProgress - zera assuntos estudados e o histórico do quiz do perfil
 export function resetProgress(state, profileId) {
   if (!state.data[profileId]) return state;
-  return withDone(state, profileId, {});
+  return { ...state, data: { ...state.data, [profileId]: { ...state.data[profileId], done: {}, quiz: {} } } };
+}
+
+export function quizMap(state) {
+  return state.data[state.activeId]?.quiz ?? {};
+}
+
+// recordAnswer - soma a resposta ao histórico da questão no perfil ativo
+export function recordAnswer(state, questionId, ok, { now = () => new Date() } = {}) {
+  const id = state.activeId;
+  if (!id || !state.data[id] || typeof questionId !== 'string' || !questionId) return state;
+  const quiz = { ...(state.data[id].quiz ?? {}) };
+  const prev = quiz[questionId] ?? { c: 0, e: 0 };
+  quiz[questionId] = { c: prev.c + (ok ? 1 : 0), e: prev.e + (ok ? 0 : 1), ok: Boolean(ok), last: now().toISOString() };
+  return { ...state, data: { ...state.data, [id]: { ...state.data[id], quiz } } };
 }
 
 export function countDone(done, ids) {
@@ -71,6 +87,7 @@ export function exportProfile(state, profileId, { now = () => new Date() } = {})
     exportedAt: now().toISOString(),
     profile: { name: profile.name },
     done: { ...(state.data[profileId]?.done ?? {}) },
+    quiz: { ...(state.data[profileId]?.quiz ?? {}) },
   };
 }
 
@@ -117,7 +134,7 @@ export function importProfile(state, payload, { id, now = () => new Date(), know
       ...state,
       activeId: id,
       profiles: [...state.profiles, profile],
-      data: { ...state.data, [id]: { done: filterKnown(done, knownIds) } },
+      data: { ...state.data, [id]: { done: filterKnown(done, knownIds), quiz: normalizeQuiz(data.quiz) } },
     },
   };
 }

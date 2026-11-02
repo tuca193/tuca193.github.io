@@ -53,7 +53,7 @@ export function topicCheck(store, assunto, { profileId, id, onBefore, onToggle, 
       }
       busy = true;
       try {
-        const passed = await runQuiz(a.id);
+        const passed = await runQuiz(a.id, { onAnswer: (qid, ok) => store.recordAnswer(qid, ok, { profileId }) });
         // o perfil pode ter mudado enquanto o quiz estava aberto; toggleFor recusa nesse caso
         if (passed && !store.isDone(a.id)) {
           if (btn.isConnected) apply(a);

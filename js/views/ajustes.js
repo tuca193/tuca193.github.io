@@ -145,7 +145,7 @@ export function render({ store }) {
           if (!p || n === 0) return;
           const ok = await confirmDialog({
             title: 'Zerar progresso?',
-            text: `${n === 1 ? 'O assunto marcado' : `Os ${n} assuntos marcados`} como ${n === 1 ? 'estudado' : 'estudados'} no perfil "${p.name}" ${n === 1 ? 'vai ficar desmarcado' : 'vão ficar desmarcados'}. Isso não pode ser desfeito. Outros perfis não mudam.`,
+            text: `${n === 1 ? 'O assunto marcado' : `Os ${n} assuntos marcados`} como ${n === 1 ? 'estudado' : 'estudados'} no perfil "${p.name}" ${n === 1 ? 'vai ficar desmarcado' : 'vão ficar desmarcados'}. O histórico do quiz e o caderno de erros também são apagados. Isso não pode ser desfeito. Outros perfis não mudam.`,
             confirmLabel: 'Zerar progresso',
           });
           if (!ok) return;

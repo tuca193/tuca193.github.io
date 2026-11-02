@@ -129,6 +129,12 @@ export function createStore({
       return Boolean(activeDone()[topicId]);
     },
     doneCount: (ids) => G.countDone(activeDone(), ids),
+    quizLog: () => G.quizMap(state),
+    // recordAnswer - guarda acerto/erro da questão; com profileId, ignora se o perfil ativo mudou
+    recordAnswer(questionId, ok, { profileId } = {}) {
+      const r = commit((s) => (profileId && profileId !== s.activeId ? PROFILE_CHANGED : G.recordAnswer(s, questionId, ok, { now })));
+      return r !== PROFILE_CHANGED;
+    },
     resetProgress(profileId) {
       const r = commit((s) => (profileId && profileId !== s.activeId ? PROFILE_CHANGED : G.resetProgress(s, s.activeId)));
       return r === PROFILE_CHANGED ? { ok: false, error: PROFILE_CHANGED.error } : { ok: true };

@@ -1,6 +1,6 @@
 // quiz de verificação: 5 questões de provas anteriores antes de concluir um assunto
 import { h, icon, skeletonLine } from '../lib/dom.js';
-import { pickQuestions, isPassed, readingSeconds, MIN_QUESTIONS } from '../lib/quiz.js';
+import { pickQuestions, isPassed, readingSeconds, shuffle, MIN_QUESTIONS } from '../lib/quiz.js';
 import { loadQuestoes } from '../data/questoes.js';
 import { loadResolucoes } from '../data/resolucoes.js';
 import { sourceLine } from '../lib/source.js';
@@ -13,7 +13,7 @@ const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 // resolutionPanel - resolução comentada: passos até a resposta e o comentário de cada alternativa
-function resolutionPanel(q, res, chosen) {
+export function resolutionPanel(q, res, chosen) {
   const correct = LETTERS.indexOf(q.resposta);
   const title = h('h4', { class: 'quiz-res-title', tabindex: '-1' }, 'Resolução');
   const sentinel = h('span', { class: 'quiz-res-end', 'aria-hidden': 'true' });
@@ -51,11 +51,37 @@ function resultMark(passed) {
   return svg;
 }
 
-// runQuiz - abre o quiz do assunto; resolve true se a pessoa foi aprovada (ou escolheu concluir sem quiz)
-export function runQuiz(topicId) {
+// runQuiz - verificação do assunto; resolve true se a pessoa foi aprovada (ou escolheu concluir sem quiz)
+// onAnswer(questionId, acertou) - chamado a cada resposta confirmada
+export function runQuiz(topicId, { onAnswer } = {}) {
   const info = peekEdital()?.topic(topicId);
   if (!info) return Promise.resolve(false);
   const { assunto, materia } = info;
+  return quizModal({
+    key: topicId, kicker: `Verificação · ${materia.nome}`, title: assunto.nome, label: `Verificação: ${assunto.nome}`,
+    topic: { assunto, materia }, onAnswer,
+    pick: (bank) => {
+      const { questions, fromTopic } = pickQuestions(bank, { topicId, materiaId: materia.id });
+      const total = questions.length;
+      const note = fromTopic < total
+        ? `${fromTopic ? `${fromTopic} ${fromTopic === 1 ? 'questão é' : 'questões são'} deste assunto` : 'Não há questões só deste assunto'}; as outras são de ${materia.nome}.`
+        : null;
+      return { questions, note };
+    },
+  });
+}
+
+// runReview - refaz questões do caderno de erros; acertar tira a questão do caderno
+export function runReview(questionIds, { onAnswer, title = 'Caderno de erros' } = {}) {
+  const wanted = new Set(questionIds);
+  return quizModal({
+    key: 'revisao', kicker: 'Revisão', title, label: `Revisão: ${title}`, onAnswer, review: true,
+    pick: (bank) => ({ questions: shuffle(bank.filter((q) => wanted.has(q.id))), note: null }),
+  });
+}
+
+function quizModal({ key, kicker, title: heading, label, topic = null, pick, onAnswer, review = false }) {
+  const { assunto, materia } = topic ?? {};
   let earned = false;
 
   return openModal((close) => {
@@ -63,17 +89,17 @@ export function runQuiz(topicId) {
       clearGate();
       close(earned);
     };
-    const titleId = `quiz-title-${topicId}`;
+    const titleId = `quiz-title-${key}`;
     const stage = h('div', { class: 'quiz-stage' });
     const dots = h('ol', { class: 'quiz-dots', 'aria-hidden': 'true' });
     const counter = h('p', { class: 'quiz-counter' });
-    const closeBtn = h('button', { class: 'btn btn-quiet btn-icon quiz-close', type: 'button', 'aria-label': 'Fechar verificação', onClick: finish }, icon('x'));
+    const closeBtn = h('button', { class: 'btn btn-quiet btn-icon quiz-close', type: 'button', 'aria-label': review ? 'Fechar revisão' : 'Fechar verificação', onClick: finish }, icon('x'));
 
     const root = h('div', { class: 'quiz', 'aria-labelledby': titleId },
       h('header', { class: 'quiz-head' },
         h('div', { class: 'quiz-head-text' },
-          h('p', { class: 'quiz-kicker' }, `Verificação · ${materia.nome}`),
-          h('h2', { class: 'quiz-title', id: titleId }, assunto.nome)),
+          h('p', { class: 'quiz-kicker' }, kicker),
+          h('h2', { class: 'quiz-title', id: titleId }, heading)),
         closeBtn),
       h('div', { class: 'quiz-progress' }, dots, counter),
       stage);
@@ -137,19 +163,26 @@ export function runQuiz(topicId) {
         .then(([bank, res]) => {
           resolucoes = res;
           if (!root.isConnected) return;
-          const { questions, fromTopic } = pickQuestions(bank, { topicId, materiaId: materia.id });
-          if (questions.length < MIN_QUESTIONS) notEnough(questions.length);
-          else play(questions, fromTopic);
+          const { questions, note } = pick(bank);
+          if (review && !questions.length) emptyReview();
+          else if (!review && questions.length < MIN_QUESTIONS) notEnough(questions.length);
+          else play(questions, note);
         })
         .catch(() => root.isConnected && failedToLoad());
     }
 
-    function play(questions, fromTopic) {
+    function emptyReview() {
+      counter.textContent = '';
+      const ok = h('button', { class: 'btn btn-primary', type: 'button', 'data-autofocus': true, onClick: finish }, 'Fechar');
+      show(h('div', { class: 'quiz-card quiz-message' },
+        h('h3', { tabindex: '-1' }, 'Nada para revisar'),
+        h('p', {}, 'Essas questões não estão mais no banco.'),
+        h('div', { class: 'quiz-actions' }, ok)), ok);
+    }
+
+    function play(questions, note) {
       const results = [];
       const total = questions.length;
-      const note = fromTopic < total
-        ? `${fromTopic ? `${fromTopic} ${fromTopic === 1 ? 'questão é' : 'questões são'} deste assunto` : 'Não há questões só deste assunto'}; as outras são de ${materia.nome}.`
-        : null;
 
       const ask = (i) => {
         clearGate();
@@ -200,6 +233,7 @@ export function runQuiz(topicId) {
           answered = true;
           const right = chosen === correctIdx;
           results[i] = right;
+          onAnswer?.(q.id, right);
           options.forEach((o, k) => {
             o.disabled = true;
             if (k === correctIdx) {
@@ -274,7 +308,7 @@ export function runQuiz(topicId) {
         const card = h('article', { class: 'quiz-card' },
           i === 0 && note ? h('p', { class: 'quiz-note' }, note) : null,
           h('p', { class: 'quiz-source' }, sourceLine(q),
-            q.assunto !== assunto.id ? h('span', { class: 'quiz-tag' }, `outro assunto de ${materia.nome}`) : null),
+            assunto && q.assunto !== assunto.id ? h('span', { class: 'quiz-tag' }, `outro assunto de ${materia.nome}`) : null),
           supportText(q.apoio),
           commandText(q.comando, { questionId: stemId, prefix: `Questão ${i + 1} de ${total}. ` }),
           group,
@@ -303,6 +337,20 @@ export function runQuiz(topicId) {
         clearGate();
         root.onkeydown = null;
         const correct = results.filter(Boolean).length;
+        if (review) {
+          setProgress(results, total, total);
+          const done = h('button', { class: 'btn btn-primary', type: 'button', 'data-autofocus': true, onClick: finish }, 'Fechar');
+          const title = h('h3', { class: 'quiz-result-title', tabindex: '-1' }, correct === total ? 'Tudo certo!' : 'Revisão feita');
+          show(h('div', { class: 'quiz-card quiz-result ' + (correct === total ? 'is-pass' : 'is-fail') },
+            resultMark(correct === total),
+            h('p', { class: 'quiz-score' }, h('b', {}, String(correct)), ` de ${total}`),
+            title,
+            h('p', { class: 'quiz-result-text' }, correct
+              ? `${correct === 1 ? 'A questão que você acertou saiu' : `As ${correct} questões que você acertou saíram`} do caderno de erros.${correct < total ? ' As outras continuam lá para a próxima revisão.' : ''}`
+              : 'As questões continuam no caderno de erros. Releia as resoluções e tente de novo depois.'),
+            h('div', { class: 'quiz-actions' }, done)), title);
+          return;
+        }
         const passed = isPassed(correct, total);
         earned = earned || passed;
         setProgress(results, total, total);
@@ -332,5 +380,5 @@ export function runQuiz(topicId) {
 
     start();
     return root;
-  }, { label: `Verificação: ${assunto.nome}`, dismissOnBackdrop: false, className: 'modal-quiz', cancelValue: () => earned });
+  }, { label, dismissOnBackdrop: false, className: 'modal-quiz', cancelValue: () => earned });
 }

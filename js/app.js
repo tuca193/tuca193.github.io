@@ -12,13 +12,15 @@ import * as provas from './views/provas.js';
 import * as ajustes from './views/ajustes.js';
 import * as perfis from './views/perfis.js';
 import * as banco from './views/banco.js';
+import * as revisao from './views/revisao.js';
 import * as boasVindas from './views/boas-vindas.js';
 import * as naoEncontrada from './views/nao-encontrada.js';
 
-const VIEWS = { painel, materias, materia, provas, ajustes, perfis, banco, 'nao-encontrada': naoEncontrada };
+const VIEWS = { painel, materias, materia, provas, ajustes, perfis, banco, revisao, 'nao-encontrada': naoEncontrada };
 const NAV = [
   { id: 'painel', href: '#/', label: 'Painel', icon: 'house' },
   { id: 'materias', href: '#/materias', label: 'Matérias', icon: 'book-open' },
+  { id: 'revisao', href: '#/revisao', label: 'Revisão', icon: 'list-checks' },
   { id: 'provas', href: '#/provas', label: 'Provas', icon: 'calendar' },
   { id: 'banco', href: '#/banco', label: 'Questões', icon: 'database' },
   { id: 'ajustes', href: '#/ajustes', label: 'Ajustes', icon: 'settings' },

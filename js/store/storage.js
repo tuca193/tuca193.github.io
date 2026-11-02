@@ -39,6 +39,20 @@ function normalizeDone(done) {
   return out;
 }
 
+// normalizeQuiz - histórico de respostas por questão: { c: acertos, e: erros, ok: última certa, last: data }
+export function normalizeQuiz(quiz) {
+  const out = {};
+  if (!isObject(quiz)) return out;
+  for (const [key, v] of Object.entries(quiz)) {
+    if (!key || !isObject(v)) continue;
+    const c = Number.isInteger(v.c) && v.c >= 0 ? v.c : 0;
+    const e = Number.isInteger(v.e) && v.e >= 0 ? v.e : 0;
+    if (c + e === 0 || typeof v.ok !== 'boolean' || typeof v.last !== 'string' || Number.isNaN(Date.parse(v.last))) continue;
+    out[key] = { c, e, ok: v.ok, last: v.last };
+  }
+  return out;
+}
+
 // normalize - valida e corrige um estado lido do storage
 export function normalize(raw, now = () => new Date()) {
   const state = emptyState();
@@ -62,7 +76,7 @@ export function normalize(raw, now = () => new Date()) {
   const data = isObject(raw.data) ? raw.data : {};
   for (const p of state.profiles) {
     const entry = isObject(data[p.id]) ? data[p.id] : {};
-    state.data[p.id] = { done: normalizeDone(entry.done) };
+    state.data[p.id] = { done: normalizeDone(entry.done), quiz: normalizeQuiz(entry.quiz) };
   }
 
   state.activeId = seen.has(raw.activeId) ? raw.activeId : (state.profiles[0]?.id ?? null);

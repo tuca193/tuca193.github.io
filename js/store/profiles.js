@@ -39,7 +39,7 @@ export function createProfile(state, name, { id, now = () => new Date() }) {
       ...state,
       activeId: id,
       profiles: [...state.profiles, profile],
-      data: { ...state.data, [id]: { done: {} } },
+      data: { ...state.data, [id]: { done: {}, quiz: {} } },
     },
   };
 }

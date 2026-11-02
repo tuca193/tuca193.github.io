@@ -5,6 +5,8 @@ import { withEdital } from '../ui/states.js';
 import { toast } from '../ui/feedback.js';
 import { setBar, topicCheck } from '../ui/topic.js';
 import { examDays, dayHeader } from '../ui/exam-days.js';
+import { errorIds, performance, weakTopics, ratio } from '../lib/stats.js';
+import { loadQuestoes } from '../data/questoes.js';
 import { nextExam, countdownParts, weeklyPace, formatDate, formatTime, relativeDay, examStatus } from '../lib/dates.js';
 
 const TICK_MS = 30000;
@@ -184,6 +186,28 @@ export function render({ store }) {
     ui.nextOpen.href = `#/materia/${materia.id}`;
   }
 
+  // updateReview - erros pendentes e o assunto mais fraco; o banco só é carregado se já houver respostas
+  let bank = null;
+  function updateReview() {
+    const log = store.quizLog();
+    if (!Object.keys(log).length) {
+      ui.reviewBlock.hidden = true;
+      return;
+    }
+    if (!bank) {
+      loadQuestoes().then((b) => { bank = b; if (ui) updateReview(); }).catch(() => {});
+      return;
+    }
+    const valid = new Set(bank.map((q) => q.id));
+    const errors = errorIds(log, valid).length;
+    const worst = weakTopics(performance(log, bank).byTopic, { limit: 1 })[0];
+    const info = worst && edital.topic(worst.id);
+    ui.reviewBlock.hidden = false;
+    ui.reviewErrors.textContent = errors ? plural(errors, 'questão errada para refazer', 'questões erradas para refazer') : 'Nenhum erro pendente.';
+    ui.reviewWeak.textContent = info ? `Ponto fraco: ${info.assunto.nome} (${Math.round(ratio(worst) * 100)}% de acerto)` : '';
+    ui.reviewWeak.hidden = !info;
+  }
+
   function update() {
     if (!ui) return;
     const now = new Date();
@@ -191,6 +215,7 @@ export function render({ store }) {
     updateStats(now);
     updateExam(now);
     updateMaterias();
+    updateReview();
     if (!swapping) updateNext();
   }
 
@@ -266,7 +291,13 @@ export function render({ store }) {
       nextName: h('h3', { class: 'next-name' }),
       nextResumo: h('p', { class: 'next-resumo' }),
       nextOpen: h('a', { class: 'next-open', href: '#/materias' }, 'Abrir matéria', icon('chevron-right')),
+      reviewErrors: h('p', { class: 'next-name' }),
+      reviewWeak: h('p', { class: 'next-resumo' }),
     };
+    ui.reviewBlock = h('section', { class: 'card surface next', 'aria-labelledby': 'painel-review-title', hidden: true },
+      h('h2', { class: 'card-title', id: 'painel-review-title' }, 'Revisão'),
+      ui.reviewErrors, ui.reviewWeak,
+      h('a', { class: 'next-open', href: '#/revisao' }, 'Abrir revisão', icon('chevron-right')));
     ui.nextBody = h('div', {},
       ui.nextMeta, ui.nextName, ui.nextResumo,
       h('div', { class: 'next-actions' },
@@ -285,7 +316,8 @@ export function render({ store }) {
           ui.pace),
         h('section', { class: 'card glass', 'aria-labelledby': 'painel-exam-title' },
           ui.examLabel, ui.countdown, ui.countdownSr),
-        ui.nextBlock),
+        ui.nextBlock,
+        ui.reviewBlock),
       h('section', { class: 'card surface painel-materias', 'aria-labelledby': 'painel-materias-title' },
         h('div', { class: 'card-head' }, h('h2', { class: 'card-title', id: 'painel-materias-title' }, 'Matérias por dia de prova')),
         groups));
