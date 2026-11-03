@@ -2,7 +2,8 @@
 import { h, icon, skeletonLine } from '../lib/dom.js';
 import { plural } from '../lib/text.js';
 import { sourceShort } from '../lib/source.js';
-import { errorIds, performance, ratio, weakTopics } from '../lib/stats.js';
+import { errorIds, performance, weakTopics } from '../lib/stats.js';
+import { meter, pct } from '../ui/meter.js';
 import { withEdital, errorBlock, emptyBlock } from '../ui/states.js';
 import { examDays } from '../ui/exam-days.js';
 import { runReview, resolutionPanel } from '../ui/quiz.js';
@@ -12,23 +13,11 @@ import { loadResolucoes } from '../data/resolucoes.js';
 const REVIEW_SIZE = 10;
 const PAGE = 20;
 
-const pct = (s) => `${Math.round(ratio(s) * 100)}%`;
-
 // preview - começo da pergunta, para reconhecer a questão
 function preview(q) {
   const ask = q.comando.find((b) => b.t === 'pergunta') || q.comando[0];
   const text = ask?.texto || '';
   return text.length > 180 ? `${text.slice(0, 177)}…` : text;
-}
-
-// meter - barra de aproveitamento com o valor exposto para leitores de tela
-function meter(s, label) {
-  const r = ratio(s) ?? 0;
-  const level = r >= 0.7 ? 'is-good' : r >= 0.5 ? 'is-mid' : 'is-low';
-  return h('div', {
-    class: `bar perf-bar ${level}`, role: 'meter', 'aria-label': label,
-    'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(r * 100), 'aria-valuetext': `${pct(s)} de acerto`,
-  }, h('span', { style: `transform:scaleX(${r})` }));
 }
 
 function skeleton() {

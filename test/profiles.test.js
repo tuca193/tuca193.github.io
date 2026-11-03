@@ -38,7 +38,7 @@ test('createProfile ativa o novo perfil sem mutar o estado', () => {
   assert.equal(r.ok, true);
   assert.equal(r.profile.name, 'Ana');
   assert.equal(r.state.activeId, 'a');
-  assert.deepEqual(r.state.data.a, { done: {}, quiz: {} });
+  assert.deepEqual(r.state.data.a, { done: {}, quiz: {}, simulados: [] });
   assert.deepEqual(before, emptyState());
 });
 

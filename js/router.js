@@ -1,4 +1,4 @@
-// rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/perfis, #/banco, #/revisao
+// rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/perfis, #/banco, #/revisao, #/simulado
 
 const ROUTES = [
   { pattern: /^$/, name: 'painel' },
@@ -9,6 +9,7 @@ const ROUTES = [
   { pattern: /^perfis$/, name: 'perfis' },
   { pattern: /^banco$/, name: 'banco' },
   { pattern: /^revisao$/, name: 'revisao' },
+  { pattern: /^simulado$/, name: 'simulado' },
 ];
 
 // matchRoute - converte o hash atual em { name, params }
@@ -29,5 +30,6 @@ export function matchRoute(hash) {
 export function navSection(name) {
   if (name === 'materia') return 'materias';
   if (name === 'perfis') return 'ajustes';
+  if (name === 'simulado') return 'provas';
   return name;
 }

@@ -13,10 +13,11 @@ import * as ajustes from './views/ajustes.js';
 import * as perfis from './views/perfis.js';
 import * as banco from './views/banco.js';
 import * as revisao from './views/revisao.js';
+import * as simulado from './views/simulado.js';
 import * as boasVindas from './views/boas-vindas.js';
 import * as naoEncontrada from './views/nao-encontrada.js';
 
-const VIEWS = { painel, materias, materia, provas, ajustes, perfis, banco, revisao, 'nao-encontrada': naoEncontrada };
+const VIEWS = { painel, materias, materia, provas, ajustes, perfis, banco, revisao, simulado, 'nao-encontrada': naoEncontrada };
 const NAV = [
   { id: 'painel', href: '#/', label: 'Painel', icon: 'house' },
   { id: 'materias', href: '#/materias', label: 'Matérias', icon: 'book-open' },

@@ -100,7 +100,13 @@ export function render() {
     const tick = () => rows.forEach((row) => setStatus(row, new Date()));
     tick();
     timer = setInterval(tick, TICK_MS);
-    return h('div', { class: 'provas-body' }, list(rows.map((row) => row.li)), anteriores(edital.anteriores || []));
+    return h('div', { class: 'provas-body' }, list(rows.map((row) => row.li)),
+      h('section', { class: 'card surface prova-sim', 'aria-labelledby': 'provas-sim-title' },
+        h('div', {},
+          h('h2', { class: 'card-title', id: 'provas-sim-title' }, 'Simulado'),
+          h('p', { class: 'past-note' }, 'Faça um dia inteiro de prova com 45 questões e 4 horas, ou o modo rápido, e veja sua nota por área.')),
+        h('a', { class: 'btn btn-primary', href: '#/simulado' }, 'Fazer simulado', icon('arrow-right'))),
+      anteriores(edital.anteriores || []));
   });
 
   const el = h('section', { class: 'provas', 'aria-labelledby': 'provas-title' },

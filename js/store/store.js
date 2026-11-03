@@ -130,6 +130,11 @@ export function createStore({
     },
     doneCount: (ids) => G.countDone(activeDone(), ids),
     quizLog: () => G.quizMap(state),
+    simulados: () => G.simuladosOf(state),
+    recordSimulado(result, { profileId } = {}) {
+      const r = commit((s) => (profileId && profileId !== s.activeId ? PROFILE_CHANGED : G.recordSimulado(s, result)));
+      return r !== PROFILE_CHANGED;
+    },
     // recordAnswer - guarda acerto/erro da questão; com profileId, ignora se o perfil ativo mudou
     recordAnswer(questionId, ok, { profileId } = {}) {
       const r = commit((s) => (profileId && profileId !== s.activeId ? PROFILE_CHANGED : G.recordAnswer(s, questionId, ok, { now })));

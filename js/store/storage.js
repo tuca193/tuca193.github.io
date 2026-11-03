@@ -53,6 +53,20 @@ export function normalizeQuiz(quiz) {
   return out;
 }
 
+export const MAX_SIMULADOS = 30;
+const isCount = (s) => isObject(s) && Number.isInteger(s.c) && Number.isInteger(s.n) && s.c >= 0 && s.n >= s.c;
+
+// normalizeSimulados - resultados de simulados já entregues, os mais recentes por último
+export function normalizeSimulados(list) {
+  if (!Array.isArray(list)) return [];
+  return list.filter((r) => isObject(r) && (r.dia === 1 || r.dia === 2) && typeof r.modo === 'string'
+    && isCount(r) && Number.isInteger(r.segundos) && r.segundos >= 0
+    && typeof r.at === 'string' && !Number.isNaN(Date.parse(r.at))
+    && isObject(r.areas) && Object.values(r.areas).every(isCount))
+    .map((r) => ({ dia: r.dia, modo: r.modo, c: r.c, n: r.n, areas: { ...r.areas }, segundos: r.segundos, at: r.at }))
+    .slice(-MAX_SIMULADOS);
+}
+
 // normalize - valida e corrige um estado lido do storage
 export function normalize(raw, now = () => new Date()) {
   const state = emptyState();
@@ -76,7 +90,7 @@ export function normalize(raw, now = () => new Date()) {
   const data = isObject(raw.data) ? raw.data : {};
   for (const p of state.profiles) {
     const entry = isObject(data[p.id]) ? data[p.id] : {};
-    state.data[p.id] = { done: normalizeDone(entry.done), quiz: normalizeQuiz(entry.quiz) };
+    state.data[p.id] = { done: normalizeDone(entry.done), quiz: normalizeQuiz(entry.quiz), simulados: normalizeSimulados(entry.simulados) };
   }
 
   state.activeId = seen.has(raw.activeId) ? raw.activeId : (state.profiles[0]?.id ?? null);

@@ -1,0 +1,329 @@
+/* simulado: escolha do dia, prova com cronômetro e gabarito comentado */
+
+.sim {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sim-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--ink-2);
+}
+
+.sim-intro .segmented {
+  align-self: flex-start;
+}
+
+.sim-days {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: var(--space-4);
+}
+
+.sim-day {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sim-day .btn {
+  align-self: flex-start;
+}
+
+.sim-comp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sim-comp li {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-sm);
+}
+
+.sim-comp span,
+.sim-meta {
+  color: var(--ink-2);
+}
+
+.sim-meta {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.sim-hist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ---------- prova ---------- */
+
+.sim-bar {
+  position: sticky;
+  top: var(--space-2);
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+}
+
+.sim-count {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.sim-bar-time {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sim-timer {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-timer.is-low {
+  color: var(--danger);
+}
+
+.sim-bar-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.sim-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.sim-stage {
+  scroll-margin-top: 96px;
+}
+
+.sim-stage .quiz-card {
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface-solid);
+}
+
+.sim-q-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.sim-q-tools .btn[aria-pressed="true"] {
+  color: var(--accent-text);
+}
+
+.sim-q-nav {
+  justify-content: space-between;
+}
+
+.sim-side {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: calc(100dvh - 120px);
+  overflow: auto;
+}
+
+.sim-nav-group + .sim-nav-group {
+  margin-top: var(--space-3);
+}
+
+.sim-nav-title {
+  margin-bottom: var(--space-2);
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.sim-nav ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: var(--space-1);
+}
+
+.sim-nav-btn {
+  position: relative;
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--raised);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.sim-nav-btn.is-answered {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--raised);
+}
+
+.sim-nav-btn.is-flagged::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.sim-nav-btn[aria-current] {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.sim-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+}
+
+.sim-key {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.sim-key.is-answered {
+  background: var(--ink);
+}
+
+.sim-key.is-flagged {
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---------- resultado ---------- */
+
+.sim-score {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sim-score-title:focus {
+  outline: none;
+}
+
+.sim-review {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-3);
+}
+
+.sim-review-item {
+  border-top: 1px solid var(--line);
+}
+
+.sim-review-item summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  min-height: var(--tap);
+  padding: var(--space-2) 0;
+  cursor: pointer;
+}
+
+.sim-mark {
+  display: grid;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: 50%;
+  color: var(--raised);
+}
+
+.sim-mark .icon {
+  --icon: 14px;
+
+  stroke-width: 3;
+}
+
+.sim-mark.is-right {
+  background: var(--success);
+}
+
+.sim-mark.is-wrong {
+  background: var(--danger);
+}
+
+.sim-review-n {
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-review-status {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.sim-review-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0 0 var(--space-4);
+}
+
+.prova-sim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+@media (width <= 900px) {
+  .sim-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sim-side {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (width <= 760px) {
+  .sim-bar {
+    top: calc(64px + var(--space-2));
+  }
+
+  .sim-stage .quiz-card {
+    padding: var(--space-4);
+  }
+}
+
+.sim .perf-row > span:first-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

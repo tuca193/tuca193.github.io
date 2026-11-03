@@ -1,5 +1,5 @@
 import { MAX_NAME_LENGTH, MAX_PROFILES, ERRORS, nameKey } from './profiles.js';
-import { normalizeQuiz } from './storage.js';
+import { normalizeQuiz, normalizeSimulados, MAX_SIMULADOS } from './storage.js';
 
 export const EXPORT_FORMAT = 'painel-ssa2';
 export const EXPORT_VERSION = 1;
@@ -55,7 +55,21 @@ export function toggleTopic(state, topicId, { now = () => new Date(), knownIds }
 // resetProgress - zera assuntos estudados e o histórico do quiz do perfil
 export function resetProgress(state, profileId) {
   if (!state.data[profileId]) return state;
-  return { ...state, data: { ...state.data, [profileId]: { ...state.data[profileId], done: {}, quiz: {} } } };
+  return { ...state, data: { ...state.data, [profileId]: { ...state.data[profileId], done: {}, quiz: {}, simulados: [] } } };
+}
+
+export function simuladosOf(state) {
+  return state.data[state.activeId]?.simulados ?? [];
+}
+
+// recordSimulado - guarda o resultado de um simulado entregue no perfil ativo
+export function recordSimulado(state, result) {
+  const id = state.activeId;
+  if (!id || !state.data[id]) return state;
+  const [clean] = normalizeSimulados([result]);
+  if (!clean) return state;
+  const simulados = [...(state.data[id].simulados ?? []), clean].slice(-MAX_SIMULADOS);
+  return { ...state, data: { ...state.data, [id]: { ...state.data[id], simulados } } };
 }
 
 export function quizMap(state) {
@@ -88,6 +102,7 @@ export function exportProfile(state, profileId, { now = () => new Date() } = {})
     profile: { name: profile.name },
     done: { ...(state.data[profileId]?.done ?? {}) },
     quiz: { ...(state.data[profileId]?.quiz ?? {}) },
+    simulados: [...(state.data[profileId]?.simulados ?? [])],
   };
 }
 
@@ -134,7 +149,7 @@ export function importProfile(state, payload, { id, now = () => new Date(), know
       ...state,
       activeId: id,
       profiles: [...state.profiles, profile],
-      data: { ...state.data, [id]: { done: filterKnown(done, knownIds), quiz: normalizeQuiz(data.quiz) } },
+      data: { ...state.data, [id]: { done: filterKnown(done, knownIds), quiz: normalizeQuiz(data.quiz), simulados: normalizeSimulados(data.simulados) } },
     },
   };
 }

@@ -26,7 +26,7 @@ test('save grava e load relê', () => {
     ...emptyState(),
     activeId: 'a',
     profiles: [{ id: 'a', name: 'Ana', createdAt: NOW }],
-    data: { a: { done: { port0: NOW }, quiz: { q1: { c: 1, e: 2, ok: false, last: NOW } } } },
+    data: { a: { done: { port0: NOW }, quiz: { q1: { c: 1, e: 2, ok: false, last: NOW } }, simulados: [{ dia: 1, modo: 'completo', c: 30, n: 45, areas: { L: { c: 15, n: 23 } }, segundos: 9000, at: NOW }] } },
   };
   assert.equal(save(s, state), true);
   assert.deepEqual(load(s, opts), state);
@@ -51,7 +51,7 @@ test('normaliza dados invalidos', () => {
   assert.equal(state.profiles[0].name, 'Ana');
   assert.equal(state.profiles[0].createdAt, NOW);
   assert.equal(state.activeId, 'a');
-  assert.deepEqual(state.data, { a: { done: { port0: NOW }, quiz: {} } });
+  assert.deepEqual(state.data, { a: { done: { port0: NOW }, quiz: {}, simulados: [] } });
   assert.equal(state.prefs.theme, 'system');
 });
 

@@ -211,3 +211,15 @@ test('recordAnswer acumula acertos e erros por questão no perfil ativo', () => 
   store.resetProgress();
   assert.deepEqual(store.quizLog(), {});
 });
+
+test('recordSimulado guarda o resultado só no perfil ativo e recusa dados inválidos', () => {
+  const store = make(fakeStorage());
+  store.createProfile('Ana');
+  const ok = { dia: 2, modo: 'rapido', c: 10, n: 15, areas: { M: { c: 5, n: 7 } }, segundos: 3600, at: '2026-11-02T10:00:00.000Z' };
+  store.recordSimulado(ok);
+  store.recordSimulado({ ...ok, c: 99 });
+  assert.equal(store.simulados().length, 1);
+  assert.equal(store.simulados()[0].c, 10);
+  store.createProfile('Bia');
+  assert.deepEqual(store.simulados(), []);
+});
