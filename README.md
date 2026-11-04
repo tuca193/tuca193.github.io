@@ -9,7 +9,7 @@ Provas previstas para **06/12/2026 e 13/12/2026, à tarde** (confira sempre o ed
 - perfis: cada pessoa tem o próprio progresso no mesmo navegador, sem misturar;
 - painel com ritmo semanal até a prova, contagem regressiva e próximo assunto;
 - busca, filtros, tema claro/escuro e backup em JSON.
-- quiz de verificação: para concluir um assunto, a pessoa responde 5 questões reais de provas anteriores do SSA 2 (2018–2026), do SSA 1 e SSA 3 (2022–2026) e do ENEM (INEP: aplicação regular 2020 e 2022–2025, reaplicação 2020 e 2022–2024) sorteadas do banco em `data/questoes.json` e precisa acertar pelo menos 3;
+- quiz de verificação: para concluir um assunto, a pessoa responde 5 questões reais de provas anteriores do SSA 2 (2018–2026), do SSA 1 e SSA 3 (2017–2026) e do ENEM (INEP: aplicação regular 2012–2020 e 2022–2025, reaplicação 2020 e 2022–2024) sorteadas do banco em `data/questoes.json` e precisa acertar pelo menos 3;
 - matérias agrupadas por dia de prova (1º dia: Linguagens e Ciências Humanas; 2º dia: Matemática e Ciências da Natureza);
 - links para listas de exercícios da Toda Matéria e da Brasil Escola em cada assunto;
 - provas e gabaritos anteriores com link para os PDFs oficiais da UPE.
