@@ -8,6 +8,11 @@ test('sourceLine nomeia cada prova e o órgão', () => {
   assert.equal(sourceLine({ fonte: 'enem', edicao: 'ppl', ano: 2022, dia: 2, numero: 150 }), 'ENEM 2022 (reaplicação) (INEP) · 2º dia · questão 150');
 });
 
+test('questão autoral é identificada como não oficial', () => {
+  assert.equal(sourceLine({ fonte: 'autoral', id: 'autoral-ing5-1' }), 'Questão autoral do Painel SSA 2 (não é de prova oficial)');
+  assert.equal(sourceShort({ fonte: 'autoral' }), 'Autoral');
+});
+
 test('sourceShort é a versão curta', () => {
   assert.equal(sourceShort({ fonte: 'enem', ano: 2025, dia: 1, numero: 7 }), 'ENEM 2025 · 1º dia · q7');
 });

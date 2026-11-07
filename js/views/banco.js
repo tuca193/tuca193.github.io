@@ -188,9 +188,10 @@ export function render() {
       const removed = raw.length - active.length;
       const moved = [...overrides.values()].filter((o) => !o.removido).length;
       const enem = active.filter((q) => q.fonte === 'enem').length;
+      const autoral = active.filter((q) => q.fonte === 'autoral').length;
       stats.replaceChildren(
         stat('Questões ativas', active.length),
-        stat('UPE · ENEM', `${active.length - enem} · ${enem}`),
+        stat('UPE · ENEM · autorais', `${active.length - enem - autoral} · ${enem} · ${autoral}`),
         stat('Movidas', moved),
         stat('Removidas', removed));
 

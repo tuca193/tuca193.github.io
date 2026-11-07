@@ -10,11 +10,13 @@ export function examName(q) {
 
 // sourceLine - origem completa, para o quiz
 export function sourceLine(q) {
+  if (q.fonte === 'autoral') return 'Questão autoral do Painel SSA 2 (não é de prova oficial)';
   const who = q.fonte === 'enem' ? 'INEP' : 'UPE';
   return `${examName(q)} (${who}) · ${q.dia}º dia · questão ${q.numero}`;
 }
 
 // sourceShort - origem curta, para listas
 export function sourceShort(q) {
+  if (q.fonte === 'autoral') return 'Autoral';
   return `${examName(q)} · ${q.dia}º dia · q${q.numero}`;
 }
