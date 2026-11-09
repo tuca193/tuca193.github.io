@@ -10,6 +10,7 @@ import { resolutionPanel } from '../ui/quiz.js';
 import { supportText, commandText } from '../ui/question-text.js';
 import { loadQuestoes } from '../data/questoes.js';
 import { loadResolucoes } from '../data/resolucoes.js';
+import { track } from '../lib/analytics.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const DATE_FMT = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'America/Recife' });
@@ -139,6 +140,7 @@ export function render({ store }) {
   function begin(ctx, dia, modo) {
     const items = buildSimulado(ctx.bank, dia, { modo, log: store.quizLog() });
     const now = Date.now();
+    track('simulado_iniciado', { dia, modo });
     const session = { dia, modo, items, answers: {}, flags: {}, current: 0, startedAt: now, deadline: now + MODOS[modo].minutos * 60000 };
     writeSession(profileId, session);
     mount(exam(ctx, session));
@@ -298,6 +300,7 @@ export function render({ store }) {
       if (q && s.answers[it.id]) store.recordAnswer(it.id, s.answers[it.id] === q.resposta, { profileId });
     }
     store.recordSimulado({ dia: s.dia, modo: s.modo, c: score.total.c, n: score.total.n, areas: score.byArea, segundos, at: new Date().toISOString() }, { profileId });
+    track('simulado_entregue', { dia: s.dia, modo: s.modo, acertos: score.total.c, total: score.total.n, tempo_min: Math.round(segundos / 60), tempo_esgotado: timeUp });
     mount(result(ctx, s, score, segundos, timeUp));
   }
 

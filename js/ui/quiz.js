@@ -8,6 +8,7 @@ import { peekEdital } from '../data/edital.js';
 import { openModal } from './feedback.js';
 import { supportText, commandText } from './question-text.js';
 import { exerciseLinks } from '../lib/links.js';
+import { track } from '../lib/analytics.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -338,6 +339,7 @@ function quizModal({ key, kicker, title: heading, label, topic = null, pick, onA
         root.onkeydown = null;
         const correct = results.filter(Boolean).length;
         if (review) {
+          track('revisao_erros', { acertos: correct, total });
           setProgress(results, total, total);
           const done = h('button', { class: 'btn btn-primary', type: 'button', 'data-autofocus': true, onClick: finish }, 'Fechar');
           const title = h('h3', { class: 'quiz-result-title', tabindex: '-1' }, correct === total ? 'Tudo certo!' : 'Revisão feita');
@@ -353,6 +355,7 @@ function quizModal({ key, kicker, title: heading, label, topic = null, pick, onA
         }
         const passed = isPassed(correct, total);
         earned = earned || passed;
+        track('quiz_verificacao', { assunto: key, materia: materia.id, acertos: correct, total, aprovado: passed });
         setProgress(results, total, total);
         const needed = Math.floor(total / 2) + 1;
         const primary = passed

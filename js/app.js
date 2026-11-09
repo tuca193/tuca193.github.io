@@ -5,6 +5,8 @@ import { loadEdital } from './data/edital.js';
 import { matchRoute, navSection } from './router.js';
 import { profileSwitcher } from './ui/profile-switcher.js';
 import { toast } from './ui/feedback.js';
+import { initAnalytics, pageview } from './lib/analytics.js';
+import { consentBanner } from './ui/consent.js';
 import * as painel from './views/painel.js';
 import * as materias from './views/materias.js';
 import * as materia from './views/materia.js';
@@ -113,6 +115,7 @@ function render({ moveFocus = false } = {}) {
     else a.removeAttribute('aria-current');
   });
   document.title = current.title ? `${current.title} · ${APP_NAME}` : APP_NAME;
+  pageview();
 
   // foco e rolagem só quando a pessoa navegou nesta aba, nunca por mudança vinda de outra aba
   if (moveFocus && !firstRender) {
@@ -139,6 +142,8 @@ store.subscribe(() => {
 });
 
 applyTheme();
+initAnalytics();
 render();
+consentBanner();
 if (!edital) toast('Não consegui carregar o edital. Algumas telas vão pedir para tentar de novo.', { error: true });
 if (store.lastSaveFailed()) toast('Este navegador não está salvando dados (modo privado?). O progresso some ao fechar.', { error: true });

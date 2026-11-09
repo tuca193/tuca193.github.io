@@ -1,4 +1,5 @@
 // ajustes: perfil ativo, tema, backup e zerar progresso
+import { consent, setConsent, onConsent } from '../lib/analytics.js';
 import { h, icon, skeletonLine } from '../lib/dom.js';
 import { TIME_ZONE } from '../lib/dates.js';
 import { initials } from '../store/profiles.js';
@@ -65,6 +66,18 @@ export function render({ store }) {
   });
   const themeBlock = block('aj-tema', 'Aparência', '"Sistema" segue o modo claro ou escuro do aparelho.',
     h('div', { class: 'segmented', role: 'group', 'aria-label': 'Tema' }, themeBtns));
+
+  /* estatísticas de uso */
+  const statsBtns = [['granted', 'Permitir'], ['denied', 'Não permitir']].map(([v, label]) => h('button', {
+    type: 'button', dataset: { consent: v },
+    onClick: () => setConsent(v),
+  }, label));
+  const paintStats = () => statsBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.consent === consent())));
+  paintStats();
+  const offConsent = onConsent(paintStats);
+  const statsBlock = block('aj-estatisticas', 'Estatísticas de uso',
+    'Contagem anônima de acessos pelo Google Analytics, com cookies. Nenhum dado do perfil ou do progresso é enviado.',
+    h('div', { class: 'segmented', role: 'group', 'aria-label': 'Estatísticas de uso' }, statsBtns));
 
   /* backup */
   const fileInput = h('input', {
@@ -188,8 +201,8 @@ export function render({ store }) {
 
   const el = h('section', { 'aria-labelledby': 'ajustes-title' },
     h('div', { class: 'page-head' }, h('div', {}, h('h1', { class: 'page-title', id: 'ajustes-title' }, 'Ajustes'))),
-    h('div', { class: 'settings-stack' }, profileBlock, themeBlock, backupBlock, resetBlock),
+    h('div', { class: 'settings-stack' }, profileBlock, themeBlock, statsBlock, backupBlock, resetBlock),
     footer);
 
-  return { el, title: 'Ajustes', destroy: off };
+  return { el, title: 'Ajustes', destroy: () => { off(); offConsent(); } };
 }
