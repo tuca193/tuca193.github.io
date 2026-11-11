@@ -7,10 +7,10 @@ import { withEdital, errorBlock, emptyBlock } from '../ui/states.js';
 import { confirmDialog, toast } from '../ui/feedback.js';
 import { meter, pct } from '../ui/meter.js';
 import { resolutionPanel } from '../ui/quiz.js';
-import { supportText, commandText } from '../ui/question-text.js';
+import { questionBody } from '../ui/question-text.js';
 import { loadQuestoes } from '../data/questoes.js';
 import { loadResolucoes } from '../data/resolucoes.js';
-import { track } from '../lib/analytics.js';
+import { track } from '../lib/metricas.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const DATE_FMT = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'America/Recife' });
@@ -226,8 +226,7 @@ export function render({ store }) {
         : null;
       stage.replaceChildren(h('article', { class: 'quiz-card' },
         h('p', { class: 'quiz-source' }, `Questão ${i + 1} de ${s.items.length} · ${edital.materiaById(it.materia)?.nome ?? it.materia}`),
-        supportText(q.apoio),
-        commandText(q.comando, { questionId: stemId, prefix: `Questão ${i + 1}. ` }),
+        questionBody(q, { questionId: stemId, prefix: `Questão ${i + 1}. ` }),
         h('div', { class: 'quiz-options', role: 'radiogroup', 'aria-labelledby': stemId }, options),
         h('div', { class: 'sim-q-tools' }, flag, clear),
         h('div', { class: 'quiz-actions sim-q-nav' },
@@ -331,8 +330,7 @@ export function render({ store }) {
         const chosen = LETTERS.indexOf(given);
         details.append(h('div', { class: 'sim-review-body' },
           h('p', { class: 'quiz-source', text: sourceLine(q) }),
-          supportText(q.apoio),
-          commandText(q.comando, { questionId: `sim-r-${i}`, prefix: '' }),
+          questionBody(q, { questionId: `sim-r-${i}`, prefix: '' }),
           h('ul', { class: 'quiz-res-alts' }, q.alternativas.map((t, k) => h('li', { class: k === LETTERS.indexOf(q.resposta) ? 'is-correct' : k === chosen ? 'is-chosen' : '' },
             h('span', { class: 'quiz-res-letter', 'aria-hidden': 'true' }, LETTERS[k]), h('p', {}, t)))),
           res[q.id] ? resolutionPanel(q, res[q.id], chosen).el : null));

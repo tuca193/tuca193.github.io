@@ -5,7 +5,7 @@ import { loadEdital } from './data/edital.js';
 import { matchRoute, navSection } from './router.js';
 import { profileSwitcher } from './ui/profile-switcher.js';
 import { toast } from './ui/feedback.js';
-import { initAnalytics, pageview } from './lib/analytics.js';
+import { initAnalytics, pageview } from './lib/metricas.js';
 import { consentBanner } from './ui/consent.js';
 import * as painel from './views/painel.js';
 import * as materias from './views/materias.js';

@@ -625,3 +625,40 @@
     text-align: left;
   }
 }
+
+/* ---------- questão com imagem da prova original ---------- */
+
+.qt-original {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.qt-original img {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.qt-original figcaption {
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+}
+
+.qt-typed summary {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.qt-typed .qt {
+  padding: var(--space-3) 0;
+}

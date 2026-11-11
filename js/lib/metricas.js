@@ -1,4 +1,5 @@
-// google analytics 4: só carrega depois do consentimento e nunca no ambiente local
+// métricas de uso (google analytics 4): só carrega depois do consentimento e nunca no ambiente local
+// o arquivo não se chama analytics.js porque bloqueadores de anúncio barram esse nome e derrubavam o site
 
 export const MEASUREMENT_ID = 'G-HJ9DVSBMB9';
 const CONSENT_KEY = 'ssa2:analytics';

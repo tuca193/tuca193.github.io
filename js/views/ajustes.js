@@ -1,5 +1,5 @@
 // ajustes: perfil ativo, tema, backup e zerar progresso
-import { consent, setConsent, onConsent } from '../lib/analytics.js';
+import { consent, setConsent, onConsent } from '../lib/metricas.js';
 import { h, icon, skeletonLine } from '../lib/dom.js';
 import { TIME_ZONE } from '../lib/dates.js';
 import { initials } from '../store/profiles.js';

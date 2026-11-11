@@ -1,5 +1,5 @@
 // valida data/edital.json e gera as páginas antigas (<materia>.html) como redirecionamentos
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 const SRC = 'data/edital.json';
 
@@ -85,6 +85,8 @@ for (const id of qids) {
   else if (!Array.isArray(r.passos) || !r.passos.length || !Array.isArray(r.alternativas) || r.alternativas.length !== 5) problems.push(`${id}: resolução inválida`);
 }
 for (const id of Object.keys(resolucoes)) if (!qids.has(id)) problems.push(`resolução sem questão: ${id}`);
+// questões com imagem precisam do recorte em data/img
+for (const q of banco.questoes || []) if (q.imagem && !existsSync(`data/img/${q.id}.webp`)) problems.push(`${q.id}: imagem ausente em data/img`);
 if (problems.length) fail(problems.join('\n'));
 
 // escapeHtml - escapa &, <, > e aspas para texto dentro do html

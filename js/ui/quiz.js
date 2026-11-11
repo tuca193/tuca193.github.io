@@ -6,9 +6,9 @@ import { loadResolucoes } from '../data/resolucoes.js';
 import { sourceLine } from '../lib/source.js';
 import { peekEdital } from '../data/edital.js';
 import { openModal } from './feedback.js';
-import { supportText, commandText } from './question-text.js';
+import { questionBody } from './question-text.js';
 import { exerciseLinks } from '../lib/links.js';
-import { track } from '../lib/analytics.js';
+import { track } from '../lib/metricas.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -310,8 +310,7 @@ function quizModal({ key, kicker, title: heading, label, topic = null, pick, onA
           i === 0 && note ? h('p', { class: 'quiz-note' }, note) : null,
           h('p', { class: 'quiz-source' }, sourceLine(q),
             assunto && q.assunto !== assunto.id ? h('span', { class: 'quiz-tag' }, `outro assunto de ${materia.nome}`) : null),
-          supportText(q.apoio),
-          commandText(q.comando, { questionId: stemId, prefix: `Questão ${i + 1} de ${total}. ` }),
+          questionBody(q, { questionId: stemId, prefix: `Questão ${i + 1} de ${total}. ` }),
           group,
           feedback,
           resHost,

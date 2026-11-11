@@ -1,6 +1,6 @@
 // aviso de cookies: aparece até a pessoa aceitar ou recusar as estatísticas de uso
 import { h } from '../lib/dom.js';
-import { consent, setConsent } from '../lib/analytics.js';
+import { consent, setConsent } from '../lib/metricas.js';
 
 export function consentBanner() {
   if (consent()) return;

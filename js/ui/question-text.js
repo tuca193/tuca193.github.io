@@ -31,6 +31,23 @@ export function supportText(blocks) {
     h('div', { class: 'qt' }, blocks.map((b) => block(b))));
 }
 
+// questionBody - enunciado da questão; com imagem, mostra o recorte da prova original e guarda o texto digitado
+export function questionBody(q, { questionId, prefix }) {
+  if (!q.imagem) return [supportText(q.apoio), commandText(q.comando, { questionId, prefix })];
+  const ask = q.comando.find((b) => b.t === 'pergunta');
+  const typed = h('details', { class: 'qt-typed' },
+    h('summary', {}, 'Ver texto digitado'),
+    h('div', { class: 'qt' }, [...q.apoio, ...q.comando].map((b) => block(b.t === 'pergunta' ? { ...b, t: 'p' } : b))));
+  return [
+    h('figure', { class: 'qt-original' },
+      h('img', { src: `data/img/${q.id}.webp`, alt: 'Enunciado da questão como aparece na prova original. O texto está em "Ver texto digitado".', loading: 'lazy', decoding: 'async' }),
+      h('figcaption', {}, 'Recorte da prova original')),
+    // rótulo das alternativas para leitores de tela: a pergunta em texto
+    h('h3', { class: 'sr-only quiz-stem', id: questionId, tabindex: '-1' }, prefix, ask?.texto ?? ''),
+    typed,
+  ];
+}
+
 // commandText - o comando da questão; a pergunta final vira o título focável que rotula as alternativas
 export function commandText(blocks, { questionId, prefix }) {
   const hasAsk = blocks.some((b) => b.t === 'pergunta');
