@@ -1,4 +1,4 @@
-// rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/perfis, #/banco, #/revisao, #/simulado
+// rotas por hash: #/, #/materias, #/materia/<id>, #/provas, #/ajustes, #/banco, #/revisao, #/simulado
 
 const ROUTES = [
   { pattern: /^$/, name: 'painel' },
@@ -6,7 +6,6 @@ const ROUTES = [
   { pattern: /^materia\/([a-z]+)$/, name: 'materia', keys: ['id'] },
   { pattern: /^provas$/, name: 'provas' },
   { pattern: /^ajustes$/, name: 'ajustes' },
-  { pattern: /^perfis$/, name: 'perfis' },
   { pattern: /^banco$/, name: 'banco' },
   { pattern: /^revisao$/, name: 'revisao' },
   { pattern: /^simulado$/, name: 'simulado' },
@@ -29,7 +28,6 @@ export function matchRoute(hash) {
 // navSection - qual item da navegação fica marcado em cada rota
 export function navSection(name) {
   if (name === 'materia') return 'materias';
-  if (name === 'perfis') return 'ajustes';
   if (name === 'simulado') return 'provas';
   return name;
 }

@@ -1,25 +1,26 @@
-// bootstrap: store, tema, esqueleto (sidebar/top bar/tab bar) e troca de telas
+// bootstrap: conta google, store da conta, tema, esqueleto (sidebar/top bar/tab bar) e troca de telas
 import { h, icon } from './lib/dom.js';
 import { createStore } from './store/store.js';
 import { loadEdital } from './data/edital.js';
 import { matchRoute, navSection } from './router.js';
-import { profileSwitcher } from './ui/profile-switcher.js';
 import { toast } from './ui/feedback.js';
 import { initAnalytics, pageview } from './lib/metricas.js';
 import { consentBanner } from './ui/consent.js';
+import { startSync, onSync } from './data/sync.js';
+import { resolveSession, accountKey } from './data/session.js';
+import { avatar, offerTransition } from './ui/account.js';
 import * as painel from './views/painel.js';
 import * as materias from './views/materias.js';
 import * as materia from './views/materia.js';
 import * as provas from './views/provas.js';
 import * as ajustes from './views/ajustes.js';
-import * as perfis from './views/perfis.js';
 import * as banco from './views/banco.js';
 import * as revisao from './views/revisao.js';
 import * as simulado from './views/simulado.js';
-import * as boasVindas from './views/boas-vindas.js';
+import * as entrada from './views/entrada.js';
 import * as naoEncontrada from './views/nao-encontrada.js';
 
-const VIEWS = { painel, materias, materia, provas, ajustes, perfis, banco, revisao, simulado, 'nao-encontrada': naoEncontrada };
+const VIEWS = { painel, materias, materia, provas, ajustes, banco, revisao, simulado, 'nao-encontrada': naoEncontrada };
 const NAV = [
   { id: 'painel', href: '#/', label: 'Painel', icon: 'house' },
   { id: 'materias', href: '#/materias', label: 'Matérias', icon: 'book-open' },
@@ -31,12 +32,15 @@ const NAV = [
 const APP_NAME = 'Painel SSA 2';
 
 // os ids conhecidos chegam com o edital; até lá o store não filtra nada
-const edital = await loadEdital().catch(() => null);
-const store = createStore({ knownIds: edital ? edital.ids : [] });
+const [edital, session] = await Promise.all([loadEdital().catch(() => null), resolveSession()]);
+// sem conta não há progresso: só a tela de entrada (o progresso antigo continua guardado no navegador)
+const store = session
+  ? createStore({ knownIds: edital ? edital.ids : [], key: accountKey(session.uid), newId: () => session.uid })
+  : null;
+if (store && store.profiles().length === 0) store.createProfile(session.name.slice(0, 40).trim() || 'Você');
 
 const main = document.getElementById('main');
 let current = null;
-let currentKey = '';
 let firstRender = true;
 
 /* ---------- tema ---------- */
@@ -45,7 +49,7 @@ const dark = window.matchMedia('(prefers-color-scheme: dark)');
 
 // applyTheme - resolve "sistema" e grava o tema efetivo no <html>
 function applyTheme() {
-  const pref = store.theme();
+  const pref = store ? store.theme() : 'system';
   const resolved = pref === 'system' ? (dark.matches ? 'dark' : 'light') : pref;
   document.documentElement.dataset.theme = resolved;
   const ground = getComputedStyle(document.documentElement).getPropertyValue('--ground').trim();
@@ -77,15 +81,21 @@ function navLinks(cls) {
   return NAV.map((n) => h('a', { class: cls, href: n.href, dataset: { nav: n.id } }, icon(n.icon), h('span', {}, n.label)));
 }
 
+// accountChip - quem está logado; leva para ajustes, onde fica a conta
+function accountChip(compact) {
+  if (!session) return null;
+  return h('a', { class: compact ? 'account-chip is-compact' : 'account-chip', href: '#/ajustes', 'aria-label': `Conta: ${session.name}` },
+    avatar(session), compact ? null : h('span', { class: 'account-chip-name', text: session.name }));
+}
+
 const sidebar = document.getElementById('sidebar');
 const topbar = document.getElementById('topbar');
 const tabbar = document.getElementById('tabbar');
-const switchers = [profileSwitcher(store), profileSwitcher(store, { compact: true })];
 sidebar.append(h('div', { class: 'sidebar-in glass' },
   brand(true),
   h('nav', { class: 'nav', 'aria-label': 'Principal' }, navLinks('')),
-  switchers[0].el));
-topbar.append(brand(false), switchers[1].el);
+  accountChip(false)));
+topbar.append(brand(false), accountChip(true));
 tabbar.append(...navLinks(''));
 
 function setChromeVisible(visible) {
@@ -95,29 +105,26 @@ function setChromeVisible(visible) {
 
 /* ---------- telas ---------- */
 
-// render - monta a tela da rota atual (ou o primeiro acesso, se não houver perfil)
+// render - monta a tela da rota atual (ou a entrada, sem conta)
 function render({ moveFocus = false } = {}) {
-  // diálogo aberto pertence à tela anterior (ex.: renomear um perfil que outra aba excluiu)
   document.querySelectorAll('dialog[open]').forEach((d) => d.close());
   const route = matchRoute(location.hash);
-  const noProfile = store.profiles().length === 0;
-  const view = noProfile ? boasVindas : VIEWS[route.name];
+  const view = store ? VIEWS[route.name] : entrada;
   current?.destroy?.();
-  const ctx = { store, navigate: (hash) => { location.hash = hash; } };
+  const ctx = { store, session, navigate: (hash) => { location.hash = hash; } };
   current = view.render(ctx, route.params) || {};
   main.replaceChildren(current.el);
-  currentKey = `${noProfile ? 'boas-vindas' : route.name}|${store.getState().activeId}`;
 
-  setChromeVisible(!noProfile);
+  setChromeVisible(Boolean(store));
   const section = navSection(route.name);
   document.querySelectorAll('[data-nav]').forEach((a) => {
-    if (a.dataset.nav === section && !noProfile) a.setAttribute('aria-current', 'page');
+    if (a.dataset.nav === section && store) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
   document.title = current.title ? `${current.title} · ${APP_NAME}` : APP_NAME;
   pageview();
 
-  // foco e rolagem só quando a pessoa navegou nesta aba, nunca por mudança vinda de outra aba
+  // foco e rolagem só quando a pessoa navegou nesta aba
   if (moveFocus && !firstRender) {
     window.scrollTo(0, 0);
     const title = main.querySelector('h1');
@@ -133,17 +140,22 @@ function render({ moveFocus = false } = {}) {
 
 window.addEventListener('hashchange', () => render({ moveFocus: true }));
 
-// troca de perfil (aqui ou em outra aba) remonta a tela; o resto cada tela atualiza sozinha
-store.subscribe(() => {
-  applyTheme();
-  const noProfile = store.profiles().length === 0;
-  const key = `${noProfile ? 'boas-vindas' : matchRoute(location.hash).name}|${store.getState().activeId}`;
-  if (key !== currentKey) render({ moveFocus: document.hasFocus() });
-});
+// o tema vale na hora; o resto cada tela atualiza sozinha
+store?.subscribe(applyTheme);
 
 applyTheme();
 initAnalytics();
 render();
 consentBanner();
+if (store) {
+  startSync(store, session);
+  // assim que a conta estiver em dia, oferece trazer o progresso antigo deste navegador
+  let offered = false;
+  onSync((s) => {
+    if (offered || s.status !== 'synced') return;
+    offered = true;
+    offerTransition(store, session);
+  });
+}
 if (!edital) toast('Não consegui carregar o edital. Algumas telas vão pedir para tentar de novo.', { error: true });
-if (store.lastSaveFailed()) toast('Este navegador não está salvando dados (modo privado?). O progresso some ao fechar.', { error: true });
+if (store?.lastSaveFailed()) toast('Este navegador não está salvando dados (modo privado?). O progresso some ao fechar.', { error: true });

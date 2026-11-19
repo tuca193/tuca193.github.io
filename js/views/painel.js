@@ -7,6 +7,7 @@ import { setBar, topicCheck } from '../ui/topic.js';
 import { examDays, dayHeader } from '../ui/exam-days.js';
 import { errorIds, performance, weakTopics, ratio } from '../lib/stats.js';
 import { loadQuestoes } from '../data/questoes.js';
+import { transitionNotice } from '../ui/account.js';
 import { nextExam, countdownParts, weeklyPace, formatDate, formatTime, relativeDay, examStatus } from '../lib/dates.js';
 
 const TICK_MS = 30000;
@@ -79,7 +80,7 @@ function skeleton() {
       h('ul', { class: 'materia-list' }, rows)));
 }
 
-export function render({ store }) {
+export function render({ store, session }) {
   const profileId = store.activeProfile()?.id;
   const sub = h('p', { class: 'page-sub' }, skeletonLine('320px', 15));
   const cta = h('a', { class: 'btn btn-primary', href: '#/materias' }, 'Continuar estudando', icon('arrow-right'));
@@ -317,6 +318,7 @@ export function render({ store }) {
         h('section', { class: 'card glass', 'aria-labelledby': 'painel-exam-title' },
           ui.examLabel, ui.countdown, ui.countdownSr,
           h('a', { class: 'next-open', href: '#/simulado' }, 'Fazer um simulado', icon('chevron-right'))),
+        transitionNotice(store, session),
         ui.nextBlock,
         ui.reviewBlock),
       h('section', { class: 'card surface painel-materias', 'aria-labelledby': 'painel-materias-title' },

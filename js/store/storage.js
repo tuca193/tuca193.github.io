@@ -117,10 +117,11 @@ function migrateLegacy(legacy, now, newId) {
   };
 }
 
-export function load(storage, { now = () => new Date(), newId = () => globalThis.crypto.randomUUID() } = {}) {
+export function load(storage, { now = () => new Date(), newId = () => globalThis.crypto.randomUUID(), key = STORAGE_KEY } = {}) {
   try {
-    const raw = readItem(storage, STORAGE_KEY);
+    const raw = readItem(storage, key);
     if (raw !== null) return normalize(parseJson(raw), now);
+    if (key !== STORAGE_KEY) return emptyState();
     const migrated = migrateLegacy(parseJson(readItem(storage, LEGACY_KEY)), now, newId);
     return migrated ?? emptyState();
   } catch {
@@ -128,9 +129,9 @@ export function load(storage, { now = () => new Date(), newId = () => globalThis
   }
 }
 
-export function save(storage, state) {
+export function save(storage, state, key = STORAGE_KEY) {
   try {
-    storage.setItem(STORAGE_KEY, JSON.stringify(state));
+    storage.setItem(key, JSON.stringify(state));
     return true;
   } catch {
     return false;

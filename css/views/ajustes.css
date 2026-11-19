@@ -102,3 +102,150 @@
     min-height: var(--tap);
   }
 }
+
+/* conta */
+.account {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.account-who {
+  font-size: var(--text-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  overflow-wrap: anywhere;
+}
+
+.account-status.is-synced {
+  color: var(--success);
+}
+
+.account-status.is-error {
+  color: var(--danger);
+}
+
+.account-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.account-nudge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.account-nudge[hidden] {
+  display: none;
+}
+
+
+.account-who > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.account-who small {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+img.avatar {
+  object-fit: cover;
+}
+
+/* atalho da conta na barra lateral e no topo */
+.account-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  margin-top: auto;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.account-chip:hover {
+  background: var(--hover);
+}
+
+.account-chip.is-compact {
+  margin-top: 0;
+  padding: var(--space-1);
+}
+
+.account-chip-name {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: var(--weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* transição do progresso antigo */
+.transition-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.transition-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.transition-option:has(input:checked) {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.transition-option span {
+  display: flex;
+  flex-direction: column;
+}
+
+.transition-option small {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.entrada-legado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+
+.entrada-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.entrada-lista li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+}
+
+.entrada-lista span {
+  color: var(--ink-2);
+}
+
+.entrada-go {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}

@@ -10,7 +10,10 @@
   // aplica o tema salvo antes da primeira pintura, para não piscar
   (function () {
     var t = 'system';
-    try { t = (JSON.parse(localStorage.getItem('ssa2:v2')) || {}).prefs.theme || 'system'; } catch (e) { /* sem storage */ }
+    try {
+      var s = JSON.parse(localStorage.getItem('ssa2:sessao'));
+      t = (JSON.parse(localStorage.getItem(s ? 'ssa2:u:' + s.uid : 'ssa2:v2')) || {}).prefs.theme || 'system';
+    } catch (e) { /* sem storage */ }
     if (t === 'system') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.dataset.theme = t;
   })();

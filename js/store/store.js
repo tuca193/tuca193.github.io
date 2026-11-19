@@ -10,6 +10,7 @@ export function createStore({
   now = () => new Date(),
   newId = () => globalThis.crypto.randomUUID(),
   win = globalThis.window,
+  key = STORAGE_KEY,
 } = {}) {
   const known = new Set(knownIds);
   const listeners = new Set();
@@ -23,12 +24,12 @@ export function createStore({
     return { ...s, data };
   }
 
-  let state = applyKnown(load(storage, { now, newId }));
-  if (state.profiles.length > 0 && readRaw() === null) saveFailed = !save(storage, state);
+  let state = applyKnown(load(storage, { now, newId, key }));
+  if (state.profiles.length > 0 && readRaw() === null) saveFailed = !save(storage, state, key);
 
   function readRaw() {
     try {
-      return storage ? storage.getItem(STORAGE_KEY) : null;
+      return storage ? storage.getItem(key) : null;
     } catch {
       return undefined;
     }
@@ -69,7 +70,7 @@ export function createStore({
     }
     const changed = next !== base;
     state = next;
-    if (changed) saveFailed = !save(storage, state);
+    if (changed) saveFailed = !save(storage, state, key);
     if (changed || base !== state) notify();
     return result;
   }
@@ -82,7 +83,7 @@ export function createStore({
   }
 
   function onStorage(event) {
-    if (event.key !== STORAGE_KEY && event.key !== null) return;
+    if (event.key !== key && event.key !== null) return;
     reload();
   }
 

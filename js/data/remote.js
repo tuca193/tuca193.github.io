@@ -90,6 +90,13 @@ export function onAdmin(fn) {
   return () => off();
 }
 
+// onAuth - como onAdmin, mas avisa à parte quando o firebase não carrega (sem internet, bloqueado)
+export function onAuth(fn, onFail) {
+  let off = () => {};
+  connect().then(({ auth, authApi }) => { off = auth.onAuthStateChanged(authApi, (u) => fn(u)); }).catch(() => onFail?.());
+  return () => off();
+}
+
 export async function signInAdmin() {
   const { auth, authApi } = await connect();
   const res = await auth.signInWithPopup(authApi, new auth.GoogleAuthProvider());
@@ -116,4 +123,32 @@ export async function commit({ questao, override, entry }) {
   batch.set(fs.doc(db, 'overrides', questao), { ...override, at: fs.serverTimestamp() });
   batch.set(fs.doc(fs.collection(db, 'log')), { ...entry, questao, at: fs.serverTimestamp(), dispositivo: device() });
   await batch.commit();
+}
+
+/* ---------- progresso de estudos por conta (users/{uid}) ---------- */
+
+// readProgress - estado salvo na conta, como texto json (null se a conta ainda não tem)
+export async function readProgress(uid) {
+  const { fs, db } = await connect();
+  const snap = await fs.getDoc(fs.doc(db, 'users', uid));
+  return snap.exists() ? snap.data().state ?? null : null;
+}
+
+// writeProgress - grava o estado inteiro da conta
+export async function writeProgress(uid, state) {
+  const { fs, db } = await connect();
+  await fs.setDoc(fs.doc(db, 'users', uid), { state, updatedAt: fs.serverTimestamp(), device: device() });
+}
+
+// watchProgress - avisa quando outro aparelho muda o progresso da conta
+export function watchProgress(uid, fn, onError) {
+  let off = () => {};
+  let stopped = false;
+  connect().then(({ fs, db }) => {
+    if (stopped) return;
+    off = fs.onSnapshot(fs.doc(db, 'users', uid), (snap) => {
+      if (!snap.metadata.hasPendingWrites && snap.exists()) fn(snap.data().state ?? null);
+    }, onError);
+  }).catch(onError);
+  return () => { stopped = true; off(); };
 }
