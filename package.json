@@ -11,8 +11,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@napi-rs/canvas": "^0.1.65",
     "eslint": "^9.39.5",
     "globals": "^17.13.0",
+    "pdfjs-dist": "^4.10.38",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^36.0.1"
   }
