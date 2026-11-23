@@ -85,7 +85,8 @@ export default async function handler(req, res) {
   const body = JSON.stringify({
     systemInstruction: { parts: [{ text: SYSTEM }] },
     contents: turns,
-    generationConfig: { temperature: 0.3, maxOutputTokens: 4096 },
+    // pouco "raciocínio interno": a resposta sai em segundos em vez de quase um minuto
+    generationConfig: { temperature: 0.3, maxOutputTokens: 4096, thinkingConfig: { thinkingBudget: 1024 } },
   });
   let busy = false;
   const falhas = [];
