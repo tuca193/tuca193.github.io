@@ -6,7 +6,7 @@ import { peekEdital } from '../data/edital.js';
 import { sourceLine } from '../lib/source.js';
 import { track } from '../lib/metricas.js';
 
-export const TUTOR_URL = 'https://painel-ssa2-tutor.vercel.app/api/tutor';
+export const TUTOR_URL = 'https://tuca193githubio.vercel.app/api/tutor';
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 
 // questaoParaTutor - o que o servidor precisa saber da questão (sem nenhum dado do aluno além da alternativa marcada)
