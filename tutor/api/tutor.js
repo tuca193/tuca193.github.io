@@ -5,7 +5,7 @@ import { createRemoteJWKSet, jwtVerify } from 'jose';
 const PROJECT = 'projetossa2-database';
 // modelos em ordem de preferência; se o primeiro estiver sem cota no plano gratuito, tenta o seguinte
 const MODELS = (process.env.GEMINI_MODELS || 'gemini-flash-latest,gemini-flash-lite-latest').split(',').map((m) => m.trim()).filter(Boolean);
-const ORIGINS = ['https://tuca193.github.io', 'https://painelssa2.com', 'http://localhost:8000', 'http://localhost:8001'];
+const ORIGINS = ['https://tuca193.github.io', 'http://localhost:8000', 'http://localhost:8001'];
 const PER_DAY = Number(process.env.TUTOR_PER_DAY || 30);
 const MAX_TURNS = 12;
 const MAX_CHARS = 6000;
