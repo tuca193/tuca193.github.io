@@ -9,6 +9,7 @@ import { openModal } from './feedback.js';
 import { questionBody } from './question-text.js';
 import { exerciseLinks } from '../lib/links.js';
 import { track } from '../lib/metricas.js';
+import { tutorPanel } from './tutor.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -28,7 +29,9 @@ export function resolutionPanel(q, res, chosen) {
     h('span', { class: 'quiz-res-letter', 'aria-hidden': 'true' }, LETTERS[k]),
     h('p', {}, h('span', { class: 'sr-only' }, `Alternativa ${LETTERS[k]}${k === chosen ? ', a sua' : ''}: `), text),
     k === chosen && k !== correct ? h('span', { class: 'quiz-res-yours' }, 'sua resposta') : null))),
-    sentinel);
+    sentinel,
+    // o tutor fica depois do fim da leitura obrigatória: é ajuda opcional
+    tutorPanel(q, res, chosen));
   const words = [...res.passos, ...res.alternativas].join(' ');
   return { el, title, sentinel, seconds: readingSeconds(words) };
 }

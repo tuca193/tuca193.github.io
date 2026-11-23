@@ -103,6 +103,12 @@ export async function signInAdmin() {
   return res.user;
 }
 
+// idToken - comprovante de login da conta atual (null se ninguém entrou), para o servidor do tutor conferir
+export async function idToken() {
+  const { authApi } = await connect();
+  return authApi.currentUser ? authApi.currentUser.getIdToken() : null;
+}
+
 export async function signOutAdmin() {
   const { auth, authApi } = await connect();
   await auth.signOut(authApi);

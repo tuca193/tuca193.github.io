@@ -662,3 +662,105 @@
 .qt-typed .qt {
   padding: var(--space-3) 0;
 }
+
+/* ---------- tutor com ia ---------- */
+
+.tutor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--line-strong);
+}
+
+.tutor-start {
+  align-self: flex-start;
+}
+
+.tutor-msgs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tutor-msg {
+  max-width: 68ch;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.tutor-msg.is-aluno {
+  align-self: flex-end;
+  background: var(--hover);
+}
+
+.tutor-msg.is-tutor {
+  border: 1px solid var(--line);
+  background: var(--surface-solid);
+}
+
+.tutor-who {
+  margin-bottom: var(--space-1);
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.tutor-text p + p,
+.tutor-text ol,
+.tutor-text ul {
+  margin-top: var(--space-2);
+}
+
+.tutor-text ol,
+.tutor-text ul {
+  padding-left: var(--space-5);
+}
+
+.tutor-text ol {
+  list-style: decimal;
+}
+
+.tutor-text ul {
+  list-style: disc;
+}
+
+.tutor-text li + li {
+  margin-top: var(--space-1);
+}
+
+.tutor-text .math-block {
+  display: block;
+  margin: var(--space-2) 0;
+  overflow-x: auto;
+}
+
+.tutor-wait {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.tutor-error {
+  color: var(--danger);
+  font-size: var(--text-sm);
+}
+
+.tutor-form {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-end;
+}
+
+.tutor-input {
+  flex: 1;
+  min-height: var(--tap);
+  resize: vertical;
+}
+
+.tutor-note {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
