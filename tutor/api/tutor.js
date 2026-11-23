@@ -85,23 +85,33 @@ export default async function handler(req, res) {
   const body = JSON.stringify({
     systemInstruction: { parts: [{ text: SYSTEM }] },
     contents: turns,
-    generationConfig: { temperature: 0.3, maxOutputTokens: 2048 },
+    generationConfig: { temperature: 0.3, maxOutputTokens: 4096 },
   });
   let busy = false;
+  const falhas = [];
   for (const model of MODELS) {
     try {
+      // cada modelo tem no máximo 25 s, para a resposta voltar antes do limite da vercel
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
         body,
+        signal: AbortSignal.timeout(25000),
       });
-      const data = await r.json();
-      // sem cota ou modelo indisponível no plano gratuito: tenta o próximo
-      if (r.status === 429 || r.status === 404 || r.status === 403) { busy ||= r.status === 429; continue; }
-      if (!r.ok) continue;
-      const texto = data.candidates?.[0]?.content?.parts?.map((p) => p.text || '').join('').trim();
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        falhas.push(`${model}: ${r.status} ${data.error?.message || ''}`.slice(0, 200));
+        // sem cota no plano gratuito: tenta o próximo
+        busy ||= r.status === 429;
+        continue;
+      }
+      const texto = data.candidates?.[0]?.content?.parts?.filter((p) => !p.thought).map((p) => p.text || '').join('').trim();
       if (texto) return res.status(200).json({ texto });
-    } catch { /* tenta o próximo modelo */ }
+      falhas.push(`${model}: sem texto (${data.candidates?.[0]?.finishReason || '?'})`);
+    } catch (e) {
+      falhas.push(`${model}: ${e.name === 'TimeoutError' ? 'demorou demais' : e.message}`);
+    }
   }
-  return res.status(busy ? 429 : 502).json({ erro: busy ? 'O tutor atingiu o limite gratuito por agora. Tente de novo mais tarde.' : 'O tutor não conseguiu responder agora. Tente de novo.' });
+  console.error('tutor falhou', falhas);
+  return res.status(busy ? 429 : 502).json({ erro: busy ? 'O tutor atingiu o limite gratuito por agora. Tente de novo mais tarde.' : `O tutor não conseguiu responder agora. Tente de novo. (${falhas.join(' | ')})` });
 }
