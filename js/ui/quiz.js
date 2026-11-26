@@ -1,6 +1,6 @@
 // quiz de verificação: 5 questões de provas anteriores antes de concluir um assunto
 import { h, icon, skeletonLine } from '../lib/dom.js';
-import { pickQuestions, isPassed, readingSeconds, shuffle, MIN_QUESTIONS } from '../lib/quiz.js';
+import { pickQuestions, isPassed, readingSeconds, shuffle, MIN_QUESTIONS, CATEGORIES, priorityCounts, matchesPriority } from '../lib/quiz.js';
 import { loadQuestoes } from '../data/questoes.js';
 import { loadResolucoes } from '../data/resolucoes.js';
 import { sourceLine } from '../lib/source.js';
@@ -13,6 +13,26 @@ import { tutorPanel } from './tutor.js';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SVG_NS = 'http://www.w3.org/2000/svg';
+const PRIORITY_KEY = 'ssa2:prioridade';
+
+// priorityLabel - "SSA 2 2024", "ENEM (todos os anos)"
+function priorityLabel(p) {
+  const nome = CATEGORIES.find((c) => c.id === p.categoria)?.nome ?? p.categoria;
+  return p.ano ? `${nome} ${p.ano}` : nome;
+}
+
+// prioridade salva neste aparelho (só uma preferência; sem ela, sugere SSA 2)
+function savedPriority() {
+  try {
+    const p = JSON.parse(localStorage.getItem(PRIORITY_KEY));
+    return p && typeof p === 'object' ? p : { categoria: 'ssa2', ano: null };
+  } catch {
+    return { categoria: 'ssa2', ano: null };
+  }
+}
+function savePriority(p) {
+  try { localStorage.setItem(PRIORITY_KEY, JSON.stringify(p)); } catch { /* sem armazenamento: só não lembra */ }
+}
 
 // resolutionPanel - resolução comentada: passos até a resposta e o comentário de cada alternativa
 export function resolutionPanel(q, res, chosen) {
@@ -64,13 +84,18 @@ export function runQuiz(topicId, { onAnswer } = {}) {
   return quizModal({
     key: topicId, kicker: `Verificação · ${materia.nome}`, title: assunto.nome, label: `Verificação: ${assunto.nome}`,
     topic: { assunto, materia }, onAnswer,
-    pick: (bank) => {
-      const { questions, fromTopic } = pickQuestions(bank, { topicId, materiaId: materia.id });
+    choose: (bank) => priorityCounts(bank, topicId),
+    pick: (bank, prioridade) => {
+      const { questions, fromTopic } = pickQuestions(bank, { topicId, materiaId: materia.id, prioridade });
       const total = questions.length;
-      const note = fromTopic < total
-        ? `${fromTopic ? `${fromTopic} ${fromTopic === 1 ? 'questão é' : 'questões são'} deste assunto` : 'Não há questões só deste assunto'}; as outras são de ${materia.nome}.`
-        : null;
-      return { questions, note };
+      const notes = [];
+      if (prioridade) {
+        const n = questions.filter((q) => matchesPriority(q, prioridade)).length;
+        const nome = priorityLabel(prioridade);
+        notes.push(n ? `${n} de ${total} ${n === 1 ? 'questão é' : 'questões são'} de ${nome}; as outras foram sorteadas.` : `Não há questões de ${nome} neste assunto; todas foram sorteadas.`);
+      }
+      if (fromTopic < total) notes.push(`${fromTopic ? `${fromTopic} ${fromTopic === 1 ? 'questão é' : 'questões são'} deste assunto` : 'Não há questões só deste assunto'}; as outras são de ${materia.nome}.`);
+      return { questions, note: notes.join(' ') || null };
     },
   });
 }
@@ -84,7 +109,7 @@ export function runReview(questionIds, { onAnswer, title = 'Caderno de erros' } 
   });
 }
 
-function quizModal({ key, kicker, title: heading, label, topic = null, pick, onAnswer, review = false }) {
+function quizModal({ key, kicker, title: heading, label, topic = null, pick, choose = null, onAnswer, review = false }) {
   const { assunto, materia } = topic ?? {};
   let earned = false;
 
@@ -167,12 +192,66 @@ function quizModal({ key, kicker, title: heading, label, topic = null, pick, onA
         .then(([bank, res]) => {
           resolucoes = res;
           if (!root.isConnected) return;
-          const { questions, note } = pick(bank);
-          if (review && !questions.length) emptyReview();
-          else if (!review && questions.length < MIN_QUESTIONS) notEnough(questions.length);
-          else play(questions, note);
+          const go = (prioridade) => {
+            const { questions, note } = pick(bank, prioridade);
+            if (review && !questions.length) emptyReview();
+            else if (!review && questions.length < MIN_QUESTIONS) notEnough(questions.length);
+            else play(questions, note);
+          };
+          const counts = choose ? choose(bank) : [];
+          if (counts.length) choosePriority(counts, go);
+          else go(null);
         })
         .catch(() => root.isConnected && failedToLoad());
+    }
+
+    // choosePriority - antes do quiz: de qual prova (e ano) o aluno quer ver questões primeiro
+    function choosePriority(counts, go) {
+      dots.replaceChildren();
+      counter.textContent = 'Antes de começar';
+      const saved = savedPriority();
+      let categoria = counts.some((c) => c.id === saved.categoria) ? saved.categoria : counts[0].id;
+      let ano = saved.categoria === categoria ? saved.ano : null;
+      const totalAssunto = counts.reduce((s, c) => s + c.total, 0);
+
+      const cats = h('div', { class: 'quiz-priority-cats', role: 'radiogroup', 'aria-label': 'Prova para priorizar' });
+      const anos = h('div', { class: 'quiz-priority-anos', role: 'radiogroup', 'aria-label': 'Ano da prova' });
+      const anoGroup = h('div', {}, h('p', { class: 'quiz-priority-label' }, 'Ano da prova'), anos);
+      const resumo = h('p', { class: 'quiz-priority-resumo', 'aria-live': 'polite' });
+
+      const chip = (label, n, active, onClick) => h('button', {
+        class: `quiz-chip${active ? ' is-active' : ''}`, type: 'button', role: 'radio', 'aria-checked': String(active), onClick,
+      }, label, h('span', { class: 'quiz-chip-n' }, String(n)));
+
+      const render = () => {
+        const cat = counts.find((c) => c.id === categoria);
+        cats.replaceChildren(...counts.map((c) => chip(c.nome, c.total, c.id === categoria, () => { categoria = c.id; ano = null; render(); })));
+        if (ano && !cat.anos.some((a) => a.ano === ano)) ano = null;
+        anos.replaceChildren(...(cat.anos.length > 1
+          ? [chip('Todos os anos', cat.total, !ano, () => { ano = null; render(); }),
+            ...cat.anos.map((a) => chip(String(a.ano), a.n, a.ano === ano, () => { ano = a.ano; render(); }))]
+          : []));
+        anoGroup.hidden = cat.anos.length <= 1;
+        const n = ano ? cat.anos.find((a) => a.ano === ano).n : cat.total;
+        resumo.textContent = `${n} ${n === 1 ? 'questão' : 'questões'} de ${priorityLabel({ categoria, ano })} neste assunto (de ${totalAssunto} no total). Elas aparecem primeiro; o resto do quiz é sorteado.`;
+      };
+      render();
+
+      const startBtn = h('button', { class: 'btn btn-primary', type: 'button', 'data-autofocus': true, onClick: () => {
+        const p = { categoria, ano };
+        savePriority(p);
+        track('quiz_prioridade', { categoria, ano: ano || 'todos' });
+        go(p);
+      } }, 'Começar', icon('arrow-right'));
+      const mixBtn = h('button', { class: 'btn btn-quiet', type: 'button', onClick: () => go(null) }, 'Sem prioridade, tudo sorteado');
+
+      show(h('div', { class: 'quiz-card quiz-message quiz-priority' },
+        h('h3', { tabindex: '-1' }, 'Quais questões você quer ver primeiro?'),
+        h('p', { class: 'quiz-priority-label' }, 'Prova'), cats,
+        anoGroup,
+        resumo,
+        h('div', { class: 'quiz-actions' }, mixBtn, startBtn)), startBtn);
+
     }
 
     function emptyReview() {

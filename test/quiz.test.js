@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pickQuestions, isPassed, shuffle, QUIZ_SIZE, readingSeconds } from '../js/lib/quiz.js';
+import { pickQuestions, isPassed, shuffle, QUIZ_SIZE, readingSeconds, priorityCounts } from '../js/lib/quiz.js';
 
 const q = (id, materia, assunto) => ({ id, materia, assunto });
 const seeded = (seed = 1) => () => {
@@ -51,4 +51,19 @@ test('readingSeconds respeita mínimo e máximo', () => {
   assert.equal(readingSeconds(''), 5);
   assert.equal(readingSeconds('palavra '.repeat(60)), 15);
   assert.equal(readingSeconds('palavra '.repeat(400)), 25);
+});
+
+test('prioridade: questoes da prova e ano escolhidos vem primeiro, depois o resto sorteado', () => {
+  const p = (id, fonte, ano) => ({ id, materia: 'fis', assunto: 'fis1', fonte, ano });
+  const bank = [p('e1', 'enem', 2023), p('e2', 'enem', 2024), p('s1', undefined, 2024), p('s2', undefined, 2023), p('s3', undefined, 2024), p('a1', 'ssa1', 2024)];
+  const { questions } = pickQuestions(bank, { topicId: 'fis1', materiaId: 'fis', prioridade: { categoria: 'ssa2', ano: 2024 } }, { rng: seeded(9) });
+  assert.deepEqual(questions.slice(0, 2).map((x) => x.id).sort(), ['s1', 's3']);
+  assert.equal(questions.length, 5);
+});
+
+test('priorityCounts conta por prova e ano, so do assunto', () => {
+  const p = (fonte, ano, assunto = 'fis1') => ({ materia: 'fis', assunto, fonte, ano });
+  const counts = priorityCounts([p(undefined, 2024), p(undefined, 2023), p(undefined, 2024), p('enem', 2022), p('enem', 2022, 'fis2')], 'fis1');
+  assert.deepEqual(counts.map((c) => [c.id, c.total]), [['ssa2', 3], ['enem', 1]]);
+  assert.deepEqual(counts[0].anos, [{ ano: 2024, n: 2 }, { ano: 2023, n: 1 }]);
 });
